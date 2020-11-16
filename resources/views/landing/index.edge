@@ -1,0 +1,133 @@
+@include('partials/header')
+<div class="feature-box py-3 mt-5">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="py-0 pb-5 py-lg-5">
+          <div class="pr-0 pr-lg-5">
+            <h1 class="display-3 mb-3 font-weight-bold">
+              Buy and Sell crypto
+            </h1>
+            <p class="font-size-lg text-black-50">
+
+
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex col-lg-6 align-items-center">
+        <img src="/images/ex.jpg" class="img-fluid" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- buy offers -->
+<div class="container">
+  <h3 class="text-center text-success my-3">Buy Offers</h3>
+  <div class="card component-card_1 mb-5 p-5 w-100">
+    <div class="card-header text-center bg-white">
+      <div class="card-header--title">
+        <b>Buy Offers</b>
+      </div>
+      <div class="card-header--actions">
+        <a href="#" class="btn btn-sm btn-success" data-toggle="tooltip" title="Refresh">
+          <i class="fas fa-sync fa-spin"></i>
+        </a>
+      </div>
+    </div>
+    <div class="table-responsive w-100 table-wrapper ">
+      <table id="style-2" class="table style-2 table-hover" data-toggle="datatable">
+        <thead>
+        <tr>
+          <th>Seller</th>
+          <th>Payment Method</th>
+          <th>coin</th>
+          <th>Price</th>
+          <th>Limits</th>
+          <th class="no-sort text-center fixedc">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Tiger Nixon</td>
+          <td>System Architect</td>
+          <td>Edinburgh</td>
+          <td>61</td>
+          <td>2011/04/25</td>
+          <td class="text-center fixedc">
+            <a href="#" class="btn btn-block btn-success pl-1 pr-1 btn-sm ml-1 mr-1" title="View details">
+              <i class="fas fa-shopping-cart"></i><span class="ml-1">Buy</span>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot class="thead-light">
+        <tr>
+          <th>Seller</th>
+          <th>Payment Method</th>
+          <th>coin</th>
+          <th>Price</th>
+          <th>Limits</th>
+          <th class="no-sort text-center fixedc">Actions</th>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- buy offers -->
+<div class="container">
+  <h3 class="text-center text-danger my-3">Sell Offers</h3>
+  <div class="card component-card_4 p-5 mb-5 w-100">
+    <div class="card-header text-center bg-white">
+      <div class="card-header--title">
+        <b>Sell Offers</b>
+      </div>
+      <div class="card-header--actions">
+        <a href="#" class="btn btn-sm btn-success mb-3  bs-tooltip"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+          <i class="fas fa-sync fa-spin"></i>
+        </a>
+      </div>
+    </div>
+    <div class="table-responsive w-100">
+      <table id="style-3" class="table style-3  table-hover" data-toggle="datatable">
+        <thead>
+        <tr>
+          <th>Seller</th>
+          <th>Payment Method</th>
+          <th>coin</th>
+          <th>Price</th>
+          <th>Limits</th>
+          <th class="no-sort text-center fixedc">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Tiger Nixon</td>
+          <td>System Architect</td>
+          <td>Edinburgh</td>
+          <td>61</td>
+          <td>2011/04/25</td>
+          <td class="text-center fixedc">
+            <a href="#" class="btn btn-block btn-danger pl-1 pr-1 btn-sm ml-1 mr-1" title="View details">
+              <i class="fas fa-dollar-sign"></i><span class="ml-1">Sell</span>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot class="thead-light">
+        <tr>
+          <th>Seller</th>
+          <th>Payment Method</th>
+          <th>coin</th>
+          <th>Price</th>
+          <th>Limits</th>
+          <th class="no-sort text-cente fixedc">Actions</th>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+@include('partials/footer')

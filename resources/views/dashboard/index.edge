@@ -1,0 +1,382 @@
+@include('partials/dashheader')
+<!--  BEGIN CONTENT AREA  -->
+<div id="content" class="main-content">
+    <div class="layout-px-spacing">
+
+        <div class="row layout-top-spacing">
+
+            <div class="col-xl-4 col-lg-12 col-md-6 col-sm-12 col-12 layout-spacing">
+                <div class="widget-one bg-warning">
+                    <div class="widget-content">
+                        <div class="w-numeric-value">
+                            <div class="w-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zm-141.651-35.33c4.937-32.999-20.191-50.739-54.55-62.573l11.146-44.702-27.213-6.781-10.851 43.524c-7.154-1.783-14.502-3.464-21.803-5.13l10.929-43.81-27.198-6.781-11.153 44.686c-5.922-1.349-11.735-2.682-17.377-4.084l.031-.14-37.53-9.37-7.239 29.062s20.191 4.627 19.765 4.913c11.022 2.751 13.014 10.044 12.68 15.825l-12.696 50.925c.76.194 1.744.473 2.829.907-.907-.225-1.876-.473-2.876-.713l-17.796 71.338c-1.349 3.348-4.767 8.37-12.471 6.464.271.395-19.78-4.937-19.78-4.937l-13.51 31.147 35.414 8.827c6.588 1.651 13.045 3.379 19.4 5.006l-11.262 45.213 27.182 6.781 11.153-44.733a1038.209 1038.209 0 0 0 21.687 5.627l-11.115 44.523 27.213 6.781 11.262-45.128c46.404 8.781 81.299 5.239 95.986-36.727 11.836-33.79-.589-53.281-25.004-65.991 17.78-4.098 31.174-15.792 34.747-39.949zm-62.177 87.179c-8.41 33.79-65.308 15.523-83.755 10.943l14.944-59.899c18.446 4.603 77.6 13.717 68.811 48.956zm8.417-87.667c-7.673 30.736-55.031 15.12-70.393 11.292l13.548-54.327c15.363 3.828 64.836 10.973 56.845 43.035z"/></svg>
+                            </div>
+                            <div class="w-content">
+                                <span class="w-value"><%=btc%></span>
+                                <span class="w-numeric-title">Bitcoin</span>
+                            </div>
+                        </div>
+                        <div class="w-chart">
+                            <div id="total-orders"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-12 col-md-6 col-sm-12 col-12 layout-spacing">
+                <div class="widget-one bg-success">
+                    <div class="widget-content">
+                        <div class="w-numeric-value">
+                            <div class="w-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M310.204 242.638c27.73-14.18 45.377-39.39 41.28-81.3-5.358-57.351-52.458-76.573-114.85-81.929V0h-48.528v77.203c-12.605 0-25.525.315-38.444.63V0h-48.528v79.409c-17.842.539-38.622.276-97.37 0v51.678c38.314-.678 58.417-3.14 63.023 21.427v217.429c-2.925 19.492-18.524 16.685-53.255 16.071L3.765 443.68c88.481 0 97.37.315 97.37.315V512h48.528v-67.06c13.234.315 26.154.315 38.444.315V512h48.528v-68.005c81.299-4.412 135.647-24.894 142.895-101.467 5.671-61.446-23.32-88.862-69.326-99.89zM150.608 134.553c27.415 0 113.126-8.507 113.126 48.528 0 54.515-85.71 48.212-113.126 48.212v-96.74zm0 251.776V279.821c32.772 0 133.127-9.138 133.127 53.255-.001 60.186-100.355 53.253-133.127 53.253z"/></svg>
+                            </div>
+                            <div class="w-content">
+                                <span class="w-value"><%=bch%></span>
+                                <span class="w-numeric-title">Bitcoin cash</span>
+                            </div>
+                        </div>
+                        <div class="w-chart">
+                            <div id="total-orders2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-12 col-md-6 col-sm-12 col-12 layout-spacing">
+                <div class="widget-one">
+                    <div class="widget-content">
+                        <div class="w-numeric-value">
+                            <div class="w-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M311.9 260.8L160 353.6 8 260.8 160 0l151.9 260.8zM160 383.4L8 290.6 160 512l152-221.4-152 92.8z"/></svg>
+                            </div>
+                            <div class="w-content">
+                                <span class="w-value"><%=eth%></span>
+                                <span class="w-numeric-title">Ethereum</span>
+                            </div>
+                        </div>
+                        <div class="w-chart">
+                            <div id="total-orders3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-12 col-md-6 col-sm-12 col-12 layout-spacing">
+                <div class="widget-one bg-dark">
+                    <div class="widget-content">
+                        <div class="w-numeric-value">
+                            <div class="w-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="2500" height="2500" viewBox="0.847 0.876 329.254 329.256"><title>Litecoin</title><path d="M330.102 165.503c0 90.922-73.705 164.629-164.626 164.629C74.554 330.132.848 256.425.848 165.503.848 74.582 74.554.876 165.476.876c90.92 0 164.626 73.706 164.626 164.627" fill="#bebebe"/><path d="M295.15 165.505c0 71.613-58.057 129.675-129.674 129.675-71.616 0-129.677-58.062-129.677-129.675 0-71.619 58.061-129.677 129.677-129.677 71.618 0 129.674 58.057 129.674 129.677" fill="#bebebe"/><path d="M155.854 209.482l10.693-40.264 25.316-9.249 6.297-23.663-.215-.587-24.92 9.104 17.955-67.608h-50.921l-23.481 88.23-19.605 7.162-6.478 24.395 19.59-7.156-13.839 51.998h135.521l8.688-32.362h-84.601" fill="#fff"/></svg>
+                            </div>
+                            <div class="w-content">
+                                <span class="w-value"><%=ltc%></span>
+                                <span class="w-numeric-title">Litecoin</span>
+                            </div>
+                        </div>
+                        <div class="w-chart">
+                            <div id="total-orders4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
+                <div class="widget-three">
+                    <div class="widget-heading">
+                        <h5 class="">Summary</h5>
+                    </div>
+                    <div class="widget-content">
+
+                        <div class="order-summary">
+
+                            <div class="summary-list">
+                                <div class="w-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                                </div>
+                                <div class="w-summary-details">
+
+                                    <div class="w-summary-info">
+                                        <h6>Income</h6>
+                                        <p class="summary-count">$92,600</p>
+                                    </div>
+
+                                    <div class="w-summary-stats">
+                                        <div class="progress">
+                                            <div class="progress-bar bg-gradient-secondary" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="summary-list">
+                                <div class="w-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+                                </div>
+                                <div class="w-summary-details">
+
+                                    <div class="w-summary-info">
+                                        <h6>Profit</h6>
+                                        <p class="summary-count">$37,515</p>
+                                    </div>
+
+                                    <div class="w-summary-stats">
+                                        <div class="progress">
+                                            <div class="progress-bar bg-gradient-success" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="summary-list">
+                                <div class="w-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                                </div>
+                                <div class="w-summary-details">
+
+                                    <div class="w-summary-info">
+                                        <h6>Expenses</h6>
+                                        <p class="summary-count">$55,085</p>
+                                    </div>
+
+                                    <div class="w-summary-stats">
+                                        <div class="progress">
+                                            <div class="progress-bar bg-gradient-warning" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+                <div class="widget widget-table-one">
+                    <div class="widget-heading">
+                        <h5 class="">Transactions</h5>
+                    </div>
+
+                    <div class="widget-content">
+                        <%if(transactions!==undefined){%>
+                            <%switch (transactions.type){
+                              case 'withdraw':%>
+                        <div class="transactions-list">
+                            <div class="t-item">
+                                <div class="t-company-name">
+                                    <div class="t-icon">
+                                        <div class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                                        </div>
+                                    </div>
+                                    <div class="t-name">
+                                        <h4>Withdraw</h4>
+                                        <p class="meta-date"><%=fromNow(transactions.createdAt); %></p>
+                                    </div>
+
+                                </div>
+                                <div class="t-rate rate-dec">
+                                    <p><span>-<%=transactions.amount+transactions.coin%></span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg></p>
+                                </div>
+                            </div>
+                        </div>
+
+                            <%
+                                break;%>
+                        <%case 'receive':%>
+                        <div class="transactions-list">
+                            <div class="t-item">
+                                <div class="t-company-name">
+                                    <div class="t-icon">
+                                        <div class="avatar avatar-xl">
+                                            <span class="avatar-title rounded-circle">RC</span>
+                                        </div>
+                                    </div>
+                                    <div class="t-name">
+                                        <h4>Received</h4>
+                                        <p class="meta-date"><%=fromNow(transactions.createdAt); %></p>
+                                    </div>
+                                </div>
+                                <div class="t-rate rate-inc">
+                                    <p><span>+<%=transactions.amount+transactions.coin%></span> <a y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg></p>
+                                </div>
+                            </div>
+                        </div>
+                        <%
+                            break;
+                        %>
+
+
+                            <%}%>
+                       <% }else {%>
+                      <div class="transactions-list">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-frown"><circle cx="12" cy="12" r="10"></circle><path d="M16 16s-1.5-2-4-2-4 2-4 2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                        no transactions
+
+                      </div>
+                      <%}%>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+      <div class="row layout-top-spacing">
+
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+
+          <div class="widget widget-account-invoice-one">
+
+            <div class="widget-heading">
+              <h5 class="">Account Info</h5>
+            </div>
+
+            <div class="widget-content">
+              <div class="invoice-box">
+
+                <div class="acc-total-info">
+                  <h5>Balance</h5>
+                  <p class="acc-amount">$470</p>
+                </div>
+
+                <div class="inv-detail">
+                  <div class="info-detail-1">
+                    <p>Monthly Plan</p>
+                    <p>$ 199.0</p>
+                  </div>
+                  <div class="info-detail-2">
+                    <p>Taxes</p>
+                    <p>$ 17.82</p>
+                  </div>
+                  <div class="info-detail-3 info-sub">
+                    <div class="info-detail">
+                      <p>Extras this month</p>
+                      <p>$ -0.68</p>
+                    </div>
+                    <div class="info-detail-sub">
+                      <p>Netflix Yearly Subscription</p>
+                      <p>$ 0</p>
+                    </div>
+                    <div class="info-detail-sub">
+                      <p>Others</p>
+                      <p>$ -0.68</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="inv-action">
+                  <a href="" class="btn btn-dark">Summary</a>
+                  <a href="" class="btn btn-danger">Transfer</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+                <div class="widget widget-activity-four">
+                    <div class="widget-heading">
+                        <h5 class="">Recent Activities</h5>
+                    </div>
+
+                    <div class="widget-content">
+                        <div class="mt-container mx-auto">
+                            <div class="timeline-line">
+                              <!-- activities -->
+                              <%if(notifications!==undefined){%>
+                              <%switch (notifications.status){
+                              case 'completed':%>
+                                <div class="item-timeline timeline-success">
+                                    <div class="t-dot" data-original-title="" title="">
+                                    </div>
+                                    <div class="t-text">
+                                        <p><%=notifications.msg%></p>
+                                        <span class="badge badge-success"><%=notifications.status%></span>
+                                        <p class="t-time"><%=fromNow(notifications.createdAt); %></p>
+                                    </div>
+                                </div>
+                              <%
+                                break;%>
+                              <%case 'pending':%>
+
+                              <div class="item-timeline timeline-warning">
+                                <div class="t-dot" data-original-title="" title="">
+                                </div>
+                                <div class="t-text">
+                                  <p><%=notifications.msg%></p>
+                                  <span class="badge badge-warning"><%=notifications.status%></span>
+                                  <p class="t-time"><%=fromNow(notifications.createdAt); %></p>
+                                </div>
+                              </div>
+                              <%
+                                break;%>
+                              <%case 'cancelled':%>
+                              <div class="item-timeline timeline-danger">
+                                <div class="t-dot" data-original-title="" title="">
+                                </div>
+                                <div class="t-text">
+                                  <p><%=notifications.msg%></p>
+                                  <span class="badge badge-danger"><%=notifications.status%></span>
+                                  <p class="t-time"><%=fromNow(notifications.createdAt); %></p>
+                                </div>
+                              </div>
+                              <%
+                                break;%>
+                              <%case 'in progress':%>
+                              <div class="item-timeline timeline-primary">
+                                <div class="t-dot" data-original-title="" title="">
+                                </div>
+                                <div class="t-text">
+                                  <p><%=notifications.msg%></p>
+                                  <span class="badge badge-primary"><%=notifications.status%></span>
+                                  <p class="t-time"><%=fromNow(notifications.createdAt); %></p>
+                                </div>
+                              </div>
+                              <%}%>
+                              <% }else {%>
+                              <div class="infobox-2">
+                                <div class="info-icon text-center mt-5">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-frown"><circle cx="12" cy="12" r="10"></circle><path d="M16 16s-1.5-2-4-2-4 2-4 2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+
+                                </div>
+                              </div>
+                              <%}%>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="tm-action-btn">
+                            <button class="btn">View All <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+                        </div>
+                    </div>
+                </div>
+
+        <!--summary -->
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
+          <div class="widget widget-account-invoice-one">
+            <div class="widget-heading">
+              <h5 class="">Trades</h5>
+            </div>
+            <div class="widget-content">
+              <div class="w-chart">
+                <div id="trades"></div>
+              </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+
+
+
+  @include('partials/dashfooter')
+</div>

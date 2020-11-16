@@ -1,0 +1,89 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>{{title}}</title>
+<link rel="icon" type="image/png" href="/images/exchange.png" />
+    <link rel="stylesheet" href="/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/plugins.css">
+    <link href="/styles/authentication/form-2.css" rel="stylesheet" type="text/css" />
+    <link href="/styles/scrollspyNav.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/icons/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/plugins/table/datatable/datatables.css">
+    <link rel="stylesheet" type="text/css" href="/plugins/table/datatable/dt-global_style.css">
+    <link rel="stylesheet" href="/styles/components/cards/card.css">
+    <link rel="stylesheet" href="/styles/elements/tooltip.css">
+    <link rel="stylesheet" href="/styles/override.css">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <a class="navbar-brand mr-5" href="/">
+                <img src="/images/exchange.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+              {{title}}
+
+            </a>
+        <button class="navbar-toggler is-active collapsed hamburger hamburger--elastic mr-3" type="button"
+                data-toggle="collapse" data-target="#nav-second" aria-controls="nav-second"
+                aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="hamburger-box">
+                        <i class="fal fa-bars"></i>
+                    </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="nav-second">
+            <ul class="navbar-nav mr-auto p-2">
+                <li class="nav-item active">
+                    <a class="btn btn-link mt-lg-0 mt-3" href="#">
+                        <span>{{Antl.formatMessage('index.buy')}}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-link mt-lg-0 mt-2 ml-2" href="#">
+                        <span>{{Antl.formatMessage('index.sell')}}</span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="btn btn-link btn-link-primary dropdown-toggle mt-lg-0 mt-2 ml-2" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span>{{Antl.formatMessage('index.help')}}</span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#"><span><i class="fal fa-question-circle"></i> </span>{{Antl.formatMessage('index.faq')}}</a>
+                        <a class="dropdown-item" href="#"><span><i class="fal fa-coins"></i> </span>{{Antl.formatMessage('index.fees')}}</a>
+                        <a class="dropdown-item" href="#"><span><i class="fal fa-info-circle"></i> </span>{{Antl.formatMessage('index.about')}}</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="badge badge-neutral-second text-second"><img src="/images/united-kingdom.png" width="20" height="20"><span class="m-3">Eng
+                             <span><i class="fa fa-caret-down"></i> </span>
+                            </span></span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#"><img src="/images/united-kingdom.png" width="20" height="20"><span class="m-3">Eng</span></a>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="nav-item">
+                <a class="nav-link" href="/login">
+                    <button class="btn btn-outline btn-outline-success btn-block" type="button">
+                        <span class="btn-wrapper--label">{{Antl.formatMessage('index.login')}}</span>
+                        <span class="btn-wrapper--icon">
+        <i class="fal fa-sign-in"></i>
+    </span>
+                    </button>
+                </a>
+
+
+            </div>
+
+            <div class="nav-item">
+                <a class="nav-link" href="/signup">
+                    <button class="btn btn-primary btn-block" type="button">
+                        <span class="btn-wrapper--label">{{Antl.formatMessage('index.signup')}}</span>
+                        <span class="btn-wrapper--icon">
+        <i class="fal fa-user"></i>
+    </span>
+                    </button>
+                </a>
+
+
+            </div>
+        </div>
+    </nav>
