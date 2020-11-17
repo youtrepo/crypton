@@ -15,11 +15,11 @@ $(document).ready(() => {
     }else{
       $.ajax({
         type:'POST',
-        url:'/signin',
+        url:'/authenticate',
         data: $('form').serialize()
         ,
         beforeSend:()=>{
-          $('#spin').removeClass('invisible').addClass('visible')
+          $('#spin').removeClass('d-none').addClass('d-inline-block')
         },
         success:(data)=> {
           switch (data) {
@@ -28,7 +28,7 @@ $(document).ready(() => {
                 '                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>\n' +
                 '                <strong>Warning!</strong> User exists,Please log in\n' +
                 '              </div>')
-              $('#spin').removeClass('visible').addClass('invisible')
+              $('#spin').removeClass('d-inline-block').addClass('d-none')
               grecaptcha.reset();
               break;
             case 'success':
@@ -45,15 +45,15 @@ $(document).ready(() => {
                 '                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>\n' +
                 '                <strong>Warning!</strong> Captcha error\n' +
                 '              </div>')
-              $('#spin').removeClass('visible').addClass('invisible')
+              $('#spin').removeClass('d-inline-block').addClass('d-none')
               grecaptcha.reset();
               break;
-            case 'Account not found':
+            case 'invalid login':
               $('#error').html('<div class="alert alert-arrow-left alert-icon-left alert-light-danger mb-4" role="alert">\n' +
                 '                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>\n' +
-                '                <strong>Warning!</strong>Account not found,Please register\n' +
+                '                <strong>Warning!</strong>invalid login attempt\n' +
                 '              </div>')
-              $('#spin').removeClass('visible').addClass('invisible')
+              $('#spin').removeClass('d-inline-block').addClass('d-none')
               grecaptcha.reset();
               break;
             case 'different ip':
@@ -64,10 +64,10 @@ $(document).ready(() => {
               $('#spin').removeClass('visible').addClass('invisible')
               grecaptcha.reset();
               break;
-            case 'invalid password':
+            case 'not found':
               $('#error').html('<div class="alert alert-arrow-left alert-icon-left alert-light-danger mb-4" role="alert">\n' +
                 '                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>\n' +
-                '                <strong>Warning!</strong>Invalid password\n' +
+                '                <strong>Warning!</strong>Account not found\n' +
                 '              </div>')
               $('#spin').removeClass('visible').addClass('invisible')
               grecaptcha.reset();

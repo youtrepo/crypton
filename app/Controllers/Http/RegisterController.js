@@ -10,7 +10,7 @@ const iplocate = require("node-iplocate");
 const publicIp = require('public-ip');
 const { v4: uuidv4 } = require('uuid');
 class RegisterController {
-  async register({request,response,view}){
+  async register({request,response,view,session}){
     let data=request.only(['username','email','password'])
     let [secret,token]=[Env.get('captcha_secret'),request.post()['g-recaptcha-response']]
     let verify_captcha=await verify(secret, token)
@@ -28,8 +28,29 @@ class RegisterController {
         if (checkusername){
           response.send('username exists')
         }else if (!checkuser){
+          const balances=[{
+            email:data.email,
+            coin:'btc'
+          },
+            {
+              email:data.email,
+              coin:'eth'
+            },
+            {
+              email:data.email,
+              coin:'bch'
+            },
+            {
+              email:data.email,
+              coin:'ltc'
+            }
+
+
+
+          ]
           await User.create(data)
-          let info=Env.get('APP_URL')+'/verify/'+data.token
+          await balance.createMany(balances)
+          let info=Env.get('URL')+'/verify/'+data.token
           await Mail.send('emails.welcome',info, (message) => {
             message
               .to(data.email)
@@ -53,6 +74,8 @@ class RegisterController {
 
 
           })
+          session.put('email',data.email)
+          session.put('password',data.password)
           response.send('success')
         }else {
           response.send('User exists')

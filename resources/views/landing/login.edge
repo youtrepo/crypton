@@ -33,6 +33,7 @@
           <p class="">Log in to your account to continue.</p>
 
           <form class="text-left">
+            {{ csrfField() }}
             <div class="form">
               <div id="error"></div>
               <div id="username-field" class="field-wrapper input">
@@ -51,7 +52,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="toggle-password" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
               </div>
               <div class="field-wrapper">
-                <div class="h-captcha " data-sitekey="<%=process.env.captcha_key%>"></div>
+                <div class="h-captcha " data-sitekey="{{captcha_key}}"></div>
               </div>
               <div class="field-wrapper terms_condition">
                 <div class="n-chk">

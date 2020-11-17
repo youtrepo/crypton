@@ -1,8 +1,13 @@
 'use strict'
 
 class DashboardController {
-  async dashboard({request,response,view}){
-    return view.render('dashboard/index')
+  async dashboard({auth,request,response,view}){
+    try {
+      await auth.check()
+      return view.render('dashboard/index')
+    } catch (error) {
+      response.redirect('/login')
+    }
   }
 }
 
