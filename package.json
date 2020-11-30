@@ -32,12 +32,12 @@
     "@adonisjs/shield": "^1.0.8",
     "@adonisjs/websocket": "^1.0.12",
     "hcaptcha": "0.0.2",
-    "lucid-mongo": "^3.1.6",
     "node-iplocate": "^1.0.2",
     "pg": "^8.4.2",
     "public-ip": "^4.0.2",
     "uniqid": "^5.2.0",
-    "uuid": "^8.3.1"
+    "uuid": "^8.3.1",
+    "qrcode": "^1.4.4"
   },
   "devDependencies": {},
   "autoload": {
