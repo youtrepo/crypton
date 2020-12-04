@@ -48,11 +48,11 @@
                     <div class="widget-content">
                         <div class="w-numeric-value">
                             <div class="w-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M311.9 260.8L160 353.6 8 260.8 160 0l151.9 260.8zM160 383.4L8 290.6 160 512l152-221.4-152 92.8z"/></svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" id="solid" enable-background="new 0 0 24 24" viewBox="0 0 24 24" width="512" height="512"><path d="m 9.5 8.5 v 3.5 h 1.75 c 0.414 0 0.75 0.336 0.75 0.75 s -0.336 0.75 -0.75 0.75 h -1.75 v 2 h 2.5 c 1.93 0 3.5 -1.57 3.5 -3.5 s -1.57 -3.5 -3.5 -3.5 Z" /><path d="m 1 12 c 0 6.065 4.935 11 11 11 s 11 -4.935 11 -11 s -4.935 -11 -11 -11 s -11 4.935 -11 11 Z m 16 0 c 0 2.757 -2.243 5 -5 5 h -3.25 c -0.414 0 -0.75 -0.336 -0.75 -0.75 v -2.75 h -1.75 c -0.414 0 -0.75 -0.336 -0.75 -0.75 s 0.336 -0.75 0.75 -0.75 h 1.75 v -4.25 c 0 -0.414 0.336 -0.75 0.75 -0.75 h 3.25 c 2.757 0 5 2.243 5 5 Z" /></svg>
                             </div>
                             <div class="w-content">
                                 <span class="w-value">{{eth.value}}</span>
-                                <span class="w-numeric-title">Ethereum</span>
+                                <span class="w-numeric-title">Dash</span>
                             </div>
                         </div>
                         <div class="w-chart">
@@ -165,9 +165,8 @@
                     </div>
 
                     <div class="widget-content">
-                        <%if(transactions!==undefined){%>
-                            <%switch (transactions.type){
-                              case 'withdraw':%>
+                        @if(transactions.length!==0)
+                           @if(transactions.type==='withdraw')
                         <div class="transactions-list">
                             <div class="t-item">
                                 <div class="t-company-name">
@@ -178,19 +177,16 @@
                                     </div>
                                     <div class="t-name">
                                         <h4>Withdraw</h4>
-                                        <p class="meta-date"><%=fromNow(transactions.createdAt); %></p>
+                                        <p class="meta-date">{{fromNow(transactions.created_at);}}</p>
                                     </div>
 
                                 </div>
                                 <div class="t-rate rate-dec">
-                                    <p><span>-<%=transactions.amount+transactions.coin%></span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg></p>
+                                    <p><span>-{{transactions.amount+transactions.coin%></span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg></p>
                                 </div>
                             </div>
                         </div>
-
-                            <%
-                                break;%>
-                        <%case 'receive':%>
+                      @else@if(transactions.type==='receive')
                         <div class="transactions-list">
                             <div class="t-item">
                                 <div class="t-company-name">
@@ -201,27 +197,22 @@
                                     </div>
                                     <div class="t-name">
                                         <h4>Received</h4>
-                                        <p class="meta-date"><%=fromNow(transactions.createdAt); %></p>
+                                        <p class="meta-date">{{fromNow(transactions.created_at);}}</p>
                                     </div>
                                 </div>
                                 <div class="t-rate rate-inc">
-                                    <p><span>+<%=transactions.amount+transactions.coin%></span> <a y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg></p>
+                                    <p><span>+{{transactions.amount+transactions.coin%></span> <a y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg></p>
                                 </div>
                             </div>
                         </div>
-                        <%
-                            break;
-                        %>
-
-
-                            <%}%>
-                       <% }else {%>
+                       @endif
+                      @else
                       <div class="transactions-list">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-frown"><circle cx="12" cy="12" r="10"></circle><path d="M16 16s-1.5-2-4-2-4 2-4 2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
                         no transactions
 
                       </div>
-                      <%}%>
+                     @endif
 
                         </div>
                     </div>
@@ -290,64 +281,56 @@
                         <div class="mt-container mx-auto">
                             <div class="timeline-line">
                               <!-- activities -->
-                              <%if(notifications!==undefined){%>
-                              <%switch (notifications.status){
-                              case 'completed':%>
+                             @if(notifications.length!==0)
+                              @if(notifications.status==='completed')
                                 <div class="item-timeline timeline-success">
                                     <div class="t-dot" data-original-title="" title="">
                                     </div>
                                     <div class="t-text">
-                                        <p><%=notifications.msg%></p>
-                                        <span class="badge badge-success"><%=notifications.status%></span>
-                                        <p class="t-time"><%=fromNow(notifications.createdAt); %></p>
+                                        <p>{{notifications.msg}}</p>
+                                        <span class="badge badge-success">{{notifications.status}}</span>
+                                        <p class="t-time">{{fromNow(notifications.created_at);}}</p>
                                     </div>
                                 </div>
-                              <%
-                                break;%>
-                              <%case 'pending':%>
-
+                             @elseif(notifications.status==='pending')
                               <div class="item-timeline timeline-warning">
                                 <div class="t-dot" data-original-title="" title="">
                                 </div>
                                 <div class="t-text">
-                                  <p><%=notifications.msg%></p>
-                                  <span class="badge badge-warning"><%=notifications.status%></span>
-                                  <p class="t-time"><%=fromNow(notifications.createdAt); %></p>
+                                  <p>{{notifications.msg%></p>
+                                  <span class="badge badge-warning">{{notifications.status%></span>
+                                  <p class="t-time">{{fromNow(notifications.created_at);}}</p>
                                 </div>
                               </div>
-                              <%
-                                break;%>
-                              <%case 'cancelled':%>
+                              @elseif(notifications.status==='cancelled')
                               <div class="item-timeline timeline-danger">
                                 <div class="t-dot" data-original-title="" title="">
                                 </div>
                                 <div class="t-text">
-                                  <p><%=notifications.msg%></p>
-                                  <span class="badge badge-danger"><%=notifications.status%></span>
-                                  <p class="t-time"><%=fromNow(notifications.createdAt); %></p>
+                                  <p>{{notifications.msg%></p>
+                                  <span class="badge badge-danger">{{notifications.status%></span>
+                                  <p class="t-time"></p>
                                 </div>
                               </div>
-                              <%
-                                break;%>
-                              <%case 'in progress':%>
+                              @elseif(notifications.status==='progress')
                               <div class="item-timeline timeline-primary">
                                 <div class="t-dot" data-original-title="" title="">
                                 </div>
                                 <div class="t-text">
-                                  <p><%=notifications.msg%></p>
-                                  <span class="badge badge-primary"><%=notifications.status%></span>
-                                  <p class="t-time"><%=fromNow(notifications.createdAt); %></p>
+                                  <p>{{notifications.msg%></p>
+                                  <span class="badge badge-primary">{{notifications.status%></span>
+                                  <p class="t-time">{{fromNow(notifications.created_at);}}</p>
                                 </div>
                               </div>
-                              <%}%>
-                              <% }else {%>
+                              @endif
+                              @else
                               <div class="infobox-2">
                                 <div class="info-icon text-center mt-5">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-frown"><circle cx="12" cy="12" r="10"></circle><path d="M16 16s-1.5-2-4-2-4 2-4 2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-frown"><circle cx="12" cy="12" r="10"></circle><path d="M16 16s-1.5-2-4-2-4 2-4 2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
 
                                 </div>
                               </div>
-                              <%}%>
+                              @endif
                             </div>
                         </div>
                     </div>

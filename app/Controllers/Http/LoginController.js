@@ -7,7 +7,11 @@ class LoginController {
       await auth.check()
       return response.redirect('/dashboard')
     }catch (e) {
-      return view.render('landing/login',{captcha_key:Env.get('captcha_key')})
+      if (e.message==='E_INVALID_SESSION: Invalid session') {
+        return view.render('landing/login', {captcha_key: Env.get('captcha_key')})
+      }else {
+        response.status(500).redirect('/500')
+      }
     }
   }
 }

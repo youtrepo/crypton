@@ -24,3 +24,12 @@ Route.get('/dashboard','DashboardController.dashboard')
 Route.post('/authenticate','AuthenticateController.authenticate')
 Route.get('/logout','LogoutController.logout')
 Route.get('/walletbtc','WalletbtcController.walletbtc')
+Route.get('/walletbch','WalletbchController.walletbch')
+Route.get('/walletdash','WalletdashController.walletdash')
+Route.get('/walletltc','WalletltcController.walletltc')
+Route.post('/transactions','TransactionController.transactions')
+Route.get('/create_offer','CreateofferController.create_offer')
+
+
+///errors
+Route.on('/500').render('errors/500')

@@ -1,0 +1,75 @@
+@include('partials/dashheader')
+<!--  BEGIN CONTENT AREA  -->
+<div id="content" class="main-content">
+  <div class="layout-px-spacing">
+
+    <div class="row layout-top-spacing">
+      <div class="container">
+        <blockquote class="blockquote">
+          Buyers often look for the best value and great vendor ratings. Choose a margin that you think your target buyers will find attractive. Here, you can set your exact offers limits, and advanced options.
+          <br>
+          <br>
+          We provide support for several payment methods. You can always suggest a new one for our team to consider.
+        </blockquote>
+
+        <form>
+          <div class="row">
+            <div class="col-lg">
+              <label>Coin</label>
+              <select class="form-control disabled-results">
+                @each(coin in coins)
+                <option value="{{coin.coin}}">{{coin.coin}}</option>
+                @endeach
+              </select>
+            </div>
+            <div class="col-lg">
+              <label>Payment method</label>
+              <select class="form-control disabled-results">
+                @each(payment in payments)
+                <option value="{{payment.name}}">{{payment.name}}</option>
+                @endeach
+              </select>
+            </div>
+          </div>
+<div class="row">
+            <div class="col-lg">
+              <label>Currency</label>
+              <select class="form-control disabled-results">
+                @each(currency in currencies)
+                <option value="{{currency.iso}}">{{currency.name}}({{currency.iso}})</option>
+                @endeach
+              </select>
+            </div>
+  <div class="col-lg mt-2 mb-3">
+    <label>Margin</label>
+    <input id="demo1" type="text" value="5" name="demo1">
+  </div>
+</div>
+
+          <div class="row mb-4">
+            <div class="col-lg">
+              <label>Min amount</label>
+              <input id="1" type="text" value="5" name="demo_vertical">
+            </div>
+            <div class="col-lg">
+              <label>Max amount</label>
+              <input id="2" type="text" value="5" name="demo_vertical">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg">
+              <label>Time frame</label>
+              <input id="3" type="text" value="5" name="demo_vertical">
+              <blockquote class="blockquote mt-3">Indicates the amount of time in <b>minutes</b> you will be able make their payment. The trade will automatically be canceled if you have not clicked <b>Mark as Paid</b> button before the above payment window expires.</blockquote>
+            </div>
+          </div>
+
+          <input type="submit" name="time" class="btn btn-primary">
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+@include('partials/dashfooter')

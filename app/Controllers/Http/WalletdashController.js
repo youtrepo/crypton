@@ -4,10 +4,10 @@ const BitGo = require('bitgo');
 const Env = use('Env')
 const wallets=use('App/Models/Wallet')
 var QRCode = require('qrcode')
-const coin='tbtc'
+const coin='tdash'
 var bitgo = new BitGo.BitGo({env: Env.get('BITGO_ENV'), accessToken:  Env.get('BITGO_KEY')});
-class WalletbtcController {
-  async walletbtc({auth,request,response,view}){
+class WalletdashController {
+  async walletdash({auth,request,response,view}){
     try {
       await auth.check()
         await bitgo.session()
@@ -19,7 +19,7 @@ class WalletbtcController {
         };
         if (check){
           let qrcode=await QRCode.toDataURL(check.address, {width: 200})
-          return view.render('dashboard/walletbtc',{wallet:check.address,qr:qrcode,param:request.url(),title:Env.get('TITLE')})
+          return view.render('dashboard/walleteth',{wallet:check.address,qr:qrcode,param:request.url(),title:Env.get('TITLE')})
         }else {
           const { wallet } = await bitgo.coin(coin).wallets().generateWallet(params);
           const webhook=await wallet.addWebhook({
@@ -36,10 +36,8 @@ class WalletbtcController {
 
           })
           let qrcode=await QRCode.toDataURL(address, {width: 200})
-          return view.render('dashboard/walletbtc',{wallet:wallet._wallet.receiveAddress.address,qr:qrcode,param:request.url(),title:Env.get('TITLE')
-          })
+          return view.render('dashboard/walleteth',{wallet:wallet._wallet.receiveAddress.address,qr:qrcode,param:request.url(),title:Env.get('TITLE')})
         }
-
     }catch (e) {
       if (e.message==='E_INVALID_SESSION: Invalid session'){
         response.redirect('/login')
@@ -52,4 +50,4 @@ class WalletbtcController {
   }
 }
 
-module.exports = WalletbtcController
+module.exports = WalletdashController
