@@ -25,6 +25,7 @@
   });
 </script>
 <script src="/js/custom.js"></script>
+<script src="/plugins/highlight/highlight.pack.js"></script>
 <!-- END GLOBAL MANDATORY SCRIPTS -->
 
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
@@ -34,6 +35,12 @@
 <script src="/plugins/select2/custom-select2.js"></script>
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 <script>$(".disabled-results").select2();</script>
+<script>$(".tagging").select2({
+  tags: true,
+  createTag: function(params) {
+    return undefined;
+  }
+});</script>
 <script src="/plugins/bootstrap-select/bootstrap-select.min.js"></script>
 <script src="/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
 <script src="/plugins/bootstrap-touchspin/custom-bootstrap-touchspin.js"></script>

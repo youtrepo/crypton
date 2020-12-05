@@ -15,6 +15,23 @@
         <form>
           <div class="row">
             <div class="col-lg">
+              <div class="n-chk">
+                <label class="new-control new-radio new-radio-text radio-classic-danger">
+                  <input type="radio" class="new-control-input" name="custom-radio-4">
+                  <span class="new-control-indicator"></span><span class="new-radio-content">I want to sell crypto</span>
+                </label>
+              </div>
+
+              <div class="n-chk">
+                <label class="new-control new-radio new-radio-text radio-classic-success">
+                  <input type="radio" class="new-control-input" name="custom-radio-4">
+                  <span class="new-control-indicator"></span><span class="new-radio-content">I want to Buy crypto</span>
+                </label>
+              </div>
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-lg">
               <label>Coin</label>
               <select class="form-control disabled-results">
                 @each(coin in coins)
@@ -56,12 +73,32 @@
               <input id="2" type="text" value="5" name="demo_vertical">
             </div>
           </div>
-          <div class="row">
+          <div class="row mb-4">
             <div class="col-lg">
               <label>Time frame</label>
               <input id="3" type="text" value="5" name="demo_vertical">
               <blockquote class="blockquote mt-3">Indicates the amount of time in <b>minutes</b> you will be able make their payment. The trade will automatically be canceled if you have not clicked <b>Mark as Paid</b> button before the above payment window expires.</blockquote>
             </div>
+            div class="col-lg">
+            <label>Country</label>
+            <select class="form-control disabled-results">
+              @each(country in countries)
+              <option value="{{currency.iso}}">{{country.name}}({{country.iso}})</option>
+              @endeach
+            </select>
+          </div>
+          </div>
+
+          <div class="row mb-4">
+            <div class="col-lg">
+              <label>Terms</label>
+              <textarea class="form-control" rows="3"></textarea>
+            </div>
+            <div class="col-lg">
+              <label>Instructions</label>
+              <textarea class="form-control" rows="3"></textarea>
+            </div>
+
           </div>
 
           <input type="submit" name="time" class="btn btn-primary">
