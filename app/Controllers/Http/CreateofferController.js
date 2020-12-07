@@ -15,6 +15,8 @@ class CreateofferController {
       let countries=await country.all()
       return view.render('dashboard/create_offer',{coins:coins.toJSON(),currencies:currencies.toJSON(),payments:payments.toJSON(),countries:countries.toJSON()})
     }catch (e) {
+
+
       if (e.message==='E_INVALID_SESSION: Invalid session'){
         response.redirect('/login')
       }else {
