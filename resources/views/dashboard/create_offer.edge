@@ -12,19 +12,20 @@
           We provide support for several payment methods. You can always suggest a new one for our team to consider.
         </blockquote>
 
-        <form>
+        <form method="post" action="javascript:void(0);">
+          {{ csrfField() }}
           <div class="row">
             <div class="col-lg">
               <div class="n-chk">
                 <label class="new-control new-radio new-radio-text radio-classic-danger">
-                  <input type="radio" class="new-control-input" name="custom-radio-4">
+                  <input type="radio" class="new-control-input" name="type" value="sell" required>
                   <span class="new-control-indicator"></span><span class="new-radio-content">I want to sell crypto</span>
                 </label>
               </div>
 
               <div class="n-chk">
                 <label class="new-control new-radio new-radio-text radio-classic-success">
-                  <input type="radio" class="new-control-input" name="custom-radio-4">
+                  <input type="radio" class="new-control-input" name="type" value="buy" required>
                   <span class="new-control-indicator"></span><span class="new-radio-content">I want to Buy crypto</span>
                 </label>
               </div>
@@ -33,7 +34,7 @@
           <div class="row">
             <div class="col-lg">
               <label>Coin</label>
-              <select class="form-control disabled-results">
+              <select class="form-control disabled-results" name="coin" required>
                 @each(coin in coins)
                 <option value="{{coin.coin}}">{{coin.coin}}</option>
                 @endeach
@@ -41,7 +42,7 @@
             </div>
             <div class="col-lg">
               <label>Payment method</label>
-              <select class="form-control disabled-results">
+              <select class="form-control disabled-results" name="payment_method" required>
                 @each(payment in payments)
                 <option value="{{payment.name}}">{{payment.name}}</option>
                 @endeach
@@ -51,7 +52,7 @@
 <div class="row">
             <div class="col-lg">
               <label>Currency</label>
-              <select class="form-control disabled-results">
+              <select class="form-control disabled-results" name="currency" required>
                 @each(currency in currencies)
                 <option value="{{currency.iso}}">{{currency.name}}({{currency.iso}})</option>
                 @endeach
@@ -59,31 +60,31 @@
             </div>
   <div class="col-lg mt-2 mb-3">
     <label>Margin</label>
-    <input id="demo1" type="text" value="5" name="demo1">
+    <input id="demo1" type="text" value="5" name="margin" required>
   </div>
 </div>
 
           <div class="row mb-4">
             <div class="col-lg">
               <label>Min amount</label>
-              <input id="1" type="text" value="5" name="demo_vertical">
+              <input id="1" type="text" value="5" name="min_amount" required>
             </div>
             <div class="col-lg">
               <label>Max amount</label>
-              <input id="2" type="text" value="5" name="demo_vertical">
+              <input id="2" type="text" value="5" name="max_amount" required>
             </div>
           </div>
           <div class="row mb-4">
             <div class="col-lg">
               <label>Time frame</label>
-              <input id="3" type="text" value="5" name="demo_vertical">
+              <input id="3" type="text" value="5" name="timeframe" required>
               <blockquote class="blockquote mt-3">Indicates the amount of time in <b>minutes</b> you will be able make their payment. The trade will automatically be canceled if you have not clicked <b>Mark as Paid</b> button before the above payment window expires.</blockquote>
             </div>
             <div class="col-lg">
             <label>Country</label>
-            <select class="form-control disabled-results">
+            <select class="form-control disabled-results" name="country" required>
               @each(country in countries)
-              <option value="{{currency.iso}}">{{country.name}}({{country.iso}})</option>
+              <option value="{{country.iso}}">{{country.name}}({{country.iso}})</option>
               @endeach
             </select>
           </div>
@@ -92,21 +93,65 @@
           <div class="row mb-4">
             <div class="col-lg">
               <label>Terms</label>
-              <textarea class="form-control" rows="3"></textarea>
+              <textarea class="form-control" rows="3" name="terms" required></textarea>
             </div>
             <div class="col-lg">
               <label>Instructions</label>
-              <textarea class="form-control" rows="3"></textarea>
+              <textarea class="form-control" rows="3" name="instructions" required></textarea>
             </div>
 
           </div>
 
-          <input type="submit" name="time" class="btn btn-primary">
+          <div class="row mb-4">
+            <div class="col-lg">
+              <label>Privacy</label>
+              <div class="n-chk">
+                <label class="new-control new-radio new-radio-text radio-classic-danger">
+                  <input type="radio" class="new-control-input" name="contact" value="none" required checked >
+                  <span class="new-control-indicator"></span><span class="new-radio-content">none</span>
+                </label>
+              </div>
+
+              <div class="n-chk">
+                <label class="new-control new-radio new-radio-text radio-classic-success">
+                  <input type="radio" class="new-control-input" name="contact" value="contacts_only" required>
+                  <span class="new-control-indicator"></span><span class="new-radio-content">show your contacts only</span>
+                </label>
+              </div>
+
+              <div class="n-chk">
+                <label class="new-control new-radio new-radio-text radio-classic-dark">
+                  <input type="radio" class="new-control-input" name="contact" value="trusted_only" required>
+                  <span class="new-control-indicator"></span><span class="new-radio-content">show your trusted contacts only</span>
+                </label>
+              </div>
+            </div>
+            <div class="col-lg">
+              <label>Requirements</label>
+              <div class="n-chk">
+                <label class="new-control new-checkbox checkbox-outline-secondary">
+                  <input type="checkbox" class="new-control-input" name="requirements" value="phone_verification">
+                  <span class="new-control-indicator"></span>Require Phone Verification
+                </label>
+              </div>
+              <div class="n-chk">
+                <label class="new-control new-checkbox checkbox-outline-secondary">
+                  <input type="checkbox" class="new-control-input" name="requirements" value="email_verification">
+                  <span class="new-control-indicator"></span>Require Email Verification
+                </label>
+              </div>
+
+            </div>
+          </div>
+
+          <button type="submit" name="time" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-save"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Submit</button>
         </form>
 
       </div>
     </div>
   </div>
-</div>
 
-@include('partials/dashfooter')
+  @include('partials/dashfooter')
+  <script src="/js/forms/bootstrap_validation/bs_validation_script.js"></script>
+  <script src="/form/offer.js"></script>
+</div>

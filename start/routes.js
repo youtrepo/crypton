@@ -29,6 +29,7 @@ Route.get('/walletdash','WalletdashController.walletdash')
 Route.get('/walletltc','WalletltcController.walletltc')
 Route.post('/transactions','TransactionController.transactions')
 Route.get('/create_offer','CreateofferController.create_offer')
+Route.post('/c_offer','COfferController.c_offer')
 
 
 ///errors
