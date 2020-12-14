@@ -24,8 +24,8 @@ class DashboardController {
           ltc:ltc,
           param:request.url(),
           title:Env.get('TITLE'),
-          notifications:notifications.toJSON()[0],
-          transactions:transactions.toJSON()[0],
+          notifications:notifications.toJSON(),
+          transactions:transactions.toJSON(),
           fromNow:fromNow
         })
     } catch (error) {

@@ -30,6 +30,8 @@ Route.get('/walletltc','WalletltcController.walletltc')
 Route.post('/transactions','TransactionController.transactions')
 Route.get('/create_offer','CreateofferController.create_offer')
 Route.post('/c_offer','COfferController.c_offer')
+Route.get('/offers','UserofferController.offers')
+Route.post('/offer_actions','OfferActionController.offer_actions')
 
 
 ///errors

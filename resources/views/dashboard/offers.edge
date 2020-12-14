@@ -1,0 +1,83 @@
+@include('partials/dashheader')
+<link rel="stylesheet" type="text/css" href="/plugins/table/datatable/datatables.css">
+<link rel="stylesheet" type="text/css" href="/plugins/table/datatable/custom_dt_miscellaneous.css">
+<link rel="stylesheet" type="text/css" href="/styles/forms/theme-checkbox-radio.css">
+<link rel="stylesheet" type="text/css" href="/plugins/table/datatable/dt-global_style.css">
+<!--  BEGIN CONTENT AREA  -->
+<div id="content" class="main-content">
+  <div class="layout-px-spacing">
+
+    <div class="row layout-top-spacing">
+      <div class="container">
+        <div class="statbox widget box box-shadow">
+          <div class="widget-header">
+            <div class="row">
+              <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                <h4>My offers</h4>
+              </div>
+            </div>
+          </div>
+          <div class="widget-content widget-content-area">
+            <div class="table-responsive mb-4">
+              <table id="column-filter" class="table">
+                <thead>
+                <tr>
+                  <th class="checkbox-column">Type </th>
+                  <th>Coin</th>
+                  <th>Payment</th>
+                  <th>Currency</th>
+                  <th>Range</th>
+                  <th>Margin</th>
+                  <th>status</th>
+                  <th class="no-sort text-center fixedc">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                @if(offers.length!==0)
+                @each(offer in offers)
+                <tr id="{{offer.id}}">
+                  <td class="checkbox-column">{{offer.offer_type}}</td>
+                  <td>{{offer.coin}}</td>
+                  <td>{{offer.payment_method}}</td>
+                  <td>{{offer.currency}}</td>
+                  <td>{{offer.min_amount}} To {{offer.max_amount}}</td>
+                  <td>{{offer.margin}}</td>
+                  <td><span class="badge badge-primary">active</span></td>
+                  <td class="no-sort text-center fixedc">
+                    <button class="btn btn-outline-primary mb-2 mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                    <button class="btn btn-outline-info mb-2 mr-2" onclick="offer_delete('{{offer.offer_id}}',{{offer.id}})"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
+                    <button class="btn btn-outline-success mb-2 mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                    <button class="btn btn-outline-danger mb-2 mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-power"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg></button>
+                  </td>
+                </tr>
+                @endeach
+                @else
+                No data
+                @endif
+                <tfoot>
+                <tr>
+                  <th class="checkbox-column">Type </th>
+                  <th>Coin</th>
+                  <th>Payment</th>
+                  <th>Currency</th>
+                  <th>Range</th>
+                  <th>Margin</th>
+                  <th>status</th>
+                  <th class="text-center">Action</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+
+  </div>
+    </div>
+  </div>
+
+  @include('partials/dashfooter')
+  <script src="/js/forms/bootstrap_validation/bs_validation_script.js"></script>
+  <script src="/jquery-validation-1.19.2/dist/jquery.validate.js"></script>
+  <script src="/form/offer.js"></script>
+  <script src="/form/offer_functions.js"></script>
+</div>
