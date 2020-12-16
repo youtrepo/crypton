@@ -31,6 +31,7 @@
     "@adonisjs/session": "^1.0.27",
     "@adonisjs/shield": "^1.0.8",
     "@adonisjs/websocket": "^1.0.12",
+    "coingecko-api": "^1.0.10",
     "fromnow": "^3.0.1",
     "hcaptcha": "0.0.2",
     "node-iplocate": "^1.0.2",
@@ -38,7 +39,8 @@
     "public-ip": "^4.0.2",
     "qrcode": "^1.4.4",
     "uniqid": "^5.2.0",
-    "uuid": "^8.3.1"
+    "uuid": "^8.3.1",
+    "coinbase": "^2.0.8"
   },
   "devDependencies": {},
   "autoload": {

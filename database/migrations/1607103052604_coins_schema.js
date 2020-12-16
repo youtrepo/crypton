@@ -7,7 +7,7 @@ class CoinsSchema extends Schema {
   up () {
     this.create('coins', (table) => {
       table.increments()
-      table.string('coin',55).unique()
+      table.string('coin',265).unique()
       table.timestamps()
     })
   }

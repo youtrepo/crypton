@@ -34,7 +34,7 @@
           <div class="row">
             <div class="col-lg">
               <label>Coin</label>
-              <select class="form-control disabled-results" name="coin" required>
+              <select class="form-control disabled-results" name="coin" id="coin" required>
                 @each(coin in coins)
                 <option value="{{coin.coin}}">{{coin.coin}}</option>
                 @endeach
@@ -44,7 +44,9 @@
               <label>Payment method</label>
               <select class="form-control disabled-results" name="payment_method" required>
                 @each(payment in payments)
+                <optgroup label="{{payment.category}}">
                 <option value="{{payment.name}}">{{payment.name}}</option>
+                </optgroup>
                 @endeach
               </select>
             </div>
@@ -52,7 +54,7 @@
 <div class="row">
             <div class="col-lg">
               <label>Currency</label>
-              <select class="form-control disabled-results" name="currency" required>
+              <select class="form-control disabled-results" name="currency" id="currency" required>
                 @each(currency in currencies)
                 <option value="{{currency.iso}}">{{currency.name}}({{currency.iso}})</option>
                 @endeach
@@ -60,7 +62,11 @@
             </div>
   <div class="col-lg mt-2 mb-3">
     <label>Margin</label>
-    <input id="demo1" type="text" value="5" name="margin" required>
+    <input id="demo1" type="text" value="5" name="margin" maxlength="1000" oninput="price($('#coin').val(),'{{ csrfToken }}',$('#currency').val())" required>
+    <div class="d-flex justify-content-center mx-5 mt-3 mb-5 ">
+    <div class="spinner-border spinner-border-reverse align-self-center text-dark d-none" id="c_spin"></div>
+    </div>
+    <blockquote class="blockquote mt-3 d-none" id="price_data"> </blockquote>
   </div>
 </div>
 
@@ -155,4 +161,5 @@
   <script src="/js/forms/bootstrap_validation/bs_validation_script.js"></script>
   <script src="/jquery-validation-1.19.2/dist/jquery.validate.js"></script>
   <script src="/form/offer.js"></script>
+  <script src="/prices/prices.js"></script>
 </div>

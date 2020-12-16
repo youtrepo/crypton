@@ -22,6 +22,8 @@ class OffersSchema extends Schema {
       table.text('instructions','longtext')
       table.string('privacy',90)
       table.string('requirements',90)
+      table.string('status',90)
+      table.string('user',265)
       table.timestamps()
     })
   }

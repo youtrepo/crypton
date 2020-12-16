@@ -1,8 +1,8 @@
-function offer_delete(id,rm){
+function offer_delete(id,rm,token){
   $.ajax({
     type:"POST",
     url:"/offer_actions",
-    data:{id:id,action:'delete'},
+    data:{id:id,action:'delete', _csrf: token},
     success:function (data){
       switch (data){
         case 'offer deleted':
