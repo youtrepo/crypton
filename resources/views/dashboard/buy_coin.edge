@@ -40,20 +40,11 @@
                   <td>{{offer.payment_method}}</td>
                   <td>{{offer.currency}}</td>
                   <td>{{offer.min_amount}} To {{offer.max_amount}}</td>
-                  <td>{{offer.margin}}</td>
-                  @if(offer.coin=='Btc')
-                  <td>{{btc.data['rates'][offer.currency])}}</td>
-                  @elseif(offer.coin=='Bch')
-                  <td>{{parseFloat(bch.data['rates'][offer.currency])}}</td>
-                  @elseif(offer.coin=='ltc')
-                  <td>{{parseFloat(ltc.data['rates'][offer.currency])}}</td>
-                  @elseif(offer.coin=='Dash')
-                  <td>{{parseFloat(dash.data['rates'][offer.currency])}}</td>
-                  @endif
+                  <td>{{offer.rate}}</td>
 
 
                   <td class="no-sort text-center fixedc">
-                    <a href="/buy/{{offer.id}}" class="btn btn-outline-success pl-1 pr-1 btn-sm ml-1 mr-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> Buy</a>
+                    <a href="/buy/{{offer.offer_id}}" class="btn btn-outline-success pl-1 pr-1 btn-sm ml-1 mr-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> Buy</a>
                     </td>
                 </tr>
                 @endeach
@@ -62,13 +53,12 @@
                 @endif
                 <tfoot>
                 <tr>
-                  <th class="checkbox-column">Type </th>
+                  <th>Seller</th>
                   <th>Coin</th>
                   <th>Payment</th>
                   <th>Currency</th>
                   <th>Range</th>
-                  <th>Margin</th>
-                  <th>status</th>
+                  <th>Rate</th>
                   <th class="text-center">Action</th>
                 </tr>
                 </tfoot>
