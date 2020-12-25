@@ -1,0 +1,89 @@
+@include('partials/dashheader')
+<link rel="stylesheet" type="text/css" href="/plugins/table/datatable/datatables.css">
+<link rel="stylesheet" type="text/css" href="/plugins/table/datatable/custom_dt_miscellaneous.css">
+<link rel="stylesheet" type="text/css" href="/styles/forms/theme-checkbox-radio.css">
+<link rel="stylesheet" type="text/css" href="/plugins/table/datatable/dt-global_style.css">
+<!--  BEGIN CONTENT AREA  -->
+<div id="content" class="main-content">
+  <div class="layout-px-spacing">
+
+    <div class="row layout-top-spacing">
+      <div class="container">
+        <div class="statbox widget box box-shadow">
+          <div class="widget-header">
+            <div class="row">
+              <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                <h4>My offers</h4>
+              </div>
+            </div>
+          </div>
+          <div class="widget-content widget-content-area">
+            <div class="table-responsive mb-4">
+              <table id="column-filter" class="table">
+                <thead>
+                <tr>
+                  <th>Seller</th>
+                  <th>Coin</th>
+                  <th>Payment</th>
+                  <th>Currency</th>
+                  <th>Range</th>
+                  <th>Rate</th>
+                  <th class="no-sort text-center fixedc">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                @if(offers.length!==0)
+                @each(offer in offers)
+                <tr>
+                  <td>{{offer.user}}</td>
+                  <td>{{offer.coin}}</td>
+                  <td>{{offer.payment_method}}</td>
+                  <td>{{offer.currency}}</td>
+                  <td>{{offer.min_amount}} To {{offer.max_amount}}</td>
+                  <td>{{offer.margin}}</td>
+                  @if(offer.coin=='Btc')
+                  <td>{{btc.data['rates'][offer.currency])}}</td>
+                  @elseif(offer.coin=='Bch')
+                  <td>{{parseFloat(bch.data['rates'][offer.currency])}}</td>
+                  @elseif(offer.coin=='ltc')
+                  <td>{{parseFloat(ltc.data['rates'][offer.currency])}}</td>
+                  @elseif(offer.coin=='Dash')
+                  <td>{{parseFloat(dash.data['rates'][offer.currency])}}</td>
+                  @endif
+
+
+                  <td class="no-sort text-center fixedc">
+                    <a href="/buy/{{offer.id}}" class="btn btn-outline-success pl-1 pr-1 btn-sm ml-1 mr-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> Buy</a>
+                    </td>
+                </tr>
+                @endeach
+                @else
+                No data
+                @endif
+                <tfoot>
+                <tr>
+                  <th class="checkbox-column">Type </th>
+                  <th>Coin</th>
+                  <th>Payment</th>
+                  <th>Currency</th>
+                  <th>Range</th>
+                  <th>Margin</th>
+                  <th>status</th>
+                  <th class="text-center">Action</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+
+  </div>
+    </div>
+  </div>
+
+  @include('partials/dashfooter')
+  <script src="/js/forms/bootstrap_validation/bs_validation_script.js"></script>
+  <script src="/jquery-validation-1.19.2/dist/jquery.validate.js"></script>
+  <script src="/form/offer.js"></script>
+  <script src="/form/offer_functions.js"></script>
+</div>

@@ -33,6 +33,7 @@ Route.post('/c_offer','COfferController.c_offer')
 Route.get('/offers','UserofferController.offers')
 Route.post('/offer_actions','OfferActionController.offer_actions')
 Route.post('/prices','PriceController.prices')
+Route.get('/buy_coin','BuyOfferController.buy')
 
 
 ///errors
