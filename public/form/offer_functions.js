@@ -28,7 +28,13 @@ function offer_delete(id,rm,token){
 }
 
 ///active
-function offer_visible(id,rm,action,token){
+function offer_visible(id,rm,token){
+  let action=''
+  if ( $('#'+rm+' .vs').hasClass('btn-danger')){
+   action='active'
+  }else {
+    action='disabled'
+  }
   $.ajax({
     type:"POST",
     url:"/offer_actions",
@@ -42,7 +48,7 @@ function offer_visible(id,rm,action,token){
             actionTextColor: '#fff',
             backgroundColor: '#8dbf42'
           });
-          this.action='disabled'
+          $('#'+rm+' .badge').removeClass('badge-danger').addClass('badge-primary').html('active')
           $('#'+rm+' .vs').removeClass('btn-danger').addClass('btn-outline-danger')
           break;
         case 'offer disabled':
@@ -52,7 +58,7 @@ function offer_visible(id,rm,action,token){
             actionTextColor: '#fff',
             backgroundColor: '#8dbf42'
           });
-          this.action='active'
+          $('#'+rm+' .badge').removeClass('badge-primary').addClass('badge-danger').html('disabled')
           $('#'+rm+' .vs').removeClass('btn-outline-danger').addClass('btn-danger')
           break;
         default:
