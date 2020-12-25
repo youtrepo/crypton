@@ -1,7 +1,5 @@
 $('form').on('submit',function (e){
   e.preventDefault()
-  $('form').validate({
-    submitHandler: function(form) {
         $.ajax({
           type: 'POST',
           url: '/c_offer',
@@ -14,6 +12,9 @@ $('form').on('submit',function (e){
                 actionTextColor: '#fff',
                 backgroundColor: '#8dbf42'
               });
+              setTimeout(function (){
+                window.location.href='/offers'
+              },2000)
             }else {
               Snackbar.show({
                 text: 'something went wrong.',
@@ -24,7 +25,4 @@ $('form').on('submit',function (e){
             }
           }
         })
-      }
-      })
-
 })
