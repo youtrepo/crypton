@@ -14,7 +14,7 @@ class BuyOfferController {
     try {
       await auth.check()
       let user = await auth.getUser()
-      let buy_offers=await offer.query().where({email:user.email}).fetch()
+      let buy_offers=await offer.query().where('email', '!=', user.email).andWhere('offer_type', 'sell').fetch()
       let btc = await axios.get('https://api.coinbase.com/v2/exchange-rates?currency=BTC');
       let bch = await axios.get('https://api.coinbase.com/v2/exchange-rates?currency=BCH');
       let ltc = await axios.get('https://api.coinbase.com/v2/exchange-rates?currency=LTC');
@@ -31,6 +31,8 @@ class BuyOfferController {
           //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
           //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
         });
+        info.min_amount=formatter.format(info.min_amount)
+        info.max_amount=formatter.format(info.max_amount)
 
         switch (info.coin) {
           case 'Btc':
