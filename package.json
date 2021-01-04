@@ -31,6 +31,9 @@
     "@adonisjs/session": "^1.0.27",
     "@adonisjs/shield": "^1.0.8",
     "@adonisjs/websocket": "^1.0.12",
+    "@adonisjs/websocket-client": "^1.0.9",
+    "@babel/polyfill": "^7.12.1",
+    "axios": "^0.21.1",
     "coingecko-api": "^1.0.10",
     "fromnow": "^3.0.1",
     "hcaptcha": "0.0.2",
@@ -39,10 +42,13 @@
     "public-ip": "^4.0.2",
     "qrcode": "^1.4.4",
     "uniqid": "^5.2.0",
-    "uuid": "^8.3.1",
-    "axios": "^0.21.1"
+    "uuid": "^8.3.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/plugin-transform-regenerator": "^7.12.1",
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.1"
+  },
   "autoload": {
     "App": "./app"
   }

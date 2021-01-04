@@ -1,7 +1,8 @@
 'use strict'
 
 class ChatController {
-  async chat({request,response}){
+  async chat({request,response,view}){
+    return view.render('dashboard/chat')
 
   }
 }
