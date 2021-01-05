@@ -78,5 +78,14 @@
 </script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script src="/form/ws.js" rel="script"></script>
+<script src="/online/o.js"></script>
+<script>
+  import Ws from '@adonisjs/websocket-client'
+  const ws = Ws()
+  ws.connect()
+  ws.on('open', () => {
+    isConnected =true
+  })
+</script>
 </body>
 </html>

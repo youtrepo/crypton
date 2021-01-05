@@ -30,6 +30,37 @@ $(document).ready(function (){
     }else {
       $('.invalid-feedback').removeClass('d-block').addClass('d-none')
       //submit form
+      $.ajax({
+        type:"POST",
+        url:'/start_trade',
+        data:$(this).serialize(),
+        beforeSend:function (){
+          $.blockUI({
+            message: '<div class="spinner-border text-white mr-2 align-self-center loader-sm "></div>',
+            fadeIn: 800,
+            timeout: 3000, //unblock after 2 seconds
+            overlayCSS: {
+              backgroundColor: '#1b2024',
+              opacity: 0.8,
+              zIndex: 1200,
+              cursor: 'wait'
+            },
+            css: {
+              border: 0,
+              color: '#fff',
+              zIndex: 1201,
+              padding: 0,
+              backgroundColor: 'transparent'
+            }
+          })
+
+        },
+        success:function (data){
+          ///do anything with data
+
+        }
+
+      })
     }
 
 

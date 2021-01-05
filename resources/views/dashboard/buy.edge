@@ -14,14 +14,18 @@
             <h5 class="mt-3 ml-4">HOW MUCH DO YOU WANT TO BUY?</h5>
             <form>
               {{ csrfField() }}
-              <input class="d-none" value="{{uc}}" id="rate" type="number">
+              <input class="d-none" value="{{uc}}" id="rate" type="number" name="rate">
+              <input class="d-none" value="{{offer.coin}}" name="coin_type">
               <input class="d-none" value="{{uc_min}}" id="min" type="number">
               <input class="d-none" value="{{uc_max}}" id="max" type="number">
+              <input class="d-none" value="{{offer.timeframe}}" name="time">
+              <input class="d-none" value="{{offer.currency}}" name="c">
+              <input class="d-none" value="{{offer.offer_id}}" name="yout">
               <div class="row">
                 <div class="col">
                   <label class="label ml-3" for="coin">Enter amount:</label>
                   <div class="input-group mb-5">
-                    <input type="text" class="form-control form-group-sm ml-3"  aria-label="Recipient's username" aria-describedby="basic-addon2" id="coin" required>
+                    <input type="text" class="form-control form-group-sm ml-3"  aria-label="Recipient's username" aria-describedby="basic-addon2" id="coin" name="coin" required>
                     <div class="input-group-append">
                       <span class="input-group-text" id="basic-addon6">{{offer.coin}}</span>
                     </div>
@@ -30,7 +34,7 @@
                 <div class="col">
                   <label class="label" for="currency">Enter amount:</label>
                   <div class="input-group mb-5 mr-5">
-                    <input type="text" class="form-control form-control-sm"  aria-label="Recipient's username" aria-describedby="basic-addon2" id="currency" required>
+                    <input type="text" class="form-control form-control-sm"  aria-label="Recipient's username" aria-describedby="basic-addon2" id="currency" name="currency" required>
                     <div class="input-group-append mr-3">
                       <span class="input-group-text" id="basic-addon6">{{offer.currency}}</span>
                     </div>
@@ -83,6 +87,9 @@
 
 
   @include('partials/dashfooter')
+  <script src="/plugins/blockui/jquery.blockUI.min.js"></script>
+
+  <script src="/plugins/blockui/custom-blockui.js"></script>
   <script src="/prices/trade_price.js"></script>
 </div>
 
