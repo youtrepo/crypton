@@ -57,7 +57,10 @@ $(document).ready(function (){
         },
         success:function (data){
           ///do anything with data
-
+          (async()=>{
+            await Ws.on('connect',(socket)=>{socket.join(data.chat)})
+             window.location.href='/chat/'+data.chat
+          })()
         }
 
       })
