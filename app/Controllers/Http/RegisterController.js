@@ -10,7 +10,7 @@ const iplocate = require("node-iplocate");
 const publicIp = require('public-ip');
 const { v4: uuidv4 } = require('uuid');
 class RegisterController {
-  async register({request,response,view,session}){
+  async register({request,response,view,session,auth}){
     let data=request.only(['username','email','password'])
     let [secret,token]=[Env.get('captcha_secret'),request.post()['g-recaptcha-response']]
     let verify_captcha=await verify(secret, token)
@@ -74,8 +74,9 @@ class RegisterController {
 
 
           })
-          session.put('email',data.email)
-          session.put('password',data.password)
+          await auth
+            .remember(true)
+            .attempt(data.email, data.password)
           response.send('success')
         }else {
           response.send('User exists')

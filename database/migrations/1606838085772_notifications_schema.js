@@ -11,6 +11,7 @@ class NotificationsSchema extends Schema {
       table.text('msg','longtext')
       table.string('type',50)
       table.string('status',50)
+      table.string('trade_link',565)
       table.timestamps()
     })
   }

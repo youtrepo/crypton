@@ -4,12 +4,15 @@ const Env = use('Env')
 const balance=use('App/Models/Balance')
 const  notification=use('App/Models/Notification')
 const transaction=use('App/Models/Transaction')
+const Ws=use('App/Services/Ws')
 const fromNow = require('fromnow');
+
 class DashboardController {
   async dashboard({auth,request,response,view}){
     try {
       await auth.check()
         let user = await auth.getUser()
+      Ws.on('connection',(socket)=>{socket.join(user.email)})
         let btc = await balance.findBy({email:user.email,coin:'btc'})
         let bch = await balance.findBy({email:user.email,coin:'bch'})
         let ltc = await balance.findBy({email:user.email,coin:'ltc'})
@@ -24,9 +27,10 @@ class DashboardController {
           ltc:ltc,
           param:request.url(),
           title:Env.get('TITLE'),
-          notifications:notifications.toJSON(),
-          transactions:transactions.toJSON(),
-          fromNow:fromNow
+          notifications:notifications.toJSON()[0],
+          transactions:transactions.toJSON()[0],
+          fromNow:fromNow,
+          url:Env.get('URL')
         })
     } catch (error) {
       console.log(error)

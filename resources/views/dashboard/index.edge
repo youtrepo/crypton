@@ -182,7 +182,7 @@
 
                                 </div>
                                 <div class="t-rate rate-dec">
-                                    <p><span>-{{transactions.amount+transactions.coin%></span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg></p>
+                                    <p><span>-{{transactions.amount+transactions.coin}}</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg></p>
                                 </div>
                             </div>
                         </div>
@@ -201,7 +201,7 @@
                                     </div>
                                 </div>
                                 <div class="t-rate rate-inc">
-                                    <p><span>+{{transactions.amount+transactions.coin%></span> <a y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg></p>
+                                    <p><span>+{{transactions.amount+transactions.coin}}</span> <a y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg></p>
                                 </div>
                             </div>
                         </div>
@@ -297,8 +297,8 @@
                                 <div class="t-dot" data-original-title="" title="">
                                 </div>
                                 <div class="t-text">
-                                  <p>{{notifications.msg%></p>
-                                  <span class="badge badge-warning">{{notifications.status%></span>
+                                  <p>{{notifications.msg}}</p>
+                                  <span class="badge badge-warning">{{notifications.status}}</span>
                                   <p class="t-time">{{fromNow(notifications.created_at);}}</p>
                                 </div>
                               </div>
@@ -307,8 +307,8 @@
                                 <div class="t-dot" data-original-title="" title="">
                                 </div>
                                 <div class="t-text">
-                                  <p>{{notifications.msg%></p>
-                                  <span class="badge badge-danger">{{notifications.status%></span>
+                                  <p>{{notifications.msg}}</p>
+                                  <span class="badge badge-danger">{{notifications.status}}</span>
                                   <p class="t-time"></p>
                                 </div>
                               </div>
@@ -317,8 +317,8 @@
                                 <div class="t-dot" data-original-title="" title="">
                                 </div>
                                 <div class="t-text">
-                                  <p>{{notifications.msg%></p>
-                                  <span class="badge badge-primary">{{notifications.status%></span>
+                                  <p>{{notifications.msg}}</p>
+                                  <span class="badge badge-primary"><a class="text-white" href="{{url+'/chat'}}/{{notifications.trade_link}}">{{notifications.status}}</a></span>
                                   <p class="t-time">{{fromNow(notifications.created_at);}}</p>
                                 </div>
                               </div>

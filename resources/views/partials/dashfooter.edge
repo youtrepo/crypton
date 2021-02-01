@@ -76,15 +76,29 @@
     buttonup_class: "btn btn-classic btn-outline-danger"
   });
 </script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<script src="/form/ws.js" rel="script"></script>
+<script src="/socket/dist/socket.io.js" rel="script"></script>
 <script src="/online/o.js"></script>
 <script>
-  import Ws from '@adonisjs/websocket-client'
-  const ws = Ws()
-  ws.connect()
-  ws.on('open', () => {
-    isConnected =true
+  const Ws = io();
+  Ws.on('connect', (socket) => {
+    setInterval(function () {
+      $.ajax({
+        type: "post",
+        url: '/notifications',
+      })
+      },10000
+    )
+    console.log('success')
+  });
+  Ws.on('subscribed',(msg)=>{
+    console.log(msg)
+  })
+  Ws.on('error',(ms)=>{
+    console.log(ms)
+  })
+  Ws.once('new trade started',()=>{
+    $('.notification-scroll').append('<div class="dropdown-item"> <div class="media"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg> <div class="media-body"> <div class="notification-para"><span class="user-name initialism">Trade:</span>new trade started</div></div></div></div>')
+console.log('trade')
   })
 </script>
 </body>

@@ -14,7 +14,7 @@ class BuyOfferController {
     try {
       await auth.check()
       let user = await auth.getUser()
-      let buy_offers=await offer.query().where('email', '!=', user.email).andWhere('offer_type', 'sell').fetch()
+      let buy_offers=await offer.query().where('email', '!=', user.email).andWhere('offer_type', 'sell').andWhere('status','active').fetch()
       let btc = await axios.get('https://api.coinbase.com/v2/exchange-rates?currency=BTC');
       let bch = await axios.get('https://api.coinbase.com/v2/exchange-rates?currency=BCH');
       let ltc = await axios.get('https://api.coinbase.com/v2/exchange-rates?currency=LTC');

@@ -37,6 +37,7 @@ Route.get('/buy_coin','BuyOfferController.buy')
 Route.get('/buy/:id','BuyController.buy')
 Route.get('/chat/:id','ChatController.chat')
 Route.post('/start_trade','StarttradeController.start')
+Route.post('/notifications','NotificationsubscribeController.subscribe')
 
 ///errors
 Route.on('/500').render('errors/500')
