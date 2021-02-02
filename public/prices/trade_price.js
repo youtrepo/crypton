@@ -11,7 +11,7 @@ $(document).ready(function (){
   })
 
   $('#currency').on('input',function (){
-    let [currency,rate,min,max]=[$(this).val(),$('#rate').val(),$('#min').val(),$('#max').val()]
+    let [currency,rate,min,max]=[parseFloat($(this).val()),parseFloat($('#rate').val()),parseFloat($('#min').val()),parseFloat($('#max').val())]
     let calculated_price=currency/rate
     $('#coin').val(calculated_price.toFixed(8))
     if (currency>max||currency<min){

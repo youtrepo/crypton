@@ -22,7 +22,8 @@ const providers = [
   '@adonisjs/ally/providers/AllyProvider',
   '@adonisjs/antl/providers/AntlProvider',
   '@adonisjs/redis/providers/RedisProvider',
-  '@adonisjs/mail/providers/MailProvider'
+  '@adonisjs/mail/providers/MailProvider',
+  'adonis-scheduler/providers/SchedulerProvider'
 ]
 
 /*
@@ -35,7 +36,8 @@ const providers = [
 |
 */
 const aceProviders = [
-  '@adonisjs/lucid/providers/MigrationsProvider'
+  '@adonisjs/lucid/providers/MigrationsProvider',
+  'adonis-scheduler/providers/CommandsProvider'
 ]
 
 /*
@@ -50,7 +52,9 @@ const aceProviders = [
 |   { Route: 'Adonis/Src/Route' }
 |
 */
-const aliases = {}
+const aliases = {
+  Scheduler: 'Adonis/Addons/Scheduler'
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +64,8 @@ const aliases = {}
 | Here you store ace commands for your package
 |
 */
-const commands = []
+const commands = [
+  'App/Commands/Scheduler',
+]
 
 module.exports = { providers, aceProviders, aliases, commands }

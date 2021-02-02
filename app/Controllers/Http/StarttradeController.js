@@ -1,6 +1,7 @@
 'use strict'
 
 const trade=use('App/Models/Trade')
+const buyer=use('App/Models/User')
 const chat=use('App/Models/Chat')
 const moment=require('moment');
 const Ws=use('App/Services/Ws')
@@ -13,7 +14,9 @@ class StarttradeController {
       await auth.check()
       let user=await auth.getUser()
       let data=await request.post()
+      let buyer_data=await buyer.query().where({email:user.email}).fetch()
       let[coin,currency,coin_type,rate,time,c,id]=[data.coin,data.currency,data.coin_type,data.rate,data.time,data.c,data.yout]
+      let seller_data=await offer.query().where({offer_id:id}).fetch()
       if (coin&&currency) {
         let d=moment().set('minute',time)
         let trade_data= await trade.findOrCreate(
@@ -26,7 +29,9 @@ class StarttradeController {
           amount:coin,
           local_amount:currency,
           rate:rate,
-          deadline:d
+          deadline:d,
+            buyer:buyer_data.toJSON()[0].username,
+            seller:seller_data.toJSON()[0].user
         })
         let info=await trade.query().where({offer_Id:id,status:'active'}).fetch()
         let m_info=await offer.query().where({offer_id:id}).fetch()

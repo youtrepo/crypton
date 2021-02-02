@@ -6,7 +6,7 @@ class NotificationsubscribeController {
     try {
       await auth.check()
       let user = await auth.getUser()
-      await Ws.on('connection',(socket)=>{
+      await Ws.once('connection',(socket)=>{
         socket.join(user.email)
         socket.emit('subscribed',{success:true,msg:'notifications success'})
       })

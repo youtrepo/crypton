@@ -2,6 +2,8 @@
 
 /** @type {import('@adonisjs/framework/src/Server')} */
 const Server = use('Server')
+const Scheduler = use('Adonis/Addons/Scheduler')
+Scheduler.run()
 
 /*
 |--------------------------------------------------------------------------

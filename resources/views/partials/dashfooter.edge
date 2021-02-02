@@ -90,7 +90,7 @@
     )
     console.log('success')
   });
-  Ws.on('subscribed',(msg)=>{
+  Ws.once('subscribed',(msg)=>{
     console.log(msg)
   })
   Ws.on('error',(ms)=>{

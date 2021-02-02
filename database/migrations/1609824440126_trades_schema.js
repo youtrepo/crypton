@@ -16,6 +16,8 @@ class TradesSchema extends Schema {
       table.string('offer_Id',565)
       table.string('currency',100)
       table.decimal('amount',null)
+      table.string('seller',255)
+      table.string('buyer',255)
       table.string('disputed_by',255)
       table.string('dispute_statement')
       table.datetime('deadline')

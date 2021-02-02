@@ -17,24 +17,43 @@
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                   <input type="text" class="form-control" placeholder="Search" />
                 </div>
+                @if(owner)
                 <div class="people">
 
                   <div class="person" data-chat="person6">
                     <div class="user-info">
                       <div class="f-head">
-                        <img src="assets/img/90x90.jpg" alt="avatar">
+                        <img src="/images/chat.png" alt="avatar">
                       </div>
                       <div class="f-body">
                         <div class="meta-info">
-                          <span class="user-name" data-name="Nia Hillyer">Nia Hillyer</span>
-                          <span class="user-meta-time">2:09 PM</span>
+                          <span class="user-name" data-name="Nia Hillyer">{{buyer}}</span>
+                          <span class="user-meta-time">{{time}}</span>
                         </div>
-                        <span class="preview">How do you do?</span>
                       </div>
                     </div>
                   </div>
 
                 </div>
+                @else
+                <div class="people">
+
+                  <div class="person" data-chat="person6">
+                    <div class="user-info">
+                      <div class="f-head">
+                        <img src="/images/chat.png" alt="avatar">
+                      </div>
+                      <div class="f-body">
+                        <div class="meta-info">
+                          <span class="user-name" data-name="Nia Hillyer">{{seller}}</span>
+                          <span class="user-meta-time">{{time}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                @endif
               </div>
               <div class="chat-box">
 
@@ -123,6 +142,7 @@
                   </div>
                   <div class="chat-conversation-box">
                     <div id="chat-conversation-box-scroll" class="chat-conversation-box-scroll">
+                      @if(chat.length!==0)
                       <div class="chat" data-chat="person6">
                         <div class="conversation-start">
                           <span>Monday, 1:27 PM</span>
@@ -146,6 +166,13 @@
                           Coffee?
                         </div>
                       </div>
+                      @else
+                      <div class="chat" data-chat="person6">
+                      <div class="conversation-start">
+                        <span>No data</span>
+                      </div>
+                      </div>
+                      @endif
                       <div class="chat" data-chat="person7">
                       </div>
                       <div class="chat" data-chat="person8">

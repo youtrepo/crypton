@@ -21,7 +21,6 @@ class BuyController {
             //maximumFractionD
             // igits: 0, // (causes 2500.99 to be printed as $2,501)
           });
-          console.log(info)
           let price = await axios.get('https://api.coinbase.com/v2/exchange-rates?currency='+info.coin);
           let rate=formatter.format(parseFloat(price.data.data['rates'][info.currency])+info.margin/100*parseFloat(price.data.data['rates'][info.currency]))
           let uc=parseFloat(price.data.data['rates'][info.currency])+info.margin/100*parseFloat(price.data.data['rates'][info.currency])
