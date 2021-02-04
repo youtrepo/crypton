@@ -141,15 +141,33 @@ $('.switch-to-phone-call').off('click').on('click', function(event) {
 $('.mail-write-box').on('keydown', function(event) {
     if(event.key === 'Enter') {
         var chatInput = $(this);
+        let user=$('.user-name').text().trim()
         var chatMessageValue = chatInput.val();
         if (chatMessageValue === '') { return; }
-        $messageHtml = '<div class="bubble me">' + chatMessageValue + '</div>';
-        var appendMessage = $(this).parents('.chat-system').find('.active-chat').append($messageHtml);
-        const getScrollContainer = document.querySelector('.chat-conversation-box');
-        getScrollContainer.scrollTop = getScrollContainer.scrollHeight;
-        var clearChatInput = chatInput.val('');
+        Ws.emit('chat',{msg:chatMessageValue,user:user})
     }
 })
+
+Ws.on('chat',(msg)=>{
+ if (msg.user==='seller') {
+   $messageHtml = '<div class="bubble me">' + msg.msg + '</div>';
+   var appendMessage = $('.conversation-start').append($messageHtml);
+   const getScrollContainer = document.querySelector('.chat-conversation-box');
+   getScrollContainer.scrollTop = getScrollContainer.scrollHeight;
+   var clearChatInput = $('.mail-write-box').val('');
+ }else {
+   $messageHtml = '<div class="bubble you">' + msg.msg + '</div>';
+   var appendMessage = $('.conversation-start').append($messageHtml);
+   const getScrollContainer = document.querySelector('.chat-conversation-box');
+   getScrollContainer.scrollTop = getScrollContainer.scrollHeight;
+   var clearChatInput = $('.mail-write-box').val('');
+ }
+})
+
+Ws.on('disconnect', function () {
+  Ws.removeAllListeners()
+});
+
 
 $('.hamburger, .chat-system .chat-box .chat-not-selected p').on('click', function(event) {
   $(this).parents('.chat-system').find('.user-list-box').toggleClass('user-list-box-show')
