@@ -10,13 +10,6 @@ class Chat extends Task {
   }
 
   async handle () {
-    let data=await trade.all()
-    let details=await data.toJSON()
-    for await (const trade of details){
-      Ws.on('connection',(socket)=>{
-        socket.join(trade.trade_id)
-      })
-    }
     this.info('Task Chat handle')
     console.log('started tasks')
 

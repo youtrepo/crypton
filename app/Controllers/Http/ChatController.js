@@ -24,17 +24,6 @@ class ChatController {
       if (trade_data.toJSON()[0].length===0){
         response.status(400).redirect('/400')
       }
-      Ws.on('connection',(socket)=>{
-        socket.join(trade_id)
-        socket.on('chat',(msg)=>{
-          if (msg.user===buyer){
-            Ws.to(trade_id).emit('chat',{msg:msg.msg,user:'buyer'})
-          }else {
-            Ws.to(trade_id).emit('chat',{msg:msg.msg,user:'seller'})
-          }
-        })
-        console.log('success')
-      })
       return view.render('dashboard/chat',{
         seller:seller,
         buyer:buyer,

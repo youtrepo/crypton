@@ -12,6 +12,10 @@
 | For middleware, do check `wsKernel.js` file.
 |
 */
-const Ws =use('App/Services/Ws')
+const Ws = use('Ws')
+
+Ws.channel('chat', ({ socket }) => {
+  console.log('new socket joined %s', socket.id)
+})
 
 

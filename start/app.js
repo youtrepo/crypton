@@ -23,6 +23,7 @@ const providers = [
   '@adonisjs/antl/providers/AntlProvider',
   '@adonisjs/redis/providers/RedisProvider',
   '@adonisjs/mail/providers/MailProvider',
+  '@adonisjs/websocket/providers/WsProvider',
   'adonis-scheduler/providers/SchedulerProvider'
 ]
 

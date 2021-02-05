@@ -148,7 +148,7 @@ $('.mail-write-box').on('keydown', function(event) {
     }
 })
 
-Ws.on('chat',(msg)=>{
+/*Ws.on('chat',(msg)=>{
  if (msg.user==='seller') {
    $messageHtml = '<div class="bubble me">' + msg.msg + '</div>';
    var appendMessage = $('.conversation-start').append($messageHtml);
@@ -167,6 +167,8 @@ Ws.on('chat',(msg)=>{
 Ws.on('disconnect', function () {
   Ws.removeAllListeners()
 });
+
+ */
 
 
 $('.hamburger, .chat-system .chat-box .chat-not-selected p').on('click', function(event) {
