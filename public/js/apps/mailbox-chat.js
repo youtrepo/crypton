@@ -144,9 +144,13 @@ $('.mail-write-box').on('keydown', function(event) {
         let user=$('.user-name').text().trim()
         var chatMessageValue = chatInput.val();
         if (chatMessageValue === '') { return; }
-        Ws.emit('chat',{msg:chatMessageValue,user:user})
+      ws.getSubscription('chat').emit('message', {
+        user:user,
+        msg: chatMessageValue
+      })
     }
 })
+
 
 /*Ws.on('chat',(msg)=>{
  if (msg.user==='seller') {

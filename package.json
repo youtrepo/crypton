@@ -51,13 +51,13 @@
     "uuid": "^8.3.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
+    "@babel/core": "^7.12.13",
     "@babel/plugin-transform-regenerator": "^7.12.1",
     "@babel/plugin-transform-runtime": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-env": "^7.12.13",
     "@rollup/plugin-babel": "^5.2.3",
     "babel-loader": "^8.2.2",
-    "webpack": "^5.11.1",
+    "webpack": "^5.21.1",
     "webpack-cli": "^4.3.1"
   },
   "autoload": {

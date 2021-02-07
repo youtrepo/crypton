@@ -77,18 +77,25 @@
   });
 </script>
 <script src="/online/o.js"></script>
+<script src="/Ws/babel.js"></script>
 <script src="/Ws/ws.js"></script>
 <!-- Your custom script here -->
 
 <script>
-  import Ws from '@adonisjs/websocket-client'
-  const ws = Ws()
+  const ws = adonis.Ws()
   ws.connect()
   let isConnected = false
 
   ws.on('open', () => {
     isConnected = true
     console.log('connected')
+    const chat = ws.subscribe('chat')
+    chat.on('message', (message) => {
+      console.log(message)
+    })
+    chat.on('error', () => {
+      console.log('wrong')
+    })
   })
 
   ws.on('close', () => {
