@@ -82,20 +82,17 @@
 <!-- Your custom script here -->
 
 <script>
-  const ws = adonis.Ws()
+  const ws = adonis.Ws('',{
+    reconnection:true,
+    reconnectionAttempts:'Infinity'
+  })
   ws.connect()
   let isConnected = false
 
   ws.on('open', () => {
     isConnected = true
     console.log('connected')
-    const chat = ws.subscribe('chat')
-    chat.on('message', (message) => {
-      console.log(message)
-    })
-    chat.on('error', () => {
-      console.log('wrong')
-    })
+    subscribeToChannel()
   })
 
   ws.on('close', () => {

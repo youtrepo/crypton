@@ -6,7 +6,7 @@ const trade=use('App/Models/Trade')
 const offers=use('App/Models/User')
 const Chat=use('App/Models/Chat')
 const moment = require('moment');
-const Ws=use('App/Services/Ws')
+const Ws=use('Ws')
 class ChatController {
   async chat({request, response, view,auth,params}) {
     try {
@@ -27,6 +27,7 @@ class ChatController {
       return view.render('dashboard/chat',{
         seller:seller,
         buyer:buyer,
+        id:trade_id,
         owner:(owner===user.email),
         time:moment(trade_data.toJSON()[0].created_at).format("hh:mm a"),
         chat:chat.toJSON()[0]

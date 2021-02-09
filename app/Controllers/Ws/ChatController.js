@@ -1,5 +1,7 @@
 'use strict'
 
+
+const trade=use('App/Models/Trade')
 class ChatController {
   constructor ({ socket, request }) {
     this.socket = socket
