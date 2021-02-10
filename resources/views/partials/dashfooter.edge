@@ -92,7 +92,6 @@
   ws.on('open', () => {
     isConnected = true
     console.log('connected')
-    subscribeToChannel()
   })
 
   ws.on('close', () => {
