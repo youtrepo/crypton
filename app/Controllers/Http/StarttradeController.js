@@ -18,7 +18,8 @@ class StarttradeController {
       let[coin,currency,coin_type,rate,time,c,id]=[data.coin,data.currency,data.coin_type,data.rate,data.time,data.c,data.yout]
       let seller_data=await offer.query().where({offer_id:id}).fetch()
       if (coin&&currency) {
-        let d=moment().set('minute',time)
+        console.log(time)
+        let d=moment().add(time,'minutes').toDate()
         let trade_data= await trade.findOrCreate(
           {offer_Id:id },{
           status:'active',

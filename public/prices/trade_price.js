@@ -24,7 +24,7 @@ $(document).ready(function (){
   //submit form
   $('form').on('submit',function (e){
     e.preventDefault()
-    let [currency,min,max]=[$('#currency').val(),$('#rate').val(),$('#min').val(),$('#max').val()]
+    let [currency,min,max]=[parseFloat($('#currency').val()),parseFloat($('#min').val()),parseFloat($('#max').val())]
     if (currency>max||currency<min){
       $('.invalid-feedback').addClass('d-block')
     }else {
@@ -57,10 +57,7 @@ $(document).ready(function (){
         },
         success:function (data){
           ///do anything with data
-          (async()=>{
-            await Ws.on('connect',(socket)=>{socket.join(data.chat)})
              window.location.href='/chat/'+data.chat
-          })()
         }
 
       })

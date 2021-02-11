@@ -29,8 +29,9 @@ class ChatController {
         buyer:buyer,
         id:trade_id,
         owner:(owner===user.email),
-        time:moment(trade_data.toJSON()[0].created_at).format("hh:mm a"),
-        chat:chat.toJSON()[0]
+        time:moment(trade_data.toJSON()[0].deadline).utc().toDate(),
+        chat:chat.toJSON()[0],
+        trade:trade_data.toJSON()[0]
 
       })
     } catch (e) {

@@ -7,6 +7,48 @@
   <div class="layout-px-spacing">
       <div class="chat-section layout-top-spacing">
         <div class="row">
+          <div class="col text-center">
+            <blockquote class="blockquote">
+              Trade status <span class="badge badge-success"> Success </span>
+
+              <div class="alert alert-arrow-left alert-icon-left alert-light-primary mb-4 mt-3"
+                   role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg> ... </svg></button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                <p><b>{{buyer}}</b> to pay <b>{{trade.local_amount}}</b> to <b>{{seller}}</b></p>
+              </div>
+
+
+              <div class="container mt-3">
+              <div id="cd-circle">
+                <div class="countdown">
+                  <div class="clock-count-container">
+                    <h1 class="clock-val">365</h1>
+                  </div>
+                  <h4 class="clock-text"> Days </h4>
+                </div>
+                <div class="countdown">
+                  <div class="clock-count-container">
+                    <h1 class="clock-val">13</h1>
+                  </div>
+                  <h4 class="clock-text"> Hours </h4>
+                </div>
+                <div class="countdown">
+                  <div class="clock-count-container">
+                    <h1 class="clock-val">01</h1>
+                  </div>
+                  <h4 class="clock-text"> Mins </h4>
+                </div>
+                <div class="countdown">
+                  <div class="clock-count-container">
+                    <h1 class="clock-val">13</h1>
+                  </div>
+                  <h4 class="clock-text"> Sec </h4>
+                </div>
+              </div>
+              </div>
+            </blockquote>
+          </div>
           <div class="col-xl-12 col-lg-12 col-md-12">
             <input class="d-none" id="token" value="{{id}}">
             <div class="chat-system">
@@ -67,7 +109,6 @@
 
                   </div>
                 </div>
-
                 <div class="chat-box-inner" style="height:100%">
                   <div class="chat-meta-user chat-active">
                     <div class="current-chat-user-name"><span><img src="/images/chat.png" alt="dynamic-image">
@@ -163,6 +204,29 @@
 </div>
     </div>
       @include('partials/dashfooter')
+  <script>
+    $('#cd-circle').countdown(Date.parse('{{time}}'), function(event) {
+      $(this).html(event.strftime(''+
+        '<div class="countdown">'+
+        '<div class="clock-count-container">'+
+        '<h1 class="clock-val">%H</h1>'+
+        '</div>'+
+        '<h4 class="clock-text"> Hours </h4>'+
+        '</div>'+
+        '<div class="countdown">'+
+        '<div class="clock-count-container">'+
+        '<h1 class="clock-val">%M</h1>'+
+        '</div>'+
+        '<h4 class="clock-text"> Mins </h4>'+
+        '</div>'+
+        '<div class="countdown">'+
+        '<div class="clock-count-container">'+
+        '<h1 class="clock-val">%S</h1>'+
+        '</div>'+
+        '<h4 class="clock-text"> Sec </h4>'+
+        '</div>'));
+    });
+  </script>
   <script>
     ws.on('open', () => {
       isConnected = true
