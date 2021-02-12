@@ -7,7 +7,7 @@ class ChatsSchema extends Schema {
   up () {
     this.create('chats', (table) => {
       table.increments()
-      table.string('trade_id').unique()
+      table.string('trade_id')
       table.text('messages','longtext')
       table.string('user',255)
       table.string('type',55)

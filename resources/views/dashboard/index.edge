@@ -282,47 +282,49 @@
                             <div class="timeline-line">
                               <!-- activities -->
                              @if(notifications.length!==0)
-                              @if(notifications.status==='completed')
+                              @each(notification in notifications)
+                              @if(notification.status==='completed')
                                 <div class="item-timeline timeline-success">
                                     <div class="t-dot" data-original-title="" title="">
                                     </div>
                                     <div class="t-text">
-                                        <p>{{notifications.msg}}</p>
-                                        <span class="badge badge-success">{{notifications.status}}</span>
-                                        <p class="t-time">{{fromNow(notifications.created_at);}}</p>
+                                        <p>{{notification.msg}}</p>
+                                        <span class="badge badge-success">{{notification.status}}</span>
+                                        <p class="t-time">{{fromNow(notification.created_at);}}</p>
                                     </div>
                                 </div>
-                             @elseif(notifications.status==='pending')
+                             @elseif(notification.status==='pending')
                               <div class="item-timeline timeline-warning">
                                 <div class="t-dot" data-original-title="" title="">
                                 </div>
                                 <div class="t-text">
-                                  <p>{{notifications.msg}}</p>
-                                  <span class="badge badge-warning">{{notifications.status}}</span>
-                                  <p class="t-time">{{fromNow(notifications.created_at);}}</p>
+                                  <p>{{notification.msg}}</p>
+                                  <span class="badge badge-warning">{{notification.status}}</span>
+                                  <p class="t-time">{{fromNow(notification.created_at);}}</p>
                                 </div>
                               </div>
-                              @elseif(notifications.status==='cancelled')
+                              @elseif(notification.status==='cancelled')
                               <div class="item-timeline timeline-danger">
                                 <div class="t-dot" data-original-title="" title="">
                                 </div>
                                 <div class="t-text">
-                                  <p>{{notifications.msg}}</p>
-                                  <span class="badge badge-danger">{{notifications.status}}</span>
+                                  <p>{{notification.msg}}</p>
+                                  <span class="badge badge-danger">{{notification.status}}</span>
                                   <p class="t-time"></p>
                                 </div>
                               </div>
-                              @elseif(notifications.status==='progress')
+                              @elseif(notification.status==='progress')
                               <div class="item-timeline timeline-primary">
                                 <div class="t-dot" data-original-title="" title="">
                                 </div>
                                 <div class="t-text">
-                                  <p>{{notifications.msg}}</p>
-                                  <span class="badge badge-primary"><a class="text-white" href="{{url+'/chat'}}/{{notifications.trade_link}}">{{notifications.status}}</a></span>
-                                  <p class="t-time">{{fromNow(notifications.created_at);}}</p>
+                                  <p>{{notification.msg}}</p>
+                                  <span class="badge badge-primary"><a class="text-white" href="{{url+'/chat'}}/{{notification.trade_link}}">{{notification.status}}</a></span>
+                                  <p class="t-time">{{fromNow(notification.created_at);}}</p>
                                 </div>
                               </div>
                               @endif
+                              @endeach
                               @else
                               <div class="infobox-2">
                                 <div class="info-icon text-center mt-5">

@@ -3,7 +3,7 @@ const ps = new PerfectScrollbar('.chat-conversation-box', {
 });
 
 const getScrollContainer = document.querySelector('.chat-conversation-box');
-getScrollContainer.scrollTop = 0;
+getScrollContainer.scrollTop = getScrollContainer.scrollHeight;
 
 const token=$('#token').val()
 
