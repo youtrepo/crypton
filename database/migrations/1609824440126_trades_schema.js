@@ -13,7 +13,7 @@ class TradesSchema extends Schema {
       table.string('coin',50)
       table.decimal('local_amount',null)
       table.decimal('rate',null)
-      table.string('offer_Id',565)
+      table.string('offer_id',565)
       table.string('currency',100)
       table.decimal('amount',null)
       table.string('seller',255)

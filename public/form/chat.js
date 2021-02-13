@@ -65,3 +65,15 @@ $('.message').on('keydown', function(event) {
   }
 })
 
+function subscribeToTrade () {
+  const trade = ws.subscribe('trade')
+  trade.on('done',(msg)=>{
+    if (msg.trade==='cancelled'){
+      $('.alert').removeClass('alert-light-primary').addClass('alert-light-danger').html('<strong>cancelled:</strong> This trade was cancelled')
+      $('#trade_actions').addClass('hidden')
+      $('.chat-footer input').attr('disabled',true)
+      $('.chat-footer button').attr('disabled',true)
+    }
+  })
+}
+

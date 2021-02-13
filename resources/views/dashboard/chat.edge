@@ -19,7 +19,7 @@
                    role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg> ... </svg></button>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-                <strong>Cancelled</strong> This trade was cancelled
+                <strong>Cancelled:</strong> This trade was cancelled
               </div>
               @else
               <div class="alert alert-arrow-left alert-icon-left alert-light-primary mb-4 mt-3"
@@ -180,6 +180,17 @@
                     </div>
                   </div>
                   <div class="chat-footer chat-active">
+                    @if(trade.status=='cancelled')
+                    <div class="input-group mb-4 ">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                      </div>
+                      <input type="text" class="form-control message" placeholder="message" disabled>
+                      <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" disabled><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send</button>
+                      </div>
+                    </div>
+                    @else
                     <div class="input-group mb-4 " id="send">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
@@ -189,8 +200,9 @@
                         <button class="btn btn-primary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send</button>
                       </div>
                     </div>
+                    @endif
 
-                    <div class="col mt-5">
+                    <div class="col mt-5" id="trade_actions">
                       @if(trade.status==='cancelled')
 
                       @else
@@ -198,7 +210,7 @@
                       <button class="btn btn-success mb-2 btn-rounded btn-block mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Release coin</button>
                       <button class="btn btn-outline-warning mb-2 btn-rounded btn-block mr-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><style>.fa-secondary{opacity:.4}</style></defs><path d="M442.75 182.39L329.61 295.53 290 255.93l-81 81L175 303l81-81-39.6-39.6L329.61 69.26z" class="fa-secondary"/><path d="M169 297.37a31.9 31.9 0 0 0-45.16 0L9.35 412.12a32 32 0 0 0 0 45.25l45.17 45.26a31.91 31.91 0 0 0 45.17 0l114.52-114.75a32 32 0 0 0 0-45.25zm7.49-109.32a23.92 23.92 0 0 0 33.87 0L334.61 63.6a24 24 0 0 0 0-33.94L312 7a23.93 23.93 0 0 0-33.88 0L153.94 131.48a24 24 0 0 0 0 33.94zM504 199.36l-22.6-22.62a23.9 23.9 0 0 0-33.87 0L323.32 301.19a24 24 0 0 0 0 33.94l22.58 22.62a23.91 23.91 0 0 0 33.88 0L504 233.3a24 24 0 0 0 0-33.94z" class="fa-primary"/></svg> Dispute</button>
                       @else
-                      <button class="btn btn-secondary mb-2 btn-rounded btn-block mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"/></svg> Mark as paid</button>
+                      <button class="btn btn-secondary mb-2 btn-rounded btn-block mr-2" data-toggle="modal" data-target="#slideupModal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"/></svg> Mark as paid</button>
                       <button class="btn btn-outline-danger mb-2 btn-rounded btn-block mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> Cancel trade</button>
                       @endif
                       @endif
@@ -211,6 +223,30 @@
 
           </div>
 </div>
+
+
+    <!---mark-->
+    <div id="slideupModal" class="modal animated slideInUp custo-slideInUp" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Confirm</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p class="modal-text">Please confirm that you have already paid the seller, otherwise there will be no refunds if you accept this.</p>
+          </div>
+          <div class="modal-footer md-button">
+            <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
+            <button type="button" class="btn btn-success" id="confirm_trade">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     </div>
       @include('partials/dashfooter')
   <script>
@@ -236,13 +272,17 @@
         '</div>'));
     }).on('finish.countdown', function() {
       ////we end the trade
-console.log('ended')
+      ws.getSubscription('trade').emit('message',{
+        msg:'cancelled',
+        token:$('#token').val()
+      })
     });
   </script>
   <script>
     ws.on('open', () => {
       isConnected = true
       subscribeToChannel()
+      subscribeToTrade()
     })
   </script>
   <script src="/form/chat.js"></script>

@@ -17,14 +17,15 @@ class StarttradeController {
       let buyer_data=await buyer.query().where({email:user.email}).fetch()
       let[coin,currency,coin_type,rate,time,c,id]=[data.coin,data.currency,data.coin_type,data.rate,data.time,data.c,data.yout]
       let seller_data=await offer.query().where({offer_id:id}).fetch()
+      console.log(id)
       if (coin&&currency) {
         console.log(time)
         let d=moment().add(time,'minutes').toDate()
         let trade_data= await trade.findOrCreate(
-          {offer_Id:id },{
+          {offer_id:id },{
           status:'active',
           type:'buy',
-            offer_Id:id,
+            offer_id:id,
           coin:coin_type,
           currency:c,
           amount:coin,
@@ -34,7 +35,7 @@ class StarttradeController {
             buyer:buyer_data.toJSON()[0].username,
             seller:seller_data.toJSON()[0].user
         })
-        let info=await trade.query().where({offer_Id:id,status:'active'}).fetch()
+        let info=await trade.query().where({offer_id:id,status:'active'}).fetch()
         let m_info=await offer.query().where({offer_id:id}).fetch()
         let trade_id=await info.toJSON()[0].trade_id
         let socket_id=await m_info.toJSON()[0].email
