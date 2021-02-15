@@ -23,7 +23,7 @@ class WalletbtcController {
         }else {
           const { wallet } = await bitgo.coin(coin).wallets().generateWallet(params);
           const webhook=await wallet.addWebhook({
-            url:Env.get('URL'),
+            url:Env.get('URL')+'/transactions',
             type: "transfer"
           });
           let address=wallet._wallet.receiveAddress.address

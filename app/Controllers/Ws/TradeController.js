@@ -7,12 +7,20 @@ class TradeController {
   }
   onMessage (message) {
     (async ()=>{
-      //cancel trade
-      let id=message.token
-      await trade.query().where({trade_id:id}).update({status:'cancelled'})
-      this.socket.broadcastToAll('done',{
-        trade:'cancelled'
-      })
+      if (message.msg==='cancelled') {
+        //cancel trade
+        let id = message.token
+        await trade.query().where({trade_id: id}).update({status: 'cancelled'})
+        this.socket.broadcastToAll('done', {
+          trade: 'cancelled'
+        })
+      }else if (message.msg==='paid'){
+        let id = message.token
+        await trade.query().where({trade_id: id}).update({status: 'paid'})
+        this.socket.broadcastToAll('done', {
+          trade: 'paid'
+        })
+      }
     })()
   }
 }

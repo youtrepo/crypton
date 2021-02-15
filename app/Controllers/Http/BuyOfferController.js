@@ -20,7 +20,6 @@ class BuyOfferController {
       let ltc = await axios.get('https://api.coinbase.com/v2/exchange-rates?currency=LTC');
       let dash = await axios.get('https://api.coinbase.com/v2/exchange-rates?currency=DASH');
       let offers=buy_offers.toJSON();
-     let[countries,currencies,payments,coins]=[await country.all(),await currency.all(),await payment.all(),await coin.all()]
 
       for await (let info of offers){
         let formatter = new Intl.NumberFormat('en-US', {
@@ -57,11 +56,7 @@ class BuyOfferController {
         btc:btc.data,
         bch:bch.data,
         ltc:ltc.data,
-        dash:dash.data,
-        countries:countries.toJSON(),
-        coins:coins.toJSON(),
-        payments:payments.toJSON(),
-        currencies:currencies.toJSON()
+        dash:dash.data
       })
     } catch (e) {
       if (e.message === 'E_INVALID_SESSION: Invalid session') {

@@ -8,7 +8,7 @@ try {
 
 /*
     =============================
-        Daily Sales | Options
+        Daily Prices | Options
     =============================
 */
 var d_2options1 = {
@@ -40,7 +40,7 @@ var d_2options1 = {
         }
     }],
     series: [{
-        name: 'Sales',
+        name: 'Prices',
         data: [44, 55, 41, 67, 22, 43, 21]
     },{
         name: 'Last Week',
@@ -107,7 +107,7 @@ var d_2options2 = {
     opacity: 1,
   },
   series: [{
-    name: 'Sales',
+    name: 'Prices',
     data: [28, 40, 36, 52, 38, 60, 38, 52, 36, 40]
   }],
   labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
@@ -369,7 +369,7 @@ var options1 = {
 
 /*
     ==================================
-        Sales By Category | Options
+        Prices By Category | Options
     ==================================
 */
 var options = {
@@ -520,10 +520,10 @@ var options = {
 
 /*
     ============================
-        Daily Sales | Render
+        Daily Prices | Render
     ============================
 */
-var d_2C_1 = new ApexCharts(document.querySelector("#daily-sales"), d_2options1);
+var d_2C_1 = new ApexCharts(document.querySelector("#daily-Prices"), d_2options1);
 d_2C_1.render();
 
 /*
@@ -557,7 +557,7 @@ chart1.render();
 
 /*
     =================================
-        Sales By Category | Render
+        Prices By Category | Render
     =================================
 */
 var chart = new ApexCharts(
