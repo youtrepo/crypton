@@ -4,7 +4,7 @@
 
 <!--  BEGIN CONTENT AREA  -->
 <div id="content" class="main-content">
-  <div class="layout-px-spacing">
+  <div class="layout-px-spacing" style="margin-bottom:190px !important;">
       <div class="chat-section layout-top-spacing">
         <div class="row">
           <div class="col text-center">
@@ -77,7 +77,6 @@
                 @endif
               </div>
             </blockquote>
-          </div>
           <div class="col-xl-12 col-lg-12 col-md-12">
             <input class="d-none" id="token" value="{{id}}">
             <div class="chat-system">
@@ -243,7 +242,10 @@
               </div>
             </div>
 
+
+
           </div>
+        </div>
 </div>
 
 
@@ -270,7 +272,9 @@
     </div>
 
     </div>
-      @include('partials/dashfooter')
+
+  @include('partials/dashfooter')
+
   <script>
     $('#cd-circle').countdown(Date.parse('{{time}}'), function(event) {
       $(this).html(event.strftime(''+
