@@ -21,7 +21,7 @@ var $btns = $('.list-actions').click(function() {
   var setInvoiceNumber = getParentDiv.find('.invoice-inbox .inv-number').text('#'+ getDataInvoiceAttr);
   var showInvHeaderSection = getParentDiv.find('.invoice-inbox .invoice-header-section').css('display', 'flex');
   var showInvContentSection = getParentDiv.find('.invoice-inbox #ct').css('display', 'block');
-  var showInvContentSection = getParentDiv.find('.invoice-inbox').css('height', 'calc(100vh - 168px)');
+  var showInvContentSection = getParentDiv.find('.invoice-inbox').css('height', 'calc(100vh - 197px)');
   var hideInvEmptyContent = getParentDiv.find('.invoice-inbox .inv-not-selected').css('display', 'none');
   var hideInvEmptyContent = getParentDiv.find('.invoice-container .inv--thankYou').css('display', 'block');
   if ($(this).parents('.tab-title').hasClass('open-inv-sidebar')) {

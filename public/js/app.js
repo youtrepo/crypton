@@ -30,90 +30,17 @@ var App = function() {
             search: '.search-overlay'
         }
     };
-
-    var categoryScroll = {
-        scrollCat: function() {
-            var sidebarWrapper = document.querySelectorAll('.sidebar-wrapper [aria-expanded="true"]')[0];
-            var sidebarWrapperTop = sidebarWrapper.offsetTop - 20;
-            setTimeout(function(){ $('.menu-categories').animate({ scrollTop: sidebarWrapperTop }, 500); }, 500);
-        }
-    }
-
+    
     var toggleFunction = {
         sidebar: function($recentSubmenu) {
             $('.sidebarCollapse').on('click', function (sidebar) {
                 sidebar.preventDefault();
-                getSidebar = $('.sidebar-wrapper');
-                    console.log('drill 1')
-                if ($recentSubmenu === true) {
-                    console.log('drill 2')
-                    if ($('.collapse.submenu').hasClass('show')) {
-                        console.log('drill 3')
-                        $('.submenu.show').addClass('mini-recent-submenu');
-                        getSidebar.find('.collapse.submenu').removeClass('show');
-                        getSidebar.find('.collapse.submenu').removeClass('show');
-                        $('.collapse.submenu').parents('li.menu').find('.dropdown-toggle').attr('aria-expanded', 'false');
-                    } else {
-                        console.log('drill 4')
-                        if ($(Selector.mainContainer).hasClass('sidebar-closed')) {
-                            console.log('drill 5')
-                            if ($('.collapse.submenu').hasClass('recent-submenu')) {
-                                getSidebar.find('.collapse.submenu.recent-submenu').addClass('show');
-                                $('.collapse.submenu.recent-submenu').parents('.menu').find('.dropdown-toggle').attr('aria-expanded', 'true');
-                                $('.submenu').removeClass('mini-recent-submenu');
-                            console.log('drill 6')
-
-                            } else {
-                                $('li.active .submenu').addClass('recent-submenu');
-                                getSidebar.find('.collapse.submenu.recent-submenu').addClass('show');
-                                $('.collapse.submenu.recent-submenu').parents('.menu').find('.dropdown-toggle').attr('aria-expanded', 'true');
-                                $('.submenu').removeClass('mini-recent-submenu');
-                            console.log('drill 7')
-                            }
-                        }
-                    }
-                        console.log('drill 2 end')
-                }
-                        console.log('end drill')
                 $(Selector.mainContainer).toggleClass("sidebar-closed");
                 $(Selector.mainHeader).toggleClass('expand-header');
                 $(Selector.mainContainer).toggleClass("sbar-open");
                 $('.overlay').toggleClass('show');
                 $('html,body').toggleClass('sidebar-noneoverflow');
             });
-        },
-        onToggleSidebarSubmenu: function() {
-            $('.sidebar-wrapper').on('mouseenter mouseleave', function(event) {
-                event.preventDefault();
-                if ($('body').hasClass('alt-menu')) {
-                    if ($('.main-container').hasClass('sidebar-closed')) {
-                        if (event.type === 'mouseenter') {
-                            $('li .submenu').removeClass('show');
-                            $('li.active .submenu').addClass('recent-submenu');
-                            $('li.active').find('.collapse.submenu.recent-submenu').addClass('show');
-                            $('.collapse.submenu.recent-submenu').parents('.menu').find('.dropdown-toggle').attr('aria-expanded', 'true');
-                        } else if (event.type === 'mouseleave') {
-                            $('li').find('.collapse.submenu').removeClass('show');
-                            $('.collapse.submenu.recent-submenu').parents('.menu').find('.dropdown-toggle').attr('aria-expanded', 'false');
-                            $('.collapse.submenu').parents('.menu').find('.dropdown-toggle').attr('aria-expanded', 'false');
-                        }
-                    }
-                } else {
-                    if ($('.main-container').hasClass('sidebar-closed')) {
-                        if (event.type === 'mouseenter') {
-                            $(this).find('.submenu.recent-submenu').addClass('show');
-                            $('.collapse.submenu.recent-submenu').parents('.menu').find('.dropdown-toggle').attr('aria-expanded', 'true');
-                        } else if (event.type === 'mouseleave') {
-                            $(this).find('.submenu.recent-submenu').removeClass('show');
-                            $('.collapse.submenu.recent-submenu').parents('.menu').find('.dropdown-toggle').attr('aria-expanded', 'false');
-                        }
-                    }
-
-                }
-            })
-        },
-        offToggleSidebarSubmenu: function () {
-            $('.sidebar-wrapper').off('mouseenter mouseleave');
         },
         overlay: function() {
             $('#dismiss, .overlay, cs-overlay').on('click', function () {
@@ -147,7 +74,8 @@ var App = function() {
                 wheelSpeed:.5,
                 swipeEasing:!0,
                 minScrollbarLength:40,
-                maxScrollbarLength:300
+                maxScrollbarLength:300,
+                suppressScrollX : true
             });
         },
         preventScrollBody: function() {
@@ -167,20 +95,11 @@ var App = function() {
                 }
             });
         },
-        languageDropdown: function() {
-            var getDropdownElement = document.querySelectorAll('.more-dropdown.language-dropdown .dropdown-item');
+        functionalDropdown: function() {
+            var getDropdownElement = document.querySelectorAll('.more-dropdown .dropdown-item');
             for (var i = 0; i < getDropdownElement.length; i++) {
                 getDropdownElement[i].addEventListener('click', function() {
-                    document.querySelectorAll('.more-dropdown.language-dropdown .dropdown-toggle > span')[0].innerText = this.getAttribute('data-value');
-                    document.querySelectorAll('.more-dropdown .dropdown-toggle > img')[0].setAttribute('src', '/images/' + this.getAttribute('data-img-value') + '.png' );
-                })
-            }
-        },
-        appsDropdown: function() {
-            var getDropdownElement = document.querySelectorAll('.more-dropdown.apps-dropdown .dropdown-item');
-            for (var i = 0; i < getDropdownElement.length; i++) {
-                getDropdownElement[i].addEventListener('click', function() {
-                    document.querySelectorAll('.more-dropdown.apps-dropdown .dropdown-toggle > span')[0].innerText = this.getAttribute('data-value');
+                    document.querySelectorAll('.more-dropdown .dropdown-toggle > span')[0].innerText = this.getAttribute('data-value');
                 })
             }
         }
@@ -190,50 +109,50 @@ var App = function() {
         onRefresh: function() {
             var windowWidth = window.innerWidth;
             if ( windowWidth <= MediaSize.md ) {
-                categoryScroll.scrollCat();
                 toggleFunction.sidebar();
             }
         },
 
+        // Note : -  _mobileResolution -> onResize | Uncomment it if need for onresize functions for MOBILE RESOLUTION i.e. below or equal to 991px |
+
+        /*
         onResize: function() {
             $(window).on('resize', function(event) {
                 event.preventDefault();
                 var windowWidth = window.innerWidth;
                 if ( windowWidth <= MediaSize.md ) {
-                    toggleFunction.offToggleSidebarSubmenu();
                 }
             });
         }
-
+        */
     }
 
     var _desktopResolution = {
         onRefresh: function() {
             var windowWidth = window.innerWidth;
             if ( windowWidth > MediaSize.md ) {
-                categoryScroll.scrollCat();
                 toggleFunction.sidebar(true);
-                toggleFunction.onToggleSidebarSubmenu();
             }
         },
 
+        // Note : -  _desktopResolution -> onResize | Uncomment it if need, for onresize functions for DESKTOP RESOLUTION i.e. above or equal to 991px |
+
+        /*
         onResize: function() {
             $(window).on('resize', function(event) {
                 event.preventDefault();
                 var windowWidth = window.innerWidth;
                 if ( windowWidth > MediaSize.md ) {
-                    toggleFunction.onToggleSidebarSubmenu();
                 }
             });
         }
-
+        */
     }
 
     function sidebarFunctionality() {
         function sidebarCloser() {
 
             if (window.innerWidth <= 991 ) {
-
 
                 if (!$('body').hasClass('alt-menu')) {
 
@@ -255,14 +174,12 @@ var App = function() {
                     $('.overlay').removeClass('show');
                     $('#container').removeClass('sbar-open');
                     $('html, body').removeClass('sidebar-noneoverflow');
-                    // $('.sidebar-wrapper [aria-expanded="true"]').parents('li.menu').find('.collapse').removeClass('show');
                 } else {
                     $('html, body').addClass('sidebar-noneoverflow');
                     $("#container").addClass("sidebar-closed");
                     $(".navbar").addClass("expand-header");
                     $('.overlay').addClass('show');
                     $('#container').addClass('sbar-open');
-                    $('.sidebar-wrapper [aria-expanded="true"]').parents('li.menu').find('.collapse').removeClass('show');
                 }
             }
 
@@ -297,23 +214,24 @@ var App = function() {
                 Desktop Resoltion fn
             */
             _desktopResolution.onRefresh();
-            _desktopResolution.onResize();
+
+            // Note : -  _desktopResolution -> onResize | Uncomment it if need for onresize functions for MOBILE RESOLUTION i.e. above or equal to 991px |
+
+            // _desktopResolution.onResize();
 
             /*
                 Mobile Resoltion fn
             */
             _mobileResolution.onRefresh();
-            _mobileResolution.onResize();
+
+            // Note : -  _mobileResolution -> onResize | Uncomment it if need for onresize functions for DESKTOP RESOLUTION i.e. below or equal to 991px |
+            
+            // _mobileResolution.onResize();
 
             sidebarFunctionality();
-
-            /*
-                In Built Functionality fn
-            */
             inBuiltfunctionality.mainCatActivateScroll();
             inBuiltfunctionality.preventScrollBody();
-            inBuiltfunctionality.languageDropdown();
-            inBuiltfunctionality.appsDropdown();
+            inBuiltfunctionality.functionalDropdown();
         }
     }
 
