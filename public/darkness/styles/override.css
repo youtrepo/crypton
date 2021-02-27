@@ -1,0 +1,10 @@
+.fixedc{
+  position: sticky!important;
+  right: 0!important;
+  background-color: white;
+}
+.notification-scroll{
+  position: relative;
+  height: auto;
+  max-height: 400px;
+}

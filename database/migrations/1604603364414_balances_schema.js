@@ -9,7 +9,7 @@ class BalancesSchema extends Schema {
       table.increments()
       table.string('email',255)
       table.string('coin',55)
-      table.decimal('value','65,8').defaultTo(0)
+      table.decimal('value',null).defaultTo(0)
       table.timestamps()
     })
   }
