@@ -1,7 +1,7 @@
 'use strict'
 
 const Task = use('Task')
-const Ws=use('App/Services/Ws')
+// const Ws=use('App/Services/Ws') causing main error for now
 const trade=use('App/Models/Trade')
 
 class Chat extends Task {
