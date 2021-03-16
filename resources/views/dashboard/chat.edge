@@ -49,30 +49,7 @@
               @if(trade.status==='active')
               <div class="container mt-3">
               <div id="cd-circle">
-                <div class="countdown">
-                  <div class="clock-count-container">
-                    <h1 class="clock-val">365</h1>
-                  </div>
-                  <h4 class="clock-text"> Days </h4>
-                </div>
-                <div class="countdown">
-                  <div class="clock-count-container">
-                    <h1 class="clock-val">13</h1>
-                  </div>
-                  <h4 class="clock-text"> Hours </h4>
-                </div>
-                <div class="countdown">
-                  <div class="clock-count-container">
-                    <h1 class="clock-val">01</h1>
-                  </div>
-                  <h4 class="clock-text"> Mins </h4>
-                </div>
-                <div class="countdown">
-                  <div class="clock-count-container">
-                    <h1 class="clock-val">13</h1>
-                  </div>
-                  <h4 class="clock-text"> Sec </h4>
-                </div>
+
               </div>
                 @endif
               </div>
@@ -305,12 +282,12 @@
       })
     });
   </script>
+  <script src="/form/chat.js"></script>
   <script>
+    subscribeToChannel()
     ws.on('open', () => {
       isConnected = true
-      subscribeToChannel()
       subscribeToTrade()
     })
   </script>
-  <script src="/form/chat.js"></script>
     </div>

@@ -1,7 +1,6 @@
 'use strict'
 
 const Task = use('Task')
-const Ws=use('App/Services/Ws')
 const trade=use('App/Models/Trade')
 
 class Chat extends Task {

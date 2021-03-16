@@ -584,6 +584,9 @@ code {
   width: 28px;
   border-radius: 4px;
   height: 28px; }
+.navbar .navbar-item .nav-item.user-profile-dropdown .nav-link svg {
+  color: #fafafa;
+}
 
 .navbar .navbar-item .nav-item.user-profile-dropdown .dropdown-menu {
   z-index: 9999;

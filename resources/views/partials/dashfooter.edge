@@ -50,7 +50,6 @@
 <script src="/plugins/table/datatable/datatables.js"></script>
 <script src="/plugins/table/datatable/custom_miscellaneous.js"></script>
 <script src="/plugins/countdown/jquery.countdown.js"></script>
-<script src="/js/components/custom-countdown.js"></script>
 <script src="/plugins/blockui/jquery.blockUI.min.js"></script>
 
 <script src="/plugins/blockui/custom-blockui.js"></script>
@@ -97,6 +96,7 @@
 
   ws.on('open', () => {
     isConnected = true
+    subscribeToNotifications()
     console.log('connected')
   })
 
@@ -104,5 +104,6 @@
     isConnected = false
   })
 </script>
+<script src="/notification/notification.js"></script>
 </body>
 </html>

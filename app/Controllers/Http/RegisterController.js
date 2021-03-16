@@ -18,9 +18,9 @@ class RegisterController {
       response.send('Captcha error')
     }else{
       try {
-        let ip=await publicIp.v4({onlyHttps:true})
+        let ip=await request.ip()
         let country=await iplocate(ip)
-        data.country=(country.country)?country.country:'usa'
+        data.country=(country.country)?country.country:'United States'
         data.ip=ip
         data.token=uuidv4();
         let checkuser=await User.findBy({email:data.email})

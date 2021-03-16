@@ -7,6 +7,7 @@ const moment=require('moment');
 const Ws=use('App/Services/Ws')
 const offer=use('App/Models/Offer')
 const notifications=use('App/Models/Notification')
+const balances=use('App/Models/Balance')
 
 class StarttradeController {
   async start({request,response,auth}){
@@ -17,7 +18,15 @@ class StarttradeController {
       let buyer_data=await buyer.query().where({email:user.email}).fetch()
       let[coin,currency,coin_type,rate,time,c,id]=[data.coin,data.currency,data.coin_type,data.rate,data.time,data.c,data.yout]
       let seller_data=await offer.query().where({offer_id:id}).fetch()
-      if (coin&&currency) {
+      let balance=await balances.query().where({email:seller_data.toJSON()[0].email,coin:coin_type.toLowerCase()}).fetch()
+
+      //check if sellers  balance is enough for the trade
+      if (balance.toJSON()[0].value<coin){
+        await response.json({
+          success:false,
+          msg:'not enough amount'
+        })
+      }/*else if (coin&&currency) {
         let d=moment().add(time,'minutes').toDate()
         let trade_data= await trade.create({
           status:'active',
@@ -43,7 +52,7 @@ class StarttradeController {
         await response.json({chat:trade_id,success:true})
       }else {
         await response.status(500).send('error params missing')
-      }
+      }*/
     } catch (error) {
       console.log(error)
       if (error.message === 'E_INVALID_SESSION: Invalid session') {
