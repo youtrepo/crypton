@@ -21,7 +21,7 @@ $(document).ready(function (){
     }
   })
 
-  //submit form
+  //submit form and start trade
   $('form').on('submit',function (e){
     e.preventDefault()
     let [currency,min,max]=[parseFloat($('#currency').val()),parseFloat($('#min').val()),parseFloat($('#max').val())]
@@ -38,7 +38,7 @@ $(document).ready(function (){
           $.blockUI({
             message: '<div class="spinner-border text-white mr-2 align-self-center loader-sm "></div>',
             fadeIn: 800,
-            timeout: 3000, //unblock after 2 seconds
+            timeout: 3000, //unblock after 3 seconds
             overlayCSS: {
               backgroundColor: '#1b2024',
               opacity: 0.8,
@@ -56,8 +56,28 @@ $(document).ready(function (){
 
         },
         success:function (data){
-          ///do anything with data
-             window.location.href='/chat/'+data.chat
+          ///redirect user to trade chat page
+          switch (data.success){
+            case true:
+              window.location.href='/chat/'+data.chat
+              break;
+            case false:
+              $.unblockUI();
+              const toast = swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                padding: '2em'
+              });
+
+              toast({
+                type: 'error',
+                title: 'The seller doesnt have enough Balance to fulfill the trade',
+                padding: '2em',
+              })
+              break;
+          }
         }
 
       })

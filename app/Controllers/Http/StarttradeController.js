@@ -26,7 +26,7 @@ class StarttradeController {
           success:false,
           msg:'not enough amount'
         })
-      }/*else if (coin&&currency) {
+      }else if (coin&&currency) {
         let d=moment().add(time,'minutes').toDate()
         let trade_data= await trade.create({
           status:'active',
@@ -52,7 +52,7 @@ class StarttradeController {
         await response.json({chat:trade_id,success:true})
       }else {
         await response.status(500).send('error params missing')
-      }*/
+      }
     } catch (error) {
       console.log(error)
       if (error.message === 'E_INVALID_SESSION: Invalid session') {

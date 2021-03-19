@@ -39,6 +39,7 @@ Route.get('/chat/:id','ChatController.chat')
 Route.post('/start_trade','StarttradeController.start')
 Route.post('/notifications','NotificationsubscribeController.subscribe')
 Route.post('/confirm','ConfirmtradeController.confirm')
+Route.get('/profile','ProfileController.profile')
 
 
 ///errors

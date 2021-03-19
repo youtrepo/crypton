@@ -4,7 +4,7 @@
           Perfect Scrollbar | Recent Activities
       =============================================
   */
-  const ps = new PerfectScrollbar(document.querySelector('.mt-container'));
+  const ps = new PerfectScrollbar(document.querySelector('.main-content'));
   //notifications scroll
   const ns = new PerfectScrollbar(document.querySelector('.notification-scroll'));
   //transactions scroll
