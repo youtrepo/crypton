@@ -8,6 +8,7 @@ const Ws=use('App/Services/Ws')
 const offer=use('App/Models/Offer')
 const notifications=use('App/Models/Notification')
 const balances=use('App/Models/Balance')
+const escrow=use('App/Models/Escrow')
 
 class StarttradeController {
   async start({request,response,auth}){
@@ -49,6 +50,10 @@ class StarttradeController {
         await notifications.create({email:socket_id,msg:'trading',status:'progress',type:'trade',trade_link:trade_id})
         await notifications.create({email:user.email,msg:'trading',status:'progress',type:'trade',trade_link:trade_id})
         await Ws.on('connection',(socket)=>{socket.to(socket_id).emit('new trade started')})
+
+        //escrow
+        await escrow.create({offer_id:id,amount:coin})
+        await balances.query().where({email:seller_data.toJSON()[0].email,coin:'btc'}).decrement('value',coin)
         await response.json({chat:trade_id,success:true})
       }else {
         await response.status(500).send('error params missing')
