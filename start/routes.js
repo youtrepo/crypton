@@ -40,5 +40,6 @@ Route.post('/start_trade','StarttradeController.start')
 Route.post('/notifications','NotificationsubscribeController.subscribe')
 Route.post('/confirm','ConfirmtradeController.confirm')
 
+
 ///errors
 Route.on('/500').render('errors/500')

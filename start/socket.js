@@ -16,5 +16,6 @@ const Ws = use('Ws')
 
 Ws.channel('chat:*', 'ChatController')
 Ws.channel('trade:*','TradeController')
+Ws.channel('notifications:*','NotificationController')
 
 

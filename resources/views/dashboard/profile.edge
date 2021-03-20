@@ -1,0 +1,90 @@
+@include('partials/dashheader')
+<!--  BEGIN CONTENT AREA  -->
+<div id="content" class="main-content">
+  <div class="layout-px-spacing">
+
+    <div class="row layout-top-spacing">
+      <div class="container">
+        <div class="card component-card_4 w-100 p-5">
+        <h2>General information</h2>
+        <form>
+          {{ csrfField() }}
+          <div class="row">
+            <div class="col-lg">
+              <label>Username</label>
+              <div class="input-group mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Username">
+              </div>
+            </div>
+
+
+            <div class="col-lg">
+              <label>Email</label>
+              <div class="input-group mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Email">
+              </div>
+            </div>
+
+
+          </div>
+          <div class="row">
+            <div class="col-lg">
+              <label>Country</label>
+              <div class="input-group mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-flag"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Country" >
+              </div>
+
+            </div>
+          </div>
+
+
+
+
+          <!--password-->
+          <h2 class="mt-3">Change Password</h2>
+            <div class="row">
+              <div class="col-lg">
+                <label>New password</label>
+                <div class="input-group mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-key"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="New password" >
+                </div>
+              </div>
+
+              <div class="col-lg">
+                <label>Confirm password</label>
+                <div class="input-group mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-key"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="confirm password" >
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+<button class="btn btn-rounded btn-outline-success">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-save"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+  Save changes
+</button>
+
+        </form>
+  </div>
+      </div>
+</div>
+</div>
+</div>

@@ -7,6 +7,7 @@ const Ws = use('Ws')
 const Env = use('Env')
 const BitGo = require('bitgo');
 const transactions=use('App/Models/Transaction')
+const notifications=use('App/Models/Notification')
 const wallets=use('App/Models/Wallet')
 const balance=use('App/Models/Balance')
 const convert=require('cryptocurrency-unit-convert')
@@ -58,6 +59,13 @@ class TransactionController {
 
             ///update balance
          await balance.query().where({email:email,coin:'btc'}).increment('value', converted)
+          //create notifications
+          notifications.create({email:email,msg:`Received ${converted+coin}`,type:'transaction',status:'new'})
+          //notify user
+          const topic = Ws.getChannel('notifications:*').topic('notifications:'+email)
+          if (topic){
+            topic.broadcast('notification',{type:'transaction',msg:'Received '+converted+' '+coin,coin:coin,amount:converted})
+          }
         }else {
           console.log('transaction confirmed')
         }

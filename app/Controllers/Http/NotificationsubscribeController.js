@@ -6,10 +6,13 @@ class NotificationsubscribeController {
     try {
       await auth.check()
       let user = await auth.getUser()
-      await Ws.once('connection',(socket)=>{
-        socket.join(user.email)
-        socket.emit('subscribed',{success:true,msg:'notifications success'})
-      })
+      const data = request.only(['type'])
+      if (request.ajax()&&data.type==='notifications') {
+        response.json({success:true,msg:user.email})
+      }else {
+        response.status(403).json({success:false,msg:'access forbidden'})
+      }
+
     }
     catch (e) {
       console.log(e)

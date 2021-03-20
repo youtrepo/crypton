@@ -1,4 +1,4 @@
-const ps = new PerfectScrollbar('.chat-conversation-box', {
+ new PerfectScrollbar('.chat-conversation-box', {
   suppressScrollX : true
 });
 
@@ -27,6 +27,9 @@ function subscribeToChannel () {
       getScrollContainer.scrollTop = getScrollContainer.scrollHeight;
       var clearChatInput = $('.mail-write-box').val('');
     }
+  })
+  chat.on('error',(err)=>{
+    console.log(err)
   })
 }
 
@@ -101,3 +104,5 @@ function confirmtrade(id,token){
     }
   })
 }
+
+
