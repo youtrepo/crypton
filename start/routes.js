@@ -39,7 +39,10 @@ Route.get('/chat/:id','ChatController.chat')
 Route.post('/start_trade','StarttradeController.start')
 Route.post('/notifications','NotificationsubscribeController.subscribe')
 Route.post('/confirm','ConfirmtradeController.confirm')
+Route.get('/profile', ({ view }) =>{
+    return view.render('dashboard.profile')
+})
 
 
 ///errors
-Route.on('/500').render('errors/500')
+Route.on('/500').render('errors/500');
