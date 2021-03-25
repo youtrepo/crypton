@@ -304,6 +304,7 @@
     display: flex;
 }
 .widget-table-one .widget-content {
+  position: relative;
   height: 250px;
 }
 .widget-table-one .transactions-list {
@@ -638,6 +639,7 @@
 .widget-table-two {
     position: relative;
 }
+
 .widget-table-two h5 {
     font-weight: 700;
     font-size: 19px;
@@ -646,6 +648,8 @@
 }
 .widget-table-two .widget-content {
     background: transparent;
+  position: relative;
+     height: 250px;
 }
 .widget-table-two .table {
     border-collapse: separate;

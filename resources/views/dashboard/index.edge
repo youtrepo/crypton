@@ -1,4 +1,5 @@
 @include('partials/dashheader')
+<link href="/light/styles/tables/table-basic.css" rel="stylesheet" type="text/css">
 <!--  BEGIN CONTENT AREA  -->
 <div id="content" class="main-content">
     <div class="layout-px-spacing">
@@ -82,81 +83,38 @@
             </div>
 
             <div class="col-xl-4 col-lg-12 col-md-6 col-sm-12 col-12 layout-spacing">
-                <div class="widget-three">
-                    <div class="widget-heading">
-                        <h5 class="">Summary</h5>
-                    </div>
-                    <div class="widget-content">
+              <div class="widget widget-table-two">
 
-                        <div class="order-summary">
-
-                            <div class="summary-list">
-                                <div class="w-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-                                </div>
-                                <div class="w-summary-details">
-
-                                    <div class="w-summary-info">
-                                        <h6>Income</h6>
-                                        <p class="summary-count">$92,600</p>
-                                    </div>
-
-                                    <div class="w-summary-stats">
-                                        <div class="progress">
-                                            <div class="progress-bar bg-gradient-secondary" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="summary-list">
-                                <div class="w-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
-                                </div>
-                                <div class="w-summary-details">
-
-                                    <div class="w-summary-info">
-                                        <h6>Profit</h6>
-                                        <p class="summary-count">$37,515</p>
-                                    </div>
-
-                                    <div class="w-summary-stats">
-                                        <div class="progress">
-                                            <div class="progress-bar bg-gradient-success" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="summary-list">
-                                <div class="w-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
-                                </div>
-                                <div class="w-summary-details">
-
-                                    <div class="w-summary-info">
-                                        <h6>Expenses</h6>
-                                        <p class="summary-count">$55,085</p>
-                                    </div>
-
-                                    <div class="w-summary-stats">
-                                        <div class="progress">
-                                            <div class="progress-bar bg-gradient-warning" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
+                <div class="widget-heading">
+                  <h5 class="">Active Trades</h5>
                 </div>
+
+                <div class="widget-content">
+                  <div class="table-responsive w-100">
+                    <table class="table">
+                      <thead>
+                      <tr>
+                        <th><div class="th-content">Coin</div></th>
+                        <th><div class="th-content">Amount</div></th>
+                        <th><div class="th-content">Seller</div></th>
+                        <th><div class="th-content th-heading">Buyer</div></th>
+                        <th><div class="th-content fixedc">Action</div></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                        <td><div class="td-content customer-name">Luke Ivory</div></td>
+                        <td><div class="td-content product-brand text-primary">Headphone</div></td>
+                        <td><div class="td-content product-invoice">#46894</div></td>
+                        <td><div class="td-content pricing"><span class="">$56.07</span></div></td>
+                        <td class="fixedc"><div class="td-content"><span class="badge badge-success">Paid</span></div></td>
+                      </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
                 <div class="widget widget-table-one">
@@ -230,42 +188,13 @@
               <h5 class="">Account Info</h5>
             </div>
 
-            <div class="widget-content">
+            <div class="widget-content" id="b_container">
               <div class="invoice-box">
 
-                <div class="acc-total-info">
-                  <h5>Balance</h5>
-                  <p class="acc-amount">$470</p>
-                </div>
 
-                <div class="inv-detail">
-                  <div class="info-detail-1">
-                    <p>Monthly Plan</p>
-                    <p>$ 199.0</p>
-                  </div>
-                  <div class="info-detail-2">
-                    <p>Taxes</p>
-                    <p>$ 17.82</p>
-                  </div>
-                  <div class="info-detail-3 info-sub">
-                    <div class="info-detail">
-                      <p>Extras this month</p>
-                      <p>$ -0.68</p>
-                    </div>
-                    <div class="info-detail-sub">
-                      <p>Netflix Yearly Subscription</p>
-                      <p>$ 0</p>
-                    </div>
-                    <div class="info-detail-sub">
-                      <p>Others</p>
-                      <p>$ -0.68</p>
-                    </div>
-                  </div>
-                </div>
 
                 <div class="inv-action">
-                  <a href="" class="btn btn-dark">Summary</a>
-                  <a href="" class="btn btn-danger">Transfer</a>
+                  <a href="" class="btn btn-outline-success btn-block">Withdraw</a>
                 </div>
               </div>
             </div>
@@ -1039,7 +968,7 @@
           }
         },
         series: [44, 55, 67, 83],
-        labels: ['Apples', 'Oranges', 'Bananas', 'Berries'],
+        labels: ['successful', 'pending', 'cancelled','disputed'],
       }
 
       var tradeschart = new ApexCharts(
@@ -1110,5 +1039,62 @@
     } catch(e) {
       console.log(e);
     }
+  </script>
+
+
+  <!-- prices-->
+  <script>
+      $('#b_container').block({
+        message: ' <div class="spinner-border spinner-border-reverse align-self-center text-warning"></div>',
+        timeout: 3000, //unblock after 10 seconds
+        overlayCSS: {
+          backgroundColor: 'white',
+          opacity: 0.4,
+          cursor: 'wait'
+        },
+        css: {
+          border: 0,
+          color: '#fff',
+          padding: 0,
+          backgroundColor: 'transparent'
+        }
+      });
+
+
+      //get balances
+      $.when(
+        //btc
+        $.ajax({
+          type:'get',
+          url:'https://api.exchangerate.host/convert?from=BTC&to=USD&amount={{btc.value}}',
+          dataType:'json',
+        }),
+        //bch
+        $.ajax({
+          type:'get',
+          url:'https://api.exchangerate.host/convert?from=BCH&to=USD&amount={{bch.value}}',
+          dataType:'json',
+        }),
+        //ltc
+        $.ajax({
+          type:'get',
+          url:'https://api.exchangerate.host/convert?from=LTC&to=USD&amount={{ltc.value}}',
+        }),
+        ///dash
+        $.ajax({
+          type:'get',
+          url:'https://api.exchangerate.host/convert?from=DASH&to=USD&amount={{eth.value}}',
+          dataType:'json',
+        }),
+      ).then( function(btc,bch,ltc,dash){
+        const totalAssestsValue=btc[0].result+bch[0].result+ltc[0].result+dash[0].result
+        setTimeout(function (){
+          $.unblockUI();
+          $('#b_container .invoice-box').prepend('<div class="acc-total-info"> <h5>Balance</h5> <p class="acc-amount">$'+Math.round(totalAssestsValue)+'</p> </div> <div class="inv-detail"> <div class="info-detail-1"> <p class="text-warning">Bitcoin</p> <p class="text-warning">$ '+Math.round(btc[0].result)+'</p> </div> <div class="info-detail-2"> <p class="text-success">Bitcoin cash</p> <p class="text-success">$'+Math.round(bch[0].result)+'</p> </div> <div class="info-detail-3 info-sub"> <div class="info-detail"> <p class="text-info">Dash</p> <p class="text-info">$ '+Math.round(dash[0].result)+'</p> </div> <div class="info-detail mt-3"> <p class="text-dark">Litecoin</p> <p class="text-dark">$ '+Math.round(ltc[0].result)+'</p> </div> </div>')
+        },3000);
+
+        })
+
+
   </script>
 </div>
