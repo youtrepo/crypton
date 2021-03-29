@@ -82,7 +82,7 @@ function subscribeToTrade () {
   })
 }
 
-//confirm
+//confirm paid
 function confirmtrade(id,token){
   $.ajax({
     type:'POST',
@@ -93,7 +93,7 @@ function confirmtrade(id,token){
       if (data.status==='success') {
         //stop the timer
         $('#cd-circle').countdown('stop');
-        $('#slideupModal').modal('dispose')
+        $('#slideupModal').modal('hide')
         $('#trade_actions>button').attr('disabled',true)
         ws.getSubscription('trade:'+$('#token').val()).emit('message', {
           msg: 'paid',
@@ -104,5 +104,42 @@ function confirmtrade(id,token){
     }
   })
 }
+
+ ///trade functions
+
+ //dispute trade
+ function dispute(id,token,user){
+   $.ajax({
+     type:'post',
+     url:'/dispute',
+     data:{id:id, _csrf:token,user:user},
+     success:function (data){
+       switch (data.success){
+         case true:
+           $('#standardModal').modal('hide')
+           Snackbar.show({
+             text: data.msg,
+             actionTextColor: '#fff',
+             backgroundColor: '#1abc9c'
+           });
+           $('.blockquote .badge').removeClass(' badge-danger  badge-info  badge-success').addClass(' badge-warning').html('Disputed')
+           $('.alert').removeClass('alert-light-danger  alert-light-info').addClass('alert-light-warning').html('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg> ... </svg></button>\n' +
+             '                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>\n' +
+             '                <strong>Disputed:</strong> This trade is under <strong>Dispute</strong> and is on investigation')
+           $('#trade_actions button').attr('disabled',true)
+           break;
+         case false:
+           $('#standardModal').modal('hide')
+           Snackbar.show({
+             text: data.msg,
+             actionTextColor: '#fff',
+             backgroundColor: '#e7515a'
+           });
+           break;
+       }
+
+     }
+   })
+ }
 
 

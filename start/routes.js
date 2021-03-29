@@ -40,7 +40,8 @@ Route.post('/start_trade','StarttradeController.start')
 Route.post('/notifications','NotificationsubscribeController.subscribe')
 Route.post('/confirm','ConfirmtradeController.confirm')
 Route.get('/profile','ProfileController.profile')
+Route.post('/dispute','DisputeController.dispute')
 
 
 ///errors
-Route.on('/500').render('errors/500')
+Route.on('/500').render('errors/500');

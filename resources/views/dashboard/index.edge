@@ -89,8 +89,8 @@
                   <h5 class="">Active Trades</h5>
                 </div>
 
-                <div class="widget-content">
-                  <div class="table-responsive w-100">
+                <div class="widget-content" style="overflow-x: auto!important;">
+                  <div class="table-responsive">
                     <table class="table">
                       <thead>
                       <tr>
@@ -98,17 +98,19 @@
                         <th><div class="th-content">Amount</div></th>
                         <th><div class="th-content">Seller</div></th>
                         <th><div class="th-content th-heading">Buyer</div></th>
-                        <th><div class="th-content fixedc">Action</div></th>
+                        <th class="fixedc"><div class="th-content">Action</div></th>
                       </tr>
                       </thead>
                       <tbody>
+                      @each(trades in  activeTrades)
                       <tr>
-                        <td><div class="td-content customer-name">Luke Ivory</div></td>
-                        <td><div class="td-content product-brand text-primary">Headphone</div></td>
-                        <td><div class="td-content product-invoice">#46894</div></td>
-                        <td><div class="td-content pricing"><span class="">$56.07</span></div></td>
-                        <td class="fixedc"><div class="td-content"><span class="badge badge-success">Paid</span></div></td>
+                        <td><div class="td-content customer-name">{{trades.coin}}</div></td>
+                        <td><div class="td-content product-brand text-primary">{{trades.local_amount}}  {{trades.currency}}</div></td>
+                        <td><div class="td-content product-invoice">{{trades.seller}}</div></td>
+                        <td><div class="td-content pricing"><span class="">{{trades.buyer}}</span></div></td>
+                        <td class="fixedc"><div class="td-content"><a href="/chat/{{trades.trade_id}}" class="btn btn-danger btn-sm p-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></a></div></td>
                       </tr>
+                      @endeach
 
                       </tbody>
                     </table>
@@ -941,7 +943,7 @@
 ///trades
       var trades = {
         chart: {
-          height: 310,
+          height: 350,
           type: 'radialBar',
           toolbar: {
             show: false,
@@ -961,14 +963,14 @@
                 label: 'Total',
                 formatter: function (w) {
                   // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-                  return 249
+                  return {{total.length}}
                 }
               }
             }
           }
         },
-        series: [44, 55, 67, 83],
-        labels: ['successful', 'pending', 'cancelled','disputed'],
+        series: [{{success.length}}, {{ activeTrades.length}}, {{cancelled.length}}, {{disputed.length}}],
+        labels: ['successful', 'pending', 'cancelled', 'disputed'],
       }
 
       var tradeschart = new ApexCharts(

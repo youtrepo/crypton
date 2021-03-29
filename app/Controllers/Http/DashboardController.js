@@ -6,6 +6,8 @@ const  notification=use('App/Models/Notification')
 const transaction=use('App/Models/Transaction')
 const Ws=use('App/Services/Ws')
 const fromNow = require('fromnow');
+const trades=use('App/Models/Trade')
+const users=use('App/Models/User')
 //1. Import coingecko-api
 const CoinGecko = require('coingecko-api');
 
@@ -24,6 +26,13 @@ class DashboardController {
         let eth = await balance.findBy({email:user.email,coin:'eth'})
         let notifications=await notification.query().where({email:user.email}).fetch()
         let transactions=await transaction.query().where({email:user.email}).fetch()
+        let userDetails=await users.query().where({email:user.email}).fetch()
+        let User=await userDetails.toJSON()[0]
+        let activeTrades=await trades.query().where({seller:User.username,status:'active'}).orWhere({buyer:User.username,status:'paid'}).orWhere({buyer:User.username,status:'active'}).orWhere({seller:User.username,status:'paid'}).orWhere({buyer:User.username,status:'active'}).orWhere({seller:User.username,status:'disputed'}).orWhere({buyer:User.username,status:'active'}).orWhere({buyer:User.username,status:'disputed'}).fetch()
+        let total=await  trades.query().where({seller:User.username}).orWhere({buyer:User.username}).fetch()
+        let cancelled=await  trades.query().where({seller:User.username,status:'cancelled'}).orWhere({buyer:User.username,status:'cancelled'}).fetch()
+      let disputed=await  trades.query().where({seller:User.username,status:'disputed'}).orWhere({buyer:User.username,status:'disputed'}).fetch()
+      let success=await  trades.query().where({seller:User.username,status:'success'}).orWhere({buyer:User.username,status:'success'}).fetch()
 
       //get coin prices
       let real_btcprice=[]
@@ -79,7 +88,12 @@ class DashboardController {
           notifications:notifications.toJSON(),
           transactions:transactions.toJSON(),
           fromNow:fromNow,
-          url:Env.get('URL')
+          url:Env.get('URL'),
+          activeTrades:activeTrades.toJSON(),
+          total:total.toJSON(),
+          cancelled:cancelled.toJSON(),
+          disputed:disputed.toJSON(),
+          success:success.toJSON()
         })
     } catch (error) {
       console.log(error)

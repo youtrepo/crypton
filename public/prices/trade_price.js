@@ -1,3 +1,4 @@
+//calculate the trade price
 $(document).ready(function (){
   $('#coin').on('input',function (){
     let [coin,rate,min,max]=[$(this).val(),$('#rate').val(),$('#min').val(),$('#max').val()]
