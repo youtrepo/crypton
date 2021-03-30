@@ -28,6 +28,7 @@ class StarttradeController {
           msg:'not enough amount'
         })
       }else if (coin&&currency) {
+
         let d=moment().add(time,'minutes').toDate()
         let trade_data= await trade.create({
           status:'active',
@@ -52,7 +53,7 @@ class StarttradeController {
         await Ws.on('connection',(socket)=>{socket.to(socket_id).emit('new trade started')})
 
         //escrow
-        await escrow.create({offer_id:id,amount:coin})
+        await escrow.create({trade_id:trade_id,amount:coin,coin:coin_type,status:'pending',email:seller_data.toJSON()[0].email})
         await balances.query().where({email:seller_data.toJSON()[0].email,coin:'btc'}).decrement('value',coin)
         await response.json({chat:trade_id,success:true})
       }else {

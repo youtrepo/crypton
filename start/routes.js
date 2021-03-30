@@ -41,6 +41,7 @@ Route.post('/notifications','NotificationsubscribeController.subscribe')
 Route.post('/confirm','ConfirmtradeController.confirm')
 Route.get('/profile','ProfileController.profile')
 Route.post('/dispute','DisputeController.dispute')
+Route.post('/releasecoin','ReleasecoinController.release')
 
 
 ///errors

@@ -1,6 +1,6 @@
 @include('partials/dashheader')
-<link href="/styles/apps/mailing-chat.css" rel="stylesheet" type="text/css" />
-<link href="/styles/elements/avatar.css" rel="stylesheet" type="text/css" />
+<link href="/light/styles/apps/mailing-chat.css" rel="stylesheet" type="text/css" />
+<link href="/light/styles/elements/avatar.css" rel="stylesheet" type="text/css" />
 
 <!--  BEGIN CONTENT AREA  -->
 <div id="content" class="main-content">
@@ -15,6 +15,8 @@
               Trade status <span class="badge badge-info">{{trade.status}} </span>
               @elseif(trade.status=='disputed')
               Trade status <span class="badge badge-warning">{{trade.status}} </span>
+              @elseif(trade.status=='completed')
+              Trade status <span class="badge badge-success">{{trade.status}} </span>
               @else
               Trade status <span class="badge badge-success">{{trade.status}} </span>
               @endif
@@ -25,8 +27,8 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
                 <strong>Cancelled:</strong> This trade was cancelled
               </div>
-              @elseif(trade.status=='success')
-              <div class="alert alert-arrow-left alert-icon-left alert-light-primary mb-4 mt-3"
+              @elseif(trade.status=='completed')
+              <div class="alert alert-arrow-left alert-icon-left alert-light-success mb-4 mt-3"
                    role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg> ... </svg></button>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
@@ -182,7 +184,9 @@
                     </div>
                   </div>
                   <div class="chat-footer chat-active">
-                    @if(trade.status=='cancelled')
+
+                    <!-- disable chat input-->
+                    @if(trade.status=='cancelled'||trade.status=='disputed'||trade.status=='completed')
                     <div class="input-group mb-4 ">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
@@ -207,9 +211,13 @@
                     <div class="col mt-5" id="trade_actions">
                       @if(trade.status==='cancelled')
 
+                      @elseif(trade.status==='disputed')
+
+                      @elseif(trade.status==='completed')
+
                       @else
                       @if(owner)
-                      <button class="btn btn-success mb-2 btn-rounded btn-block mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Release coin</button>
+                      <button class="btn btn-success mb-2 btn-rounded btn-block mr-2" data-toggle="modal" data-target="#releaseModal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Release coin</button>
                       <button class="btn btn-outline-warning mb-2 btn-rounded btn-block mr-2"  data-toggle="modal" data-target="#standardModal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><style>.fa-secondary{opacity:.4}</style></defs><path d="M442.75 182.39L329.61 295.53 290 255.93l-81 81L175 303l81-81-39.6-39.6L329.61 69.26z" class="fa-secondary"/><path d="M169 297.37a31.9 31.9 0 0 0-45.16 0L9.35 412.12a32 32 0 0 0 0 45.25l45.17 45.26a31.91 31.91 0 0 0 45.17 0l114.52-114.75a32 32 0 0 0 0-45.25zm7.49-109.32a23.92 23.92 0 0 0 33.87 0L334.61 63.6a24 24 0 0 0 0-33.94L312 7a23.93 23.93 0 0 0-33.88 0L153.94 131.48a24 24 0 0 0 0 33.94zM504 199.36l-22.6-22.62a23.9 23.9 0 0 0-33.87 0L323.32 301.19a24 24 0 0 0 0 33.94l22.58 22.62a23.91 23.91 0 0 0 33.88 0L504 233.3a24 24 0 0 0 0-33.94z" class="fa-primary"/></svg> Dispute</button>
                       @else
                       @if(trade.status==='paid')
@@ -275,10 +283,88 @@
       </div>
     </div>
 
+    <!-- relesase coin -->
+    <div class="modal fade modal-notification zoomInUp" id="releaseModal" tabindex="-1" aria-labelledby="standardModalLabel" style="display: none;" aria-hidden="true">
+      <div class="modal-dialog" role="document" id="standardModalLabel">
+        <div class="modal-content">
+          <div class="modal-body text-center">
+            <div class="icon-content">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-triangle"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <p class="modal-text">Please confirm that you have received payment before releasing the coin as there will be no refunds</p>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
+            <button type="button" class="btn btn-primary" onclick="release('{{id}}','{{ csrfToken }}','{{buyer}}')">confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--ratings-->
+    @if(owner)
+    <div class="modal fade" id="ratingsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Rate</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+               </button>
+          </div>
+          <div class="modal-body">
+            <p class="modal-text">please rate {{buyer}} and leave feedback</p>
+            <form>
+              <div class="form-group mb-4">
+                <label for="ratings">Your rating</label>
+                <input type="hidden" class="rating" data-filled="fa fa-star red" data-empty="far fa-star"/>
+              </div>
+              <label>Feedback</label>
+              <textarea class="form-control" rows="4" cols="6"></textarea>
+            </form>
+            </div>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
+            <button type="button" class="btn btn-primary">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    @else
+    <div class="modal fade" id="ratingsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Rate</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p class="modal-text">please rate {{seller}} and leave feedback</p>
+            <form>
+              <div class="form-group mb-4">
+                <label for="ratings">Your rating</label>
+                <input type="hidden" class="rating" data-filled="fa fa-star red" data-empty="far fa-star"/>
+              </div>
+              <label>Feedback</label>
+              <textarea class="form-control" rows="4" cols="6"></textarea>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
+            <button type="button" class="btn btn-primary">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    @endif
+
     </div>
 
   @include('partials/dashfooter')
 
+
+  <!--timer-->
   <script>
     $('#cd-circle').countdown(Date.parse('{{time}}'), function(event) {
       $(this).html(event.strftime(''+
@@ -311,9 +397,9 @@
   </script>
   <script src="/form/chat.js"></script>
   <script>
-    subscribeToChannel()
     ws.on('open', () => {
       isConnected = true
+      subscribeToChannel()
       subscribeToTrade()
     })
   </script>

@@ -77,7 +77,21 @@ function subscribeToTrade () {
       $('.chat-footer input').attr('disabled',true)
       $('.chat-footer button').attr('disabled',true)
     }else if (msg.trade==='paid'){
+      $('.blockquote .badge').removeClass(' badge-danger  badge-danger  badge-success').addClass(' badge-info').html('Paid')
       $('.alert').removeClass('alert-light-primary').addClass('alert-light-info').html('<strong>Paid:</strong> This buyer has marked the payment as paid.')
+    }else if (msg.trade==='disputed'){
+      $('#trade_actions button').attr('disabled',true)
+      $('.blockquote .badge').removeClass(' badge-danger  badge-info  badge-success').addClass(' badge-warning').html('Disputed')
+      $('.alert').removeClass('alert-light-primary alert-light-info alert-light-success').addClass('alert-light-warning').html('<strong>Disputed:</strong> This trade is under <strong>Dispute</strong> and is under investigation.')
+  }else if (msg.trade==='completed'){
+      //ratings
+      $('#ratingsModal').modal('show')
+
+      //alerts
+      $('#trade_actions button').attr('disabled',true)
+      $('.blockquote .badge').removeClass(' badge-danger  badge-info  badge-warning').addClass(' badge-success').html('Completed')
+      $('.alert').removeClass('alert-light-primary alert-light-info alert-light-danger').addClass('alert-light-success').html('<strong>Success:</strong> This trade has <strong>completed</strong> successfully.')
+
     }
   })
 }
@@ -122,6 +136,10 @@ function confirmtrade(id,token){
              actionTextColor: '#fff',
              backgroundColor: '#1abc9c'
            });
+           ws.getSubscription('trade:'+$('#token').val()).emit('message', {
+             msg: 'disputed',
+             token: $('#token').val()
+           })
            $('.blockquote .badge').removeClass(' badge-danger  badge-info  badge-success').addClass(' badge-warning').html('Disputed')
            $('.alert').removeClass('alert-light-danger  alert-light-info').addClass('alert-light-warning').html('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg> ... </svg></button>\n' +
              '                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>\n' +
@@ -142,4 +160,41 @@ function confirmtrade(id,token){
    })
  }
 
+ ///release coin
+ function release(id,token,user){
+   $.ajax({
+     type:'post',
+     url:'/releaseCoin',
+     data:{id:id, _csrf:token,user:user},
+     success:function (data) {
+       switch (data.success) {
+         case true:
+           $('#releaseModal').modal('hide')
+           Snackbar.show({
+             text: data.msg,
+             actionTextColor: '#fff',
+             backgroundColor: '#1abc9c'
+           });
+           ws.getSubscription('trade:' + $('#token').val()).emit('message', {
+             msg: 'completed',
+             token: $('#token').val()
+           })
+           $('.blockquote .badge').removeClass(' badge-danger  badge-info  badge-warning').addClass(' badge-success').html('Completed')
+           $('.alert').removeClass('alert-light-danger  alert-light-info alert-light-warning').addClass('alert-light-success').html('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg> ... </svg></button>\n' +
+             '                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>\n' +
+             '                <strong>Completed:</strong> This trade has been <strong>Completed</strong>')
+           $('#trade_actions button').attr('disabled', true)
+           break;
+         case false:
+           $('#releaseModal').modal('hide')
+           Snackbar.show({
+             text: data.msg,
+             actionTextColor: '#fff',
+             backgroundColor: '#e7515a'
+           });
+           break;
+       }
+     }
+ })
+ }
 

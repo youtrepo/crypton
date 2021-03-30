@@ -32,7 +32,7 @@ class DashboardController {
         let total=await  trades.query().where({seller:User.username}).orWhere({buyer:User.username}).fetch()
         let cancelled=await  trades.query().where({seller:User.username,status:'cancelled'}).orWhere({buyer:User.username,status:'cancelled'}).fetch()
       let disputed=await  trades.query().where({seller:User.username,status:'disputed'}).orWhere({buyer:User.username,status:'disputed'}).fetch()
-      let success=await  trades.query().where({seller:User.username,status:'success'}).orWhere({buyer:User.username,status:'success'}).fetch()
+      let success=await  trades.query().where({seller:User.username,status:'completed'}).orWhere({buyer:User.username,status:'completed'}).fetch()
 
       //get coin prices
       let real_btcprice=[]
