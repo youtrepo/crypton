@@ -9,7 +9,6 @@ class RatingsSchema extends Schema {
       table.increments()
       table.string('username')
       table.string('ratings')
-      table.integer('users_rated')
       table.text('feedback','longtext')
       table.timestamps()
     })

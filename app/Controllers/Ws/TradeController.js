@@ -26,7 +26,13 @@ class TradeController {
         this.socket.broadcastToAll('done', {
           trade: 'disputed'
         })
-      }
+      } else if (message.msg==='completed'){
+      let id = message.token
+      await trade.query().where({trade_id: id}).update({status: 'completed'})
+      this.socket.broadcastToAll('done', {
+        trade: 'completed'
+      })
+    }
     })()
   }
 }

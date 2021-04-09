@@ -42,6 +42,7 @@ Route.post('/confirm','ConfirmtradeController.confirm')
 Route.get('/profile','ProfileController.profile')
 Route.post('/dispute','DisputeController.dispute')
 Route.post('/releasecoin','ReleasecoinController.release')
+Route.post('/rate','RateController.rate')
 
 
 ///errors
