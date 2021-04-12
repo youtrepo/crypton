@@ -68,6 +68,8 @@ $('.message').on('keydown', function(event) {
   }
 })
 
+
+ //trade websockets events
 function subscribeToTrade () {
   const trade = ws.subscribe('trade:'+token)
   trade.on('done',(msg)=>{
@@ -83,17 +85,25 @@ function subscribeToTrade () {
       $('#trade_actions button').attr('disabled',true)
       $('.blockquote .badge').removeClass(' badge-danger  badge-info  badge-success').addClass(' badge-warning').html('Disputed')
       $('.alert').removeClass('alert-light-primary alert-light-info alert-light-success').addClass('alert-light-warning').html('<strong>Disputed:</strong> This trade is under <strong>Dispute</strong> and is under investigation.')
-  }else if (msg.trade==='completed'){
-      //ratings
-      $('#ratingsModal').modal('show')
-
+    }else if (msg.trade==='completed'){
       //alerts
-      $('#trade_actions button').attr('disabled',true)
       $('.blockquote .badge').removeClass(' badge-danger  badge-info  badge-warning').addClass(' badge-success').html('Completed')
-      $('.alert').removeClass('alert-light-primary alert-light-info alert-light-danger').addClass('alert-light-success').html('<strong>Success:</strong> This trade has <strong>completed</strong> successfully.')
+      $('.alert').removeClass('alert-light-danger  alert-light-info alert-light-warning').addClass('alert-light-success').html('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg> ... </svg></button>\n' +
+        '                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>\n' +
+        '                <strong>Completed:</strong> This trade has been <strong>Completed</strong>')
+      $('#trade_actions button').attr('disabled', true)
+
+
+      //show ratings modal
+      //we need to wait a number of seconds for the user to read the alerts
+      setTimeout(function (){
+        $('#ratingsModal').modal('show')
+      },2000)
 
     }
   })
+
+  trade.on('error',msg=>{console.log(msg)})
 }
 
 //confirm paid
@@ -175,15 +185,12 @@ function confirmtrade(id,token){
              actionTextColor: '#fff',
              backgroundColor: '#1abc9c'
            });
+
+           //alert user trade is completed
            ws.getSubscription('trade:' + $('#token').val()).emit('message', {
              msg: 'completed',
              token: $('#token').val()
            })
-           $('.blockquote .badge').removeClass(' badge-danger  badge-info  badge-warning').addClass(' badge-success').html('Completed')
-           $('.alert').removeClass('alert-light-danger  alert-light-info alert-light-warning').addClass('alert-light-success').html('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg> ... </svg></button>\n' +
-             '                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>\n' +
-             '                <strong>Completed:</strong> This trade has been <strong>Completed</strong>')
-           $('#trade_actions button').attr('disabled', true)
            break;
          case false:
            $('#releaseModal').modal('hide')
@@ -197,4 +204,19 @@ function confirmtrade(id,token){
      }
  })
  }
+
+
+ //ratings
+  function ratings(id){
+    $.ajax({
+      type:'post',
+      url:'/rate',
+      data:$('#rates').serialize(),
+      success:function (data){
+        console.log(data)
+
+      }
+    })
+ }
+
 

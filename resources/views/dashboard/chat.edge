@@ -265,7 +265,7 @@
       </div>
     </div>
 
-    <!-- disputr modal -->
+    <!-- dispute modal -->
     <div class="modal fade modal-notification zoomInUp" id="standardModal" tabindex="-1" aria-labelledby="standardModalLabel" style="display: none;" aria-hidden="true">
       <div class="modal-dialog" role="document" id="standardModalLabel">
         <div class="modal-content">
@@ -314,6 +314,9 @@
           <div class="modal-body">
             <p class="modal-text">please rate {{buyer}} and leave feedback</p>
             <form>
+              {{ csrfField() }}
+              <input type="text" value="{{id}}" class="d-none" name="id">
+              <input type="text" value="{{buyer}}" class="d-none" name="user">
               <div class="form-group mb-4">
                 <label for="ratings">Your rating</label>
                 <input type="hidden" class="rating" data-filled="fa fa-star red" data-empty="far fa-star"/>
@@ -324,7 +327,7 @@
             </div>
           <div class="modal-footer">
             <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
-            <button type="button" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-primary" onclick="ratings('{{id}}')">Save</button>
           </div>
         </div>
       </div>
@@ -341,18 +344,21 @@
           </div>
           <div class="modal-body">
             <p class="modal-text">please rate {{seller}} and leave feedback</p>
-            <form>
+            <form id="rates">
+              {{ csrfField() }}
+              <input type="text" value="{{id}}" class="d-none" name="id">
+              <input type="text" value="{{seller}}" class="d-none" name="user">
               <div class="form-group mb-4">
                 <label for="ratings">Your rating</label>
-                <input type="hidden" class="rating" data-filled="fa fa-star red" data-empty="far fa-star"/>
+                <input type="hidden" class="rating" data-filled="fa fa-star red" data-empty="far fa-star" name="rating"/>
               </div>
               <label>Feedback</label>
-              <textarea class="form-control" rows="4" cols="6"></textarea>
+              <textarea class="form-control" rows="4" cols="6" name="feedback"></textarea>
             </form>
           </div>
           <div class="modal-footer">
             <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
-            <button type="button" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-primary" onclick="ratings('{{id}}')">Save</button>
           </div>
         </div>
       </div>
