@@ -204,7 +204,40 @@ function confirmtrade(id,token){
      }
  })
  }
+ //cancel trade
+ function cancel(id,token,user){
+   $.ajax({
+     type:'post',
+     url:'/canceltrade',
+     data:{id:id, _csrf:token,user:user},
+     success:function (data) {
+       switch (data.success) {
+         case true:
+           $('#releaseModal').modal('hide')
+           Snackbar.show({
+             text: data.msg,
+             actionTextColor: '#fff',
+             backgroundColor: '#1abc9c'
+           });
 
+           //alert user trade is completed
+           ws.getSubscription('trade:' + $('#token').val()).emit('message', {
+             msg: 'cancelled',
+             token: $('#token').val()
+           })
+           break;
+         case false:
+           $('#releaseModal').modal('hide')
+           Snackbar.show({
+             text: data.msg,
+             actionTextColor: '#fff',
+             backgroundColor: '#e7515a'
+           });
+           break;
+       }
+     }
+   })
+ }
 
  //ratings
   function ratings(id){
@@ -213,7 +246,17 @@ function confirmtrade(id,token){
       url:'/rate',
       data:$('#rates').serialize(),
       success:function (data){
-        console.log(data)
+        if (data.success){
+          $('#ratingsModal').modal('hide')
+          setTimeout(function (){
+            $('#releaseModal').modal('hide')
+            Snackbar.show({
+              text: data.msg,
+              actionTextColor: '#fff',
+              backgroundColor: '#1abc9c'
+            });
+          })
+        }
 
       }
     })

@@ -1,0 +1,98 @@
+@include('partials/dashheader')
+<link rel="stylesheet" type="text/css" href="/plugins/table/datatable/datatables.css">
+<link rel="stylesheet" type="text/css" href="/plugins/table/datatable/custom_dt_miscellaneous.css">
+<link rel="stylesheet" type="text/css" href="/styles/forms/theme-checkbox-radio.css">
+<link rel="stylesheet" type="text/css" href="/plugins/table/datatable/dt-global_style.css">
+<script src="/light/plugins/sweetalerts/promise-polyfill.js"></script>
+<link href="/light/plugins/sweetalerts/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+<link href="/light/plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" />
+<link href="/light/styles/components/custom-sweetalert.css" rel="stylesheet" type="text/css" />
+<!--  BEGIN CONTENT AREA  -->
+<div id="content" class="main-content">
+  <div class="layout-px-spacing">
+
+    <div class="row layout-top-spacing">
+      <div class="container">
+        <div class="card component-card_4 w-100">
+          <div class="card-header">
+            <h5 class="mt-3 ml-4">HOW MUCH DO YOU WANT TO Sell?</h5>
+            <form>
+              {{ csrfField() }}
+              <input class="d-none" value="{{uc}}" id="rate" type="number" name="rate">
+              <input class="d-none" value="{{offer.coin}}" name="coin_type">
+              <input class="d-none" value="{{uc_min}}" id="min" type="number">
+              <input class="d-none" value="{{uc_max}}" id="max" type="number">
+              <input class="d-none" value="{{offer.timeframe}}" name="time">
+              <input class="d-none" value="{{offer.currency}}" name="c">
+              <input class="d-none" value="{{offer.offer_id}}" name="yout">
+              <input class="d-none" value="sell" name="trade">
+              <div class="row">
+                <div class="col-lg">
+                  <label class="label ml-3" for="coin">Enter amount:</label>
+                  <div class="input-group mb-5 mr-5">
+                    <input type="text" class="form-control form-group-sm ml-3"  aria-label="Recipient's username" aria-describedby="basic-addon2" id="coin" name="coin" required>
+                    <div class="input-group-append mr-3">
+                      <span class="input-group-text" id="basic-addon6">{{offer.coin}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg">
+                  <label class="label ml-3" for="currency">Enter amount:</label>
+                  <div class="input-group mb-5 mr-5">
+                    <input type="text" class="form-control form-control-sm ml-3"  aria-label="Recipient's username" aria-describedby="basic-addon2" id="currency" name="currency" required>
+                    <div class="input-group-append mr-3">
+                      <span class="input-group-text" id="basic-addon6">{{offer.currency}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="invalid-feedback text-center mt-0 mb-2">
+                  Amount must be between <b>{{min}}</b> and <b>{{max}}</b>
+                </div>
+              </div>
+              <div class="container">
+                @if(owner)
+                <div class="alert alert-light-danger mt-3" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                  <strong>warning!</strong> <br>This offer belongs to you.You cant trade on your offers
+                </div>
+                <button class="btn btn-secondary mb-2 mr-2 btn-block" disabled><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Sell Now! </button>
+                 @else
+                <button class="btn btn-secondary mb-2 mr-2 btn-block"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Sell Now! </button>
+                 @endif
+
+                <div class="row">
+                  <div class="col-lg">
+                    <div class="alert alert-light-info mt-3" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                      <strong>Offer information!</strong> <br>1.Your amount should be between <b>{{min}}</b> and <b>{{max}}</b><br>
+                      2.Rate per Bitcoin is {{rate}}. You can sell any fraction
+                    </div>
+                  </div>
+                  <div class="col-lg">
+                    <div class="alert alert-light-warning mt-3" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                      <strong>Payment Verification!</strong> <br>
+                      The buyer of this trade has a time limit of <b>{{offer.timeframe}}</b> minutes to pay for the trade before the trade is cancelled by the system. Trade will not auto-cancel when buyer has marked trade as paid, after which buyer has to wait for seller to release coin.
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <h5 class="text-center">Owner Terms</h5>
+                <hr>
+                <p class="text-center">{{offer.terms}}</p>
+              </div>
+              </div>
+           </form>
+          </div>
+
+        </div>
+        </div>
+
+    </div>
+
+
+  @include('partials/dashfooter')
+  <script src="/prices/trade_price.js"></script>
+</div>
+
+

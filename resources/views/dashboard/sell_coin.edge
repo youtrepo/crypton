@@ -1,0 +1,141 @@
+@include('partials/dashheader')
+<link rel="stylesheet" type="text/css" href="/plugins/table/datatable/datatables.css">
+<link rel="stylesheet" type="text/css" href="/plugins/table/datatable/custom_dt_miscellaneous.css">
+<link rel="stylesheet" type="text/css" href="/styles/forms/theme-checkbox-radio.css">
+<link rel="stylesheet" type="text/css" href="/plugins/table/datatable/dt-global_style.css">
+<!--  BEGIN CONTENT AREA  -->
+<div id="content" class="main-content">
+  <div class="layout-px-spacing">
+
+    <div class="row layout-top-spacing">
+      <div class="container">
+        <div class="statbox widget box box-shadow">
+          <div class="widget-header">
+            <div class="row">
+              <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                <h4>Sell coin</h4>
+              </div>
+            </div>
+          </div>
+          <div class="widget-content widget-content-area">
+            <button class="btn btn-warning" data-toggle="modal" data-target="#filterModal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg> Filter</button>
+            <div class="table-responsive mb-4">
+              <table id="buy" class="table">
+                <thead>
+                <tr>
+                  <th>Seller</th>
+                  <th>Coin</th>
+                  <th>Payment</th>
+                  <th>Currency</th>
+                  <th>Range</th>
+                  <th>Rate</th>
+                  <th class="no-sort text-center fixedc">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                @if(offers.length!==0)
+                @each(offer in offers)
+                <tr>
+                  <td>{{offer.user}}</td>
+                  <td>{{offer.coin}}</td>
+                  <td>{{offer.payment_method}}</td>
+                  <td>{{offer.currency}}</td>
+                  <td>{{offer.min_amount}} To {{offer.max_amount}}</td>
+                  <td>{{offer.rate}}</td>
+
+
+                  <td class="no-sort text-center fixedc">
+                    <a href="/sell/{{offer.offer_id}}" class="btn btn-outline-danger pl-1 pr-1 btn-sm ml-1 mr-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Sell</a>
+                    </td>
+                </tr>
+                @endeach
+                @else
+                No data
+                @endif
+                <tfoot>
+                <tr>
+                  <th>Seller</th>
+                  <th>Coin</th>
+                  <th>Payment</th>
+                  <th>Currency</th>
+                  <th>Range</th>
+                  <th>Rate</th>
+                  <th class="text-center">Action</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade login-modal" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+              <div class="modal-header" id="loginModalLabel">
+                <h4 class="modal-title">Filter</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+              </div>
+              <div class="modal-body">
+                <form class="mt-0">
+                  <div class="form-group">
+                    <label>By coin</label>
+                    <select class="form-control  basic" name="Coin">
+                     @each(coin in coins)
+                      <option>{{coin.coin}}</option>
+                      @endeach
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>By Currency</label>
+                    <select class="form-control  basic" name="Currency">
+                      @each(currency in currencies)
+                      <option value="{{currency.iso}}">{{currency.name}}</option>
+                      @endeach
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label>By Country</label>
+                    <select class="form-control  basic" name="Country">
+                      @each(country in countries)
+                      <option value="{{country.iso}}">{{country.name}}</option>
+                      @endeach
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label>By Payment Method</label>
+                    <select class="form-control  basic" name="Payment">
+                     @each(payment in payments)
+                      <option>{{payment.name}}</option>
+                      @endeach
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-rounded btn-secondary mt-2 mb-2 btn-block">Apply  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></button>
+                </form>
+
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+  </div>
+    </div>
+  </div>
+
+  @include('partials/dashfooter')
+  <script>
+    let buy=$('#buy').DataTable()
+  </script>
+  <script src="/form/filter.js"></script>
+  <script>
+    $(".basic").select2({
+      tags: true,
+      dropdownParent: $("#filterModal")
+    });
+  </script>
+</div>

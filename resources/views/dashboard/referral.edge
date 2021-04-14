@@ -1,0 +1,36 @@
+@include('partials/dashheader')
+
+
+<!--  BEGIN CONTENT AREA  -->
+<div id="content" class="main-content">
+  <div class="layout-px-spacing">
+    <div class="layout-top-spacing">
+      <div class="col-lg-12 col-12 layout-spacing">
+        <blockquote class="blockquote text-center overflow-hidden">
+          <h5>Refer friends and earn</h5>
+          <p>Get 15% of what your referral deposits to the system</p>
+          <p>Start inviting friends now by using the link below
+          <img src="/images/20943954.jpg" class="rounded mx-auto d-block" width="400px" height="400px">
+          <div class="input-group mt-5">
+            <input type="text" class="form-control" id="address" value="{{link}}" readonly>
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button" data-clipboard-action="copy" data-clipboard-target="#address"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+            </div>
+          </div>
+        </blockquote>
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <script src="/js/clipboard/clipboard.min.js"></script>
+  <script>
+    new Clipboard('.btn');
+  </script>
+
+  @include('partials/dashfooter')
+</div>

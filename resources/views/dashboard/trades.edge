@@ -1,0 +1,80 @@
+@include('partials/dashheader')
+<link rel="stylesheet" type="text/css" href="/plugins/table/datatable/datatables.css">
+<link rel="stylesheet" type="text/css" href="/plugins/table/datatable/custom_dt_miscellaneous.css">
+<link rel="stylesheet" type="text/css" href="/styles/forms/theme-checkbox-radio.css">
+<link rel="stylesheet" type="text/css" href="/plugins/table/datatable/dt-global_style.css">
+<!--  BEGIN CONTENT AREA  -->
+<div id="content" class="main-content">
+  <div class="layout-px-spacing">
+
+    <div class="row layout-top-spacing">
+      <div class="container">
+        <div class="statbox widget box box-shadow">
+          <div class="widget-header">
+            <div class="row">
+              <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                <h4>My Trades</h4>
+              </div>
+            </div>
+          </div>
+          <div class="widget-content widget-content-area">
+            <div class="table-responsive mb-4">
+              <table id="column-filter" class="table">
+                <thead>
+                <tr>
+                  <th class="checkbox-column"></th>
+                  <th>Type</th>
+                  <th>Coin</th>
+                  <th>Status</th>
+                  <th>Currency</th>
+                  <th>Rate</th>
+                  <th>Amount</th>
+                  <th class="no-sort text-center fixedc">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                @if(trades.length!==0)
+                @each(trade in trades)
+                <tr id="{{offer.id}}">
+                  <td class="checkbox-column"></td>
+                  <td>{{trade.type}}</td>
+                  <td>{{trade.coin}}</td>
+                  <td>{{trade.status}}</td>
+                  <td>{{trade.currency}}</td>
+                  <td>{{trade.rate}}</td>
+                  <td>{{trade.local_amount}}</td>
+                  <td class="no-sort text-center fixedc">
+                    <a href="/chat/{{trade.trade_id}}" class="btn btn-outline-secondary btn-sm mb-2 mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a>
+                  </td>
+                </tr>
+                @endeach
+                @else
+                No data
+                @endif
+                <tfoot>
+                <tr>
+                  <th class="checkbox-column">Type </th>
+                  <th>Coin</th>
+                  <th>Payment</th>
+                  <th>Currency</th>
+                  <th>Range</th>
+                  <th>Margin</th>
+                  <th>status</th>
+                  <th class="text-center">Action</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+
+  </div>
+    </div>
+  </div>
+
+  @include('partials/dashfooter')
+  <script src="/js/forms/bootstrap_validation/bs_validation_script.js"></script>
+  <script src="/jquery-validation-1.19.2/dist/jquery.validate.js"></script>
+  <script src="/form/offer.js"></script>
+  <script src="/form/offer_functions.js"></script>
+</div>
