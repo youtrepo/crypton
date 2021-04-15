@@ -1,5 +1,9 @@
 'use strict'
-
+/*
+///////////////
+websockets controller for notifications
+/////////////////////
+*/
 class NotificationController {
   constructor ({ socket, request }) {
     this.socket = socket

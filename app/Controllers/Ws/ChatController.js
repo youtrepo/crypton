@@ -1,6 +1,10 @@
 'use strict'
 
-
+/*
+///////////////
+websockets controller for trade chats
+/////////////////////
+*/
 const chat=use('App/Models/Chat')
 const moment = require('moment');
 class ChatController {

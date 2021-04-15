@@ -1,4 +1,10 @@
 'use strict'
+
+/*
+///////////////
+websockets controller for trades
+/////////////////////
+*/
 const trade=use('App/Models/Trade')
 class TradeController {
   constructor ({ socket, request }) {
@@ -14,18 +20,21 @@ class TradeController {
         this.socket.broadcastToAll('done', {
           trade: 'cancelled'
         })
+        //mark trade as paid
       }else if (message.msg==='paid'){
         let id = message.token
         await trade.query().where({trade_id: id}).update({status: 'paid'})
         this.socket.broadcastToAll('done', {
           trade: 'paid'
         })
+        //mark trade as disputed
       }else if (message.msg==='disputed'){
         let id = message.token
         await trade.query().where({trade_id: id}).update({status: 'disputed'})
         this.socket.broadcastToAll('done', {
           trade: 'disputed'
         })
+        //mark trade as completed
       } else if (message.msg==='completed'){
       let id = message.token
       await trade.query().where({trade_id: id}).update({status: 'completed'})

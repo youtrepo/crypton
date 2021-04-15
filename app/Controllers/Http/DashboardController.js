@@ -4,7 +4,6 @@ const Env = use('Env')
 const balance=use('App/Models/Balance')
 const  notification=use('App/Models/Notification')
 const transaction=use('App/Models/Transaction')
-const Ws=use('App/Services/Ws')
 const fromNow = require('fromnow');
 const trades=use('App/Models/Trade')
 const users=use('App/Models/User')
@@ -19,7 +18,6 @@ class DashboardController {
     try {
       await auth.check()
         let user = await auth.getUser()
-        Ws.on('connection',(socket)=>{socket.join(user.email)})
         let btc = await balance.findBy({email:user.email,coin:'btc'})
         let bch = await balance.findBy({email:user.email,coin:'bch'})
         let ltc = await balance.findBy({email:user.email,coin:'ltc'})

@@ -50,8 +50,9 @@ Route.post('/start_sell-trade','StartselltradeController.start')
 Route.get('/mytrades','MytradeController.trades')
 Route.get('/settings','SettingController.settings')
 Route.get('/referral','ReferralController.referral')
-Route.get('/admin','AdminloginController.admin')
+Route.get('/admin','AdmindashboardController.admin')
 
 
 ///errors
 Route.on('/500').render('errors/500');
+Route.on('/403').render('errors/403');
