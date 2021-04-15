@@ -1,6 +1,6 @@
 'use strict'
 
-const Ws=use('App/Services/Ws')
+// const Ws=use('App/Services/Ws')
 class NotificationsubscribeController {
   async subscribe({request,response,auth}){
     try {
@@ -16,7 +16,6 @@ class NotificationsubscribeController {
     }
     catch (e) {
       console.log(e)
-      Ws.emit('error',{success:false,error:'notifications error'})
     }
   }
 }
