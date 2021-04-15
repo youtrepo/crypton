@@ -4,7 +4,6 @@ const trade=use('App/Models/Trade')
 const buyer=use('App/Models/User')
 const chat=use('App/Models/Chat')
 const moment=require('moment');
-const Ws=use('App/Services/Ws')
 const offer=use('App/Models/Offer')
 const notifications=use('App/Models/Notification')
 const balances=use('App/Models/Balance')
@@ -50,7 +49,6 @@ class StarttradeController {
         await offer.query().where('offer_id',id).update({ status:'trading' })
         await notifications.create({email:socket_id,msg:'trading',status:'progress',type:'trade',trade_link:trade_id})
         await notifications.create({email:user.email,msg:'trading',status:'progress',type:'trade',trade_link:trade_id})
-        await Ws.on('connection',(socket)=>{socket.to(socket_id).emit('new trade started')})
 
         //escrow
         await escrow.create({trade_id:trade_id,amount:coin,coin:coin_type,status:'pending',email:seller_data.toJSON()[0].email})
