@@ -14,6 +14,7 @@ class UserSchema extends Schema {
       table.string('ip',60).notNullable()
       table.string('token',565).notNullable()
       table.string('verified',55).nullable()
+      table.integer('is_admin').defaultTo(0)
       table.timestamps()
     })
   }

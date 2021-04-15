@@ -225,7 +225,7 @@
                       <button class="btn btn-outline-danger mb-2 btn-rounded btn-block mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> Cancel trade</button>
                       @else
                       <button class="btn btn-secondary mb-2 btn-rounded btn-block mr-2" data-toggle="modal" data-target="#slideupModal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"/></svg> Mark as paid</button>
-                      <button class="btn btn-outline-danger mb-2 btn-rounded btn-block mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> Cancel trade</button>
+                      <button class="btn btn-outline-danger mb-2 btn-rounded btn-block mr-2" onclick="cancel('{{id}}','{{ csrfToken }}','{{me}}')"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> Cancel trade</button>
                       @endif
                       @endif
                       @endif
@@ -313,7 +313,7 @@
           </div>
           <div class="modal-body">
             <p class="modal-text">please rate {{buyer}} and leave feedback</p>
-            <form>
+            <form id="rates">
               {{ csrfField() }}
               <input type="text" value="{{id}}" class="d-none" name="id">
               <input type="text" value="{{buyer}}" class="d-none" name="user">

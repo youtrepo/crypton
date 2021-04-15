@@ -30,60 +30,119 @@ $(document).ready(function (){
       $('.invalid-feedback').addClass('d-block')
     }else {
       $('.invalid-feedback').removeClass('d-block').addClass('d-none')
-      //submit form
-      $.ajax({
-        type:"POST",
-        url:'/start_trade',
-        data:$(this).serialize(),
-        beforeSend:function (){
-          $.blockUI({
-            message: '<div class="spinner-border text-white mr-2 align-self-center loader-sm "></div>',
-            fadeIn: 800,
-            timeout: 3000, //unblock after 3 seconds
-            overlayCSS: {
-              backgroundColor: '#1b2024',
-              opacity: 0.8,
-              zIndex: 1200,
-              cursor: 'wait'
-            },
-            css: {
-              border: 0,
-              color: '#fff',
-              zIndex: 1201,
-              padding: 0,
-              backgroundColor: 'transparent'
-            }
-          })
 
-        },
-        success:function (data){
-          ///redirect user to trade chat page
-          switch (data.success){
-            case true:
-              window.location.href='/chat/'+data.chat
-              break;
-            case false:
-              $.unblockUI();
-              const toast = swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                padding: '2em'
-              });
-
-              toast({
-                type: 'error',
-                title: 'The seller doesnt have enough Balance to fulfill the trade',
-                padding: '2em',
+      let type = $("input[name=trade]").val();
+      switch (type) {
+        case 'sell':
+          //submit buy form
+          $.ajax({
+            type: "POST",
+            url: '/start_sell-trade',
+            data: $(this).serialize(),
+            beforeSend: function () {
+              $.blockUI({
+                message: '<div class="spinner-border text-white mr-2 align-self-center loader-sm "></div>',
+                fadeIn: 800,
+                timeout: 3000, //unblock after 3 seconds
+                overlayCSS: {
+                  backgroundColor: '#1b2024',
+                  opacity: 0.8,
+                  zIndex: 1200,
+                  cursor: 'wait'
+                },
+                css: {
+                  border: 0,
+                  color: '#fff',
+                  zIndex: 1201,
+                  padding: 0,
+                  backgroundColor: 'transparent'
+                }
               })
-              break;
-          }
-        }
 
-      })
+            },
+            success: function (data) {
+              ///redirect user to trade chat page
+              switch (data.success) {
+                case true:
+                  window.location.href = '/chat/' + data.chat
+                  break;
+                case false:
+                  $.unblockUI();
+                  const toast = swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    padding: '2em'
+                  });
+
+                  toast({
+                    type: 'error',
+                    title: 'The seller doesnt have enough Balance to fulfill the trade',
+                    padding: '2em',
+                  })
+                  break;
+              }
+            }
+
+          })
+          break;
+        case 'buy':
+          //submit buy form
+          $.ajax({
+            type: "POST",
+            url: '/start_trade',
+            data: $(this).serialize(),
+            beforeSend: function () {
+              $.blockUI({
+                message: '<div class="spinner-border text-white mr-2 align-self-center loader-sm "></div>',
+                fadeIn: 800,
+                timeout: 3000, //unblock after 3 seconds
+                overlayCSS: {
+                  backgroundColor: '#1b2024',
+                  opacity: 0.8,
+                  zIndex: 1200,
+                  cursor: 'wait'
+                },
+                css: {
+                  border: 0,
+                  color: '#fff',
+                  zIndex: 1201,
+                  padding: 0,
+                  backgroundColor: 'transparent'
+                }
+              })
+
+            },
+            success: function (data) {
+              ///redirect user to trade chat page
+              switch (data.success) {
+                case true:
+                  window.location.href = '/chat/' + data.chat
+                  break;
+                case false:
+                  $.unblockUI();
+                  const toast = swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    padding: '2em'
+                  });
+
+                  toast({
+                    type: 'error',
+                    title: 'The seller doesnt have enough Balance to fulfill the trade',
+                    padding: '2em',
+                  })
+                  break;
+              }
+            }
+
+          })
+          break;
+      }
     }
-
 
   })
 })
