@@ -20,9 +20,6 @@
               <li class="nav-item ml-2 mr-2">
                 <a class="nav-link mb-1 rounded-circle active" id="rounded-circle-pills-icon-profile-tab" data-toggle="pill" href="#rounded-circle-pills-icon-profile" role="tab" aria-controls="rounded-circle-pills-icon-profile" aria-selected="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a>
               </li>
-              <li class="nav-item ml-2 mr-2">
-                <a class="nav-link mb-1 rounded-circle" id="rounded-circle-pills-icon-settings-tab" data-toggle="pill" href="#rounded-circle-pills-icon-settings" role="tab" aria-controls="rounded-circle-pills-icon-settings" aria-selected="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></a>
-              </li>
             </ul>
 
             <div class="tab-content" id="rounded-circle-pills-icon-tabContent">
@@ -31,51 +28,64 @@
                  <div class="col-lg">
                    <div class="card component-card_4 justify-content-center align-items-center">
                        <div class="card-header p-3">
-                        <h3 class="text-center">Details</h3>
+                        <h3 class="text-center">Verification</h3>
                        </div>
                        <div class="card-body">
                          <form>
                            <div class="form-group">
                              <label for="t-text">Email</label>
-                             <input id="t-text" type="email" name="txt" placeholder="email" class="form-control" required="">
+                             <input id="t-text" type="email" name="txt" placeholder="email" class="form-control" value="{{user.email}}" required="">
+                             @if(!user.verified)
+                             <span class="badge outline-badge-danger mt-1">unverified</span>
+                             <span class="btn btn-warning p-1 mt-1 mr-2 btn-sm d-inline float-right">Resend email</span>
+                             @endif
+                           </div>
+                           <div class="input-group mb-4">
+                             <input type="text" class="form-control" placeholder="verification code" aria-label="Recipient's username">
+                             <div class="input-group-append">
+                               <button class="btn btn-success" type="button">Verify</button>
+                             </div>
                            </div>
 
-
-                           <div class="alert alert-light-warning border-0 mb-4" role="alert">
-                             <strong>Warning!</strong> Changing password will log you out.</button>
-                           </div>
-
-                           <div class="form-group">
-                             <label>Password</label>
-                             <input  type="password" name="txt" placeholder="password" class="form-control" required="">
-                           </div>
-
-                           <div class="form-group">
-                             <label>New Password</label>
-                             <input  type="password" name="txt" placeholder="password" class="form-control" required="">
-                           </div>
-
-                           <div class="form-group">
-                           <label>confirm Password</label>
-                           <input  type="password" name="txt" placeholder="confirm password" class="form-control" required="">
-                       </div>
-
-
-                           <button class="btn btn-primary mb-2 mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-save"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save</button>
+                           <button class="btn btn-primary mb-2 mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-save"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Update email</button>
                          </form>
                        </div>
                      </div>
                    </div>
+                 <div class="col-lg mt-3">
+                   <div class="card component-card_4 justify-content-center align-items-center">
+                     <div class="card-header p-3">
+                       <h3 class="text-center">Password</h3>
+                     </div>
+                     <div class="alert alert-light-warning border-0 mb-4 mt-3" role="alert">
+                       <strong>Warning!</strong> Changing password will log you out.</button>
+                     </div>
+                     <div class="card-body">
+                       <form>
+                         <div class="form-group">
+                           <label>Current Password</label>
+                           <input  type="password" name="txt" placeholder="password" class="form-control" required="">
+                         </div>
+
+                         <div class="form-group">
+                           <label>New Password</label>
+                           <input  type="password" name="txt" placeholder="new password" class="form-control" required="">
+                         </div>
+
+                         <div class="form-group">
+                           <label>confirm Password</label>
+                           <input  type="password" name="txt" placeholder="confirm password" class="form-control" required="">
+                         </div>
+
+
+                         <button class="btn btn-primary mb-2 mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-save"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save</button>
+                       </form>
+                     </div>
+                   </div>
+                 </div>
                  </div>
               </div>
-              <div class="tab-pane fade" id="rounded-circle-pills-icon-settings" role="tabpanel" aria-labelledby="rounded-circle-pills-icon-settings-tab">
-                <div class="media">
-                  <img class="mr-3" src="assets/img/profile-32.jpeg" alt="Generic placeholder image">
-                  <div class="media-body">
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                  </div>
-                </div>
-              </div>
+
             </div>
 
             </div>
