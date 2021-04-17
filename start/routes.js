@@ -51,6 +51,7 @@ Route.get('/mytrades','MytradeController.trades')
 Route.get('/settings','SettingController.settings')
 Route.get('/referral','ReferralController.referral')
 Route.get('/admin','AdmindashboardController.admin')
+Route.get('/chats','ChatsController.chats')
 
 
 ///errors

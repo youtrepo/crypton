@@ -35,7 +35,7 @@ $('.user-list-box .person').on('click', function(event) {
     $('.chat-box').css('height', 'calc(100vh - 233px)');
     $('.chat-footer').addClass('chat-active');
 
-  const ps = new PerfectScrollbar('.chat-conversation-box', {
+  const pss = new PerfectScrollbar('.chat-conversation-box', {
     suppressScrollX : true
   });
 
@@ -43,7 +43,7 @@ $('.user-list-box .person').on('click', function(event) {
   getScrollContainer.scrollTop = 0;
 });
 
-const ps = new PerfectScrollbar('.people', {
+const pss = new PerfectScrollbar('.people', {
   suppressScrollX : true
 });
 
