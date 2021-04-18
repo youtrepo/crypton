@@ -36,6 +36,7 @@
     "adonis-scheduler": "^3.0.2",
     "axios": "^0.21.1",
     "coingecko-api": "^1.0.10",
+    "cryptocurrency-unit-convert": "^1.2.8",
     "fromnow": "^3.0.1",
     "hcaptcha": "0.0.2",
     "moment": "^2.29.1",
@@ -48,8 +49,7 @@
     "socket.io": "^3.1.0",
     "socket.io-client": "^3.1.0",
     "uniqid": "^5.2.0",
-    "uuid": "^8.3.1",
-    "cryptocurrency-unit-convert": "^1.2.8"
+    "uuid": "^8.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.13",
