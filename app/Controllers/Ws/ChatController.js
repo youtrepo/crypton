@@ -1,7 +1,7 @@
 'use strict'
 
 
-const chat=use('App/Models/Chat')
+const chat = use('App/Models/Chat')
 const moment = require('moment');
 class ChatController {
   constructor ({ socket, request }) {
