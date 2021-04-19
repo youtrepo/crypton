@@ -5,7 +5,6 @@ class ProfileController {
     try {
       await auth.check();
       let user = await auth.getUser()
-      // console.log(user)
       return view.render('dashboard/profile',{
         fullname: user.$attributes.username,
         country:  user.$attributes.country, 
