@@ -52,6 +52,7 @@ Route.get('/settings','SettingController.settings')
 Route.post('/upload','ProfilepicuploaderController.upload')
 Route.get('/referral','ReferralController.referral')
 Route.get('/admin','AdmindashboardController.admin')
+Route.post('/bio','BioController.bio')
 
 
 
