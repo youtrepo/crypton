@@ -5,16 +5,13 @@
 <div id="content" class="main-content">
   <div class="layout-px-spacing">
     <div class="layout-top-spacing">
-      <div class="col-lg-12 col-12 layout-spacing">
-        <div class="statbox widget box box-shadow">
+        <div class="statbox widget w-100">
           <div class="widget-header">
             <div class="row">
-              <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                <h4>Settings</h4>
-              </div>
+                <h3>Settings</h3>
             </div>
           </div>
-          <div class="widget-content widget-content-area rounded-circle-pills-icon">
+          <div class="widget-content  rounded-circle-pills-icon">
 
             <ul class="nav nav-pills mb-4 mt-3  justify-content-center" id="rounded-circle-pills-icon-tab" role="tablist">
               <li class="nav-item ml-2 mr-2">
@@ -25,34 +22,33 @@
             <div class="tab-content" id="rounded-circle-pills-icon-tabContent">
               <div class="tab-pane fade active show" id="rounded-circle-pills-icon-profile" role="tabpanel" aria-labelledby="rounded-circle-pills-icon-profile-tab">
                <div class="row">
-                 <div class="col-lg">
+                 <div class="col-lg mb-3">
                    <div class="card component-card_4 justify-content-center align-items-center">
-                       <div class="card-header p-3">
-                        <h3 class="text-center">Verification</h3>
-                       </div>
-                       <div class="card-body">
-                         <form>
-                           <div class="form-group">
-                             <label for="t-text">Email</label>
-                             <input id="t-text" type="email" name="txt" placeholder="email" class="form-control" value="{{user.email}}" required="">
-                             @if(!user.verified)
-                             <span class="badge outline-badge-danger mt-1">unverified</span>
-                             <span class="btn btn-warning p-1 mt-1 mr-2 btn-sm d-inline float-right">Resend email</span>
-                             @endif
-                           </div>
-                           <div class="input-group mb-4">
-                             <input type="text" class="form-control" placeholder="verification code" aria-label="Recipient's username">
-                             <div class="input-group-append">
-                               <button class="btn btn-success" type="button">Verify</button>
-                             </div>
-                           </div>
-
-                           <button class="btn btn-primary mb-2 mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-save"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Update email</button>
-                         </form>
-                       </div>
+                     <div class="card-header p-3">
+                       <h3 class="text-center">Upload picture</h3>
                      </div>
+                     <form name="profilePic_form">
+                       {{ csrfField() }}
+                       @if(file)
+                       <div class="avatar avatar-xl">
+                         <img alt="avatar" src="data:image/png;base64,{{file}}" class="rounded-circle" />
+                       </div>
+                       @endif
+                       <div class="custom-file-container" data-upload-id="myFirstImage">
+                         <label>Upload photo <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+                         <label class="custom-file-container__custom-file" >
+                           <input type="file" name="profilePic" class="custom-file-container__custom-file__custom-file-input" accept="image/*">
+                           <input type="hidden"  />
+                           <span class="custom-file-container__custom-file__custom-file-control mr-2 ml-2"></span>
+                         </label>
+                         <div class="custom-file-container__image-preview" style="height: 110px!important;"></div>
+                       </div>
+
+                       <button class="btn btn-primary mb-2" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-upload"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> Upload</button>
+                     </form>
                    </div>
-                 <div class="col-lg mt-3">
+                 </div>
+                 <div class="col-lg mb-3">
                    <div class="card component-card_4 justify-content-center align-items-center">
                      <div class="card-header p-3">
                        <h3 class="text-center">Password</h3>
@@ -83,6 +79,52 @@
                      </div>
                    </div>
                  </div>
+               </div>
+                 <div class="row">
+                   <div class="col-lg mb-3">
+                     <div class="card component-card_4 justify-content-center align-items-center p-3 p-lg-0">
+                       <div class="card-header p-3">
+                         <h3 class="text-center">Verification</h3>
+                       </div>
+                       <div class="card-body">
+                         <form>
+                           <div class="form-group">
+                             <label for="t-text">Email</label>
+                             <input id="t-text" type="email" name="txt" placeholder="email" class="form-control" value="{{user.email}}" required="">
+                             @if(!user.verified)
+                             <span class="badge outline-badge-danger mt-1">unverified</span>
+                             <span class="btn btn-warning p-1 mt-1 mr-2 btn-sm d-inline float-right">Resend email</span>
+                             @endif
+                           </div>
+                           <div class="input-group mb-4">
+                             <input type="text" class="form-control" placeholder="verification code" aria-label="Recipient's username">
+                             <div class="input-group-append">
+                               <button class="btn btn-success" type="button">Verify</button>
+                             </div>
+                           </div>
+
+                           <button class="btn btn-primary mb-2 mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-save"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Update email</button>
+                         </form>
+                       </div>
+                     </div>
+                   </div>
+
+                   <div class="col-lg">
+                     <div class="card component-card_4">
+                       <div class="card-header p-3">
+                         <h3 class="text-center">Bio</h3>
+                       </div>
+                       <form>
+                         <div class="form-group m-3">
+                           <label>Bio</label>
+                         <textarea class="form-control" rows="4"></textarea>
+                         </div>
+
+                         <button class="btn btn-primary mb-3 ml-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-save"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save</button>
+                       </form>
+                     </div>
+                   </div>
+                 </div>
                  </div>
               </div>
 
@@ -91,10 +133,11 @@
             </div>
 
           </div>
-        </div>
-      </div>
+
 
 
     </div>
   @include('partials/dashfooter')
+  <script src="/settings/settings.js"></script>
+<script>var firstUpload = new FileUploadWithPreview('myFirstImage')</script>
 </div>

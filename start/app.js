@@ -24,7 +24,8 @@ const providers = [
   '@adonisjs/redis/providers/RedisProvider',
   '@adonisjs/mail/providers/MailProvider',
   '@adonisjs/websocket/providers/WsProvider',
-  'adonis-scheduler/providers/SchedulerProvider'
+  'adonis-scheduler/providers/SchedulerProvider',
+  '@adonisjs/drive/providers/DriveProvider'
 ]
 
 /*

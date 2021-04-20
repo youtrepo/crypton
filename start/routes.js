@@ -49,9 +49,10 @@ Route.post('/canceltrade','CanceltradeController.cancel')
 Route.post('/start_sell-trade','StartselltradeController.start')
 Route.get('/mytrades','MytradeController.trades')
 Route.get('/settings','SettingController.settings')
+Route.post('/upload','ProfilepicuploaderController.upload')
 Route.get('/referral','ReferralController.referral')
 Route.get('/admin','AdmindashboardController.admin')
-Route.get('/chats','ChatsController.chats')
+
 
 
 ///errors
