@@ -60,6 +60,15 @@ $('.ico-counter3').countTo({
         return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
     }
 });
+var value = $('.ico-counter4').text();
+$('.ico-counter4').countTo({
+  from: 0,
+  to: value,
+  speed: cSpeed,
+  formatter: function (value, options) {
+    return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
+  }
+});
 
 
 // Circle

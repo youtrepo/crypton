@@ -49,7 +49,7 @@ class RegisterController {
           ]
           await User.create(data)
           await balance.createMany(balances)
-          data.info=Env.get('URL')+'/verify/'+data.token
+          data.info=Env.get('APP_URL')+'/verify/'+data.token
           //fire event new user registered
           Event.fire('new::user', data)
 

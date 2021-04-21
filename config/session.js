@@ -92,9 +92,9 @@ module.exports = {
   |
   */
   redis: {
-    host: 'mail.tempmailpro.net',
+    host: '127.0.0.1',
     port: 6379,
-    password: '@!yout123',
+    password: '',
     db: 0,
     keyPrefix: ''
   }

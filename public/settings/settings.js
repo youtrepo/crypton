@@ -24,6 +24,11 @@ switch (data.success){
       backgroundColor: '#1abc9c'
     });
     ///render the updated profile image
+    if (!$('#pp img')){
+      $('form[name="profilePic_form"]').append(' <div class="avatar avatar-xl" id="pp">\n' +
+        '                         <img alt="avatar" src="data:image/png;base64,"'+data.file+' class="rounded-circle" />\n' +
+        '                       </div>')
+    }
     $('#pp img').attr('src','data:image/png;base64,'+data.file)
     break;
   case false:
@@ -45,8 +50,6 @@ $('form[name="bio_form"]').on('submit',function (e){
   $.ajax({
     type:'POST',
     dataType: "JSON",
-    processData: false,
-    contentType: false,
     url:'/bio',
     data:$(this).serialize(),
     success:function (data){
@@ -57,8 +60,6 @@ $('form[name="bio_form"]').on('submit',function (e){
             actionTextColor: '#fff',
             backgroundColor: '#1abc9c'
           });
-          ///render the updated profile image
-          $('#pp img').attr('src','data:image/png;base64,'+data.file)
           break;
         case false:
           Snackbar.show({

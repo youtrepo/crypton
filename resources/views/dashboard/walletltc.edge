@@ -28,7 +28,7 @@
                         <div class="card component-card_1 w-100">
                             <div class="card-body">
                                 <h5 class="card-title text-center">Deposit Litecoin</h5>
-                                <img src="{{qr}}" class="rounded mx-auto d-block">
+                                <img src="{{qr}}" class="rounded mx-auto d-block mb-3">
                                 <div class="input-group mb-4">
                                     <input type="text" class="form-control" id="address" value="{{wallet}}" readonly>
                                     <div class="input-group-append">
@@ -44,12 +44,56 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="animated-underline-profile" role="tabpanel" aria-labelledby="animated-underline-profile-tab">
-                        <div class="media">
-                            <img class="mr-3" src="assets/img/90x90.jpg" alt="Generic placeholder image">
-                            <div class="media-body">
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                      <div class="statbox widget box box-shadow">
+                        <div class="widget-header">
+                          <div class="row">
+                            <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                              <h4>Transactions</h4>
                             </div>
+                          </div>
                         </div>
+                        <div class="widget-content widget-content-area">
+                          <div class="table-responsive mb-4">
+                            <table id="column-filter" class="table">
+                              <thead>
+                              <tr>
+                                <th class="checkbox-column"></th>
+                                <th>Type</th>
+                                <th>Coin</th>
+                                <th>Amount</th>
+                                <th>Value</th>
+                                <th>txid</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              @if(transactions.length!==0)
+                              @each(transaction in transactions)
+                              <tr>
+                                <td class="checkbox-column"></td>
+                                <td>{{transaction.type}}</td>
+                                <td>{{transaction.coin}}</td>
+                                <td>{{transaction.amount}}</td>
+                                <td>{{transaction.value}}</td>
+                                <td>{{transaction.txid}}</td>
+                              </tr>
+                              @endeach
+                              @else
+                              No data
+                              @endif
+                              <tfoot>
+                              <tr>
+                                <th class="checkbox-column"></th>
+                                <th>Type</th>
+                                <th>Coin</th>
+                                <th>Amount</th>
+                                <th>Value</th>
+                                <th>txid</th>
+                              </tr>
+                              </tfoot>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                 </div>
         </div>

@@ -9,7 +9,7 @@ class Chat extends Task {
   }
 
   async handle () {
-    this.info('Task Chat handle')
+    //this.info('Task Chat handle')
     console.log('started tasks')
 
   }

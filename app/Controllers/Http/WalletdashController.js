@@ -3,8 +3,9 @@
 const BitGo = require('bitgo');
 const Env = use('Env')
 const wallets=use('App/Models/Wallet')
+const transactions=use('App/Models/Transaction')
 var QRCode = require('qrcode')
-const coin='tdash'
+const coin=Env.get('WALLET_DASH')
 var bitgo = new BitGo.BitGo({env: Env.get('BITGO_ENV'), accessToken:  Env.get('BITGO_KEY')});
 class WalletdashController {
   async walletdash({auth,request,response,view}){
@@ -13,17 +14,19 @@ class WalletdashController {
         await bitgo.session()
         let user = await auth.getUser()
         let check=await wallets.findBy({email:user.email,coin:coin})
+        let transaction=await transactions.query().where({email:user.email,coin:coin}).fetch()
+        let Transactions=transaction.toJSON()
         const params = {
           "passphrase":user.password,
           "label":user.email
         };
         if (check){
           let qrcode=await QRCode.toDataURL(check.address, {width: 200})
-          return view.render('dashboard/walleteth',{wallet:check.address,qr:qrcode,param:request.url(),title:Env.get('TITLE')})
+          return view.render('dashboard/walletdash',{wallet:check.address,qr:qrcode,param:request.url(),title:Env.get('TITLE'),transactions:Transactions})
         }else {
           const { wallet } = await bitgo.coin(coin).wallets().generateWallet(params);
           const webhook=await wallet.addWebhook({
-            url:Env.get('URL')+'/transactions',
+            url:Env.get('APP_URL')+'/transactions',
             type: "transfer"
           });
           let address=wallet._wallet.receiveAddress.address
@@ -36,7 +39,7 @@ class WalletdashController {
 
           })
           let qrcode=await QRCode.toDataURL(address, {width: 200})
-          return view.render('dashboard/walleteth',{wallet:wallet._wallet.receiveAddress.address,qr:qrcode,param:request.url(),title:Env.get('TITLE')})
+          return view.render('dashboard/walletdash',{wallet:wallet._wallet.receiveAddress.address,qr:qrcode,param:request.url(),title:Env.get('TITLE'),transactions:Transactions})
         }
     }catch (e) {
       if (e.message==='E_INVALID_SESSION: Invalid session'){
