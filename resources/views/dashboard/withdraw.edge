@@ -1,0 +1,103 @@
+@include('partials/dashheader')
+<link rel="stylesheet" type="text/css" href="/light/plugins/bootstrap-select/bootstrap-select.min.css">
+<link href="/light/plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css">
+
+<!--  BEGIN CONTENT AREA  -->
+<div id="content" class="main-content">
+  <div class="layout-px-spacing">
+
+    <div class="row layout-top-spacing">
+      <div class="col layout-top-spacing">
+        <div class="widget">
+          <div class="widget-header">
+            <h3>Withdraw</h3>
+          </div>
+          <div class="widget-content">
+            <blockquote class="blockquote">
+              <h5 class="mb-3">Current Balances</h5>
+              @each(balance in balances)
+              <p><strong>{{upperCase(balance.coin)}}:</strong> {{balance.value}}</p>
+              @endeach
+            </blockquote>
+            <form class="mt-5">
+              {{ csrfField() }}
+              <div class="form-group">
+                <label for="coin">Coin</label>
+                <select class="selectpicker form-control" id="coin" name="coin">
+                  @each(coin in coins)
+                  <option>{{coin.coin}}</option>
+                  @endeach
+                </select>
+              </div>
+
+              <div class="form-group mt-5">
+                <div class="alert alert-icon-left alert-light-danger mb-4" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-triangle"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <strong>Warning!</strong> Please make sure the withdraw address matches the coin otherwise we wont be liable for any loss of your funds.
+              </div>
+                <label for="address">Address</label>
+                <input class="form-control" type="text" name="address" id="address" required>
+              </div>
+
+              <div class="form-group">
+                <label for="amount">Amount</label>
+                <input id="amount" type="number" value="" name="amount" class="form-control" step="any" required>
+              </div>
+
+              <div class="form-group">
+                <button class="btn btn-outline-dark" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                Withdraw
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  @include('partials/dashfooter')
+  <script>
+    // Change button class
+    $("input[name='amount']").TouchSpin({
+      step:0.00000001,
+      decimals:8,
+      booster:true,
+      forcestepdivisibility: 'none',
+      buttondown_class: "btn btn-classic btn-danger",
+      buttonup_class: "btn btn-classic btn-success"
+    });
+  </script>
+  <script>
+    $('form').on('submit',function (e){
+      e.preventDefault()
+      $.ajax({
+        type:'POST',
+        url:'/withdraw',
+        data:$(this).serialize(),
+        success:function (data){
+          switch (data.success){
+            case true:
+              swal({
+                title: 'success!',
+                text: data.msg,
+                type: 'success',
+                padding: '2em'
+              })
+              break;
+              case false:
+                swal({
+                  title: 'Error!',
+                  text: data.msg,
+                  type: 'error',
+                  padding: '2em'
+                })
+                break;
+          }
+        }
+      })
+    })
+  </script>
+</div>

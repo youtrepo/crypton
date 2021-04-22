@@ -53,6 +53,8 @@ Route.post('/upload','ProfilepicuploaderController.upload')
 Route.get('/referral','ReferralController.referral')
 Route.get('/admin','AdmindashboardController.admin')
 Route.post('/bio','BioController.bio')
+Route.get('/withdraw','WithdrawController.withdraw')
+Route.post('/withdraw','WithdrawController.withdraw')
 
 
 
