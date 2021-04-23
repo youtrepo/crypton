@@ -51,10 +51,17 @@ Route.get('/mytrades','MytradeController.trades')
 Route.get('/settings','SettingController.settings')
 Route.post('/upload','ProfilepicuploaderController.upload')
 Route.get('/referral','ReferralController.referral')
-Route.get('/admin','AdmindashboardController.admin')
 Route.post('/bio','BioController.bio')
 Route.get('/withdraw','WithdrawController.withdraw')
 Route.post('/withdraw','WithdrawController.withdraw')
+
+
+//admin routes
+Route.get('/admin','AdmindashboardController.admin')
+Route.get('/manage_users','AdmindashboardController.users')
+Route.get('/manage_trades','AdmindashboardController.trades')
+Route.get('/mass_alert','AdmindashboardController.alerts')
+Route.post('/adminActions','AdminactionController.actions')
 
 
 

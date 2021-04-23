@@ -10,7 +10,7 @@
               <h5>Users</h5>
             </div>
             <div class="widget-content">
-              <h1>100</h1>
+              <h1>{{users.length}}</h1>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </div>
           </div>
@@ -23,7 +23,7 @@
           </div>
 
           <div class="widget-content">
-            <h1>20</h1>
+            <h1>{{offers.length}}</h1>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
           </div>
         </div>
@@ -38,7 +38,7 @@
           </div>
 
           <div class="widget-content">
-            <h1>80</h1>
+            <h1>{{trades.length}}</h1>
 
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-award"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
           </div>
@@ -51,7 +51,7 @@
             <h5>Wallets</h5>
           </div>
           <div class="widget-content">
-            <h1>75</h1>
+            <h1>{{wallets.length}}</h1>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
           </div>
         </div>
@@ -127,14 +127,14 @@
               label: 'Total',
               formatter: function (w) {
                 // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-                return 249
+                return {{trades.length}}
               }
             }
           }
         }
       },
-      series: [44, 55, 67, 83],
-      labels: ['Apples', 'Oranges', 'Bananas', 'Berries'],
+      series: [{{success.length}}, {{pending.length}}, {{disputed.length}}, {{cancelled.length}}],
+      labels: ['successful', 'pending', 'disputed', 'cancelled'],
     }
 
     var chart = new ApexCharts(
