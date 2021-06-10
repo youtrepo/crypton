@@ -54,6 +54,12 @@ Route.get('/referral','ReferralController.referral')
 Route.post('/bio','BioController.bio')
 Route.get('/withdraw','WithdrawController.withdraw')
 Route.post('/withdraw','WithdrawController.withdraw')
+Route.post('/sendVerification','EmailverifyController.verify')
+Route.post('/2fa','AuthenticatorController.authenticator')
+
+//facebook signup
+Route.get('register/facebook', 'FacebooksignupController.redirect')
+Route.get('authenticated/facebook', 'FacebooksignupController.callback')
 
 
 //admin routes

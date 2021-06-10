@@ -7,6 +7,10 @@ const transaction=use('App/Models/Transaction')
 const fromNow = require('fromnow');
 const trades=use('App/Models/Trade')
 const users=use('App/Models/User')
+const chats=use('App/Models/Chat')
+const moment = require('moment');
+const alerts=use('App/Models/Alert')
+
 //1. Import coingecko-api
 const CoinGecko = require('coingecko-api');
 
@@ -22,6 +26,9 @@ class DashboardController {
         let bch = await balance.findBy({email:user.email,coin:'bch'})
         let ltc = await balance.findBy({email:user.email,coin:'ltc'})
         let eth = await balance.findBy({email:user.email,coin:'eth'})
+      //get alerts
+      let alert=await alerts.all()
+      let chat=await chats.query().where({}).distinct('trade_id').limit(10).fetch()
         let notifications=await notification.query().where({email:user.email}).fetch()
         let transactions=await transaction.query().where({email:user.email}).fetch()
         let userDetails=await users.query().where({email:user.email}).fetch()
@@ -86,12 +93,14 @@ class DashboardController {
           notifications:notifications.toJSON(),
           transactions:transactions.toJSON(),
           fromNow:fromNow,
+          moment:moment,
           url:Env.get('URL'),
           activeTrades:activeTrades.toJSON(),
           total:total.toJSON(),
           cancelled:cancelled.toJSON(),
           disputed:disputed.toJSON(),
-          success:success.toJSON()
+          success:success.toJSON(),
+          alerts:alert.toJSON()
         })
     } catch (error) {
       console.log(error)

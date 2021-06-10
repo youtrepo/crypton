@@ -59,6 +59,16 @@
 
   <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KQT4BL2BCJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-KQT4BL2BCJ');
+  </script>
+
 </head>
 <body>
 <!-- BEGIN LOADER -->
@@ -117,6 +127,8 @@
       <a><h6 class="dropdown-header">Messages</h6></a>
             <a class="dropdown-item">
               <div class="pt-2">
+                @if(chats.length!==0)
+                @each(chat in chats)
                 <div class="media notification-new">
                   <div class="notification-icon">
                     <div class="icon-svg mr-3">
@@ -124,10 +136,24 @@
                     </div>
                   </div>
                   <div class="media-body">
-                    <p class="meta-title mr-3">1 new email</p>
-                    <p class="message-text">Anderson.Daisy@mail.com</p>
-                    <p class="meta-time align-self-center mb-0">Yesterday</p>
+                    <p class="meta-title mr-3">{{chat.user}}</p>
+                    <p class="message-text">{{chat.messages}}</p>
+                    <p class="meta-time align-self-center mb-0">{{moment(chat.created_at).format("DD MMMM y")}}</p>
                   </div>
+                  @endeach
+                  @else
+                  <div class="media notification-new">
+                    <div class="notification-icon">
+                      <div class="icon-svg mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-frown"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                      </div>
+                    </div>
+                  <div class="media-body">
+                    <p class="meta-title mr-3">Sorry</p>
+                    <p class="message-text">No new messages</p>
+                  </div>
+                  @endif
+
                 </div>
               </div>
             </a>
@@ -238,6 +264,19 @@
     <nav id="sidebar">
       <div class="shadow-bottom"></div>
       <ul class="list-unstyled menu-categories" id="accordionExample">
+        @if(auth.user.is_admin==1)
+        <li class="menu">
+          <a href="/admin" aria-expanded="true" class="dropdown-toggle bg-info">
+            <div class="">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              <span>Admin</span>
+            </div>
+          </a>
+        </li>
+        @endif
+
+
+
         <li class="menu">
           <a href="/dashboard" data-active="true"  aria-expanded="true" class="dropdown-toggle">
             <div class="">
@@ -333,7 +372,6 @@
           </a>
         </li>
 <!--referral coming soon-->
-        <!--
         <li class="menu">
           <a href="/referral" aria-expanded="false" class="dropdown-toggle">
             <div class="">
@@ -342,7 +380,6 @@
             </div>
           </a>
         </li>
-        -->
       </ul>
       <!-- <div class="shadow-bottom"></div> -->
 

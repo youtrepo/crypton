@@ -17,6 +17,12 @@
               <li class="nav-item ml-2 mr-2">
                 <a class="nav-link mb-1 rounded-circle active" id="rounded-circle-pills-icon-profile-tab" data-toggle="pill" href="#rounded-circle-pills-icon-profile" role="tab" aria-controls="rounded-circle-pills-icon-profile" aria-selected="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a>
               </li>
+
+
+              <!--security -->
+              <li class="nav-item ml-2 mr-2">
+                <a class="nav-link mb-1 rounded-circle" id="rounded-circle-pills-icon-security-tab" data-toggle="pill" href="#rounded-circle-pills-icon-security" role="tab" aria-controls="rounded-circle-pills-icon-security" aria-selected="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a>
+              </li>
             </ul>
 
             <div class="tab-content" id="rounded-circle-pills-icon-tabContent">
@@ -93,7 +99,7 @@
                              <input id="t-text" type="email" name="txt" placeholder="email" class="form-control" value="{{user.email}}" required="">
                              @if(!user.verified)
                              <span class="badge outline-badge-danger mt-1">unverified</span>
-                             <span class="btn btn-warning p-1 mt-1 mr-2 btn-sm d-inline float-right">Resend email</span>
+                             <span class="btn btn-warning p-1 mt-1 mr-2 btn-sm d-inline float-right" onclick="sendVerification('{{ csrfToken }}')">Resend email</span>
                              @endif
                            </div>
                            <div class="input-group mb-4">
@@ -127,6 +133,38 @@
                    </div>
                  </div>
                  </div>
+
+
+              <!--security -->
+              <div class="tab-pane fade" id="rounded-circle-pills-icon-security" role="tabpanel" aria-labelledby="rounded-circle-pills-icon-security-tab">
+                <div class="row">
+                  <div class="col-lg">
+                    <form class="justify-content-center align-items-center" name="2fa">
+                      {{ csrfField() }}
+                      <h6 class="text-center">Enable 2fa Authentication</h6>
+                      <div class="alert alert-arrow-left alert-icon-left alert-light-danger mb-4 mt-4"
+                           role="alert">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-triangle"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        <strong>Alert!</strong> Please scan the qr code using Google authenticator or use the key below to get the code and use it to enable 2fa authentication.
+                      </div>
+                        <img src="{{qr}}" class="rounded mx-auto d-block mb-3" >
+                      <div class="input-group mb-4">
+                        <input type="text" class="form-control" value="{{otp}}" readonly>
+                        <div class="input-group-append">
+                          <button class="btn btn-primary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></button>
+                        </div>
+                      </div>
+
+                      <div class="input-group mb-4">
+                        <input type="text" class="form-control" placeholder="Authenticator Token" name="token">
+                        <div class="input-group-append">
+                          <button class="btn btn-success" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-power"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg> Enable</button>
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
               </div>
 
             </div>

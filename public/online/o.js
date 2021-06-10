@@ -50,6 +50,13 @@ $('#theme-switcher').click(function () {
     }, onBlock: function () {
       if ($('#theme-switcher').hasClass('btn-dark')) {
         const hrefs = $('link[rel="stylesheet"]')
+        const scripts=$('script[src]')
+        scripts.each(function (){
+          if ($(this).attr('src').indexOf('light') !== -1) {
+            let rel = $(this).attr('src').replace("light", "darkness");
+            $(this).attr('src', rel)
+          }
+        })
         hrefs.each(function () {
           if ($(this).attr('href').indexOf('light') !== -1) {
             let rel = $(this).attr('href').replace("light", "darkness");
@@ -62,6 +69,14 @@ $('#theme-switcher').click(function () {
         setCookie('theme','darkness',7000);
       } else {
         const hrefs = $('link[rel="stylesheet"]');
+        const scripts=$('script[src]')
+        scripts.each(function (){
+          if ($(this).attr('src').indexOf('darkness') !== -1) {
+            let rel = $(this).attr('src').replace("darkness", "light");
+            $(this).attr('src', rel)
+          }
+        })
+
         hrefs.each(function () {
           if ($(this).attr('href').indexOf('darkness') !== -1) {
             let rel = $(this).attr('href').replace("darkness", "light");

@@ -48,18 +48,20 @@
         </tr>
         </thead>
         <tbody>
+        @each(buy in buys)
         <tr>
-          <td>Tiger Nixon</td>
-          <td>System Architect</td>
-          <td>Edinburgh</td>
-          <td>61</td>
-          <td>2011/04/25</td>
+          <td>{{buy.user}}</td>
+          <td>{{buy.payment_method}}</td>
+          <td>{{buy.coin}}</td>
+          <td>{{buy.rate}}</td>
+          <td>{{buy.min_amount}} to {{buy.max_amount}}</td>
           <td class="text-center fixedc">
-            <a href="#" class="btn btn-block btn-success pl-1 pr-1 btn-sm ml-1 mr-1" title="View details">
+            <a href="/buy/{{buy.offer_id}}" class="btn btn-block btn-success pl-1 pr-1 btn-sm ml-1 mr-1" title="View details">
               <i class="fas fa-shopping-cart"></i><span class="ml-1">Buy</span>
             </a>
           </td>
         </tr>
+        @endeach
         </tbody>
         <tfoot>
         <tr>
@@ -103,18 +105,20 @@
         </tr>
         </thead>
         <tbody>
+        @each(sell in sells)
         <tr>
-          <td>Tiger Nixon</td>
-          <td>System Architect</td>
-          <td>Edinburgh</td>
-          <td>61</td>
-          <td>2011/04/25</td>
+          <td>{{sell.user}}</td>
+          <td>{{sell.payment_method}}</td>
+          <td>{{sell.coin}}</td>
+          <td>{{sell.rate}}</td>
+          <td>{{sell.min_amount}} to {{sell.max_amount}}</td>
           <td class="text-center fixedc">
-            <a href="#" class="btn btn-block btn-danger pl-1 pr-1 btn-sm ml-1 mr-1" title="View details">
+            <a href="/sell/{{sell.offer_id}}" class="btn btn-block btn-danger pl-1 pr-1 btn-sm ml-1 mr-1" title="View details">
               <i class="fas fa-dollar-sign"></i><span class="ml-1">Sell</span>
             </a>
           </td>
         </tr>
+        @endeach
         </tbody>
         <tfoot>
         <tr>

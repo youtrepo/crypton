@@ -72,3 +72,62 @@ $('form[name="bio_form"]').on('submit',function (e){
     }
   })
 })
+
+
+//verification token
+function sendVerification(token){
+  $.ajax({
+    type:'POST',
+    dataType: "JSON",
+    url:'/sendVerification',
+    data:{
+      _csrf:token
+    },
+    success:function (data){
+      switch (data.success){
+        case true:
+          Snackbar.show({
+            text: data.msg,
+            actionTextColor: '#fff',
+            backgroundColor: '#1abc9c'
+          });
+          break;
+        case false:
+          Snackbar.show({
+            text: data.msg,
+            actionTextColor: '#fff',
+            backgroundColor: '#e7515a'
+          });
+          break;
+      }
+    }
+  })
+}
+
+//2fa
+$('form[name="2fa"]').on('submit',function (e){
+  e.preventDefault()
+  $.ajax({
+    type:'post',
+    url:'/2fa',
+    data:$(this).serialize(),
+    success:function (data){
+      switch (data.success) {
+        case true:
+          Snackbar.show({
+            text: data.msg,
+            actionTextColor: '#fff',
+            backgroundColor: '#1abc9c'
+          });
+          break;
+        case false:
+          Snackbar.show({
+            text: data.msg,
+            actionTextColor: '#fff',
+            backgroundColor: '#e7515a'
+          });
+          break;
+      }
+    }
+  })
+})

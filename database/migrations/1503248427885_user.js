@@ -15,7 +15,10 @@ class UserSchema extends Schema {
       table.string('token',565).notNullable()
       table.string('verified',55).nullable()
       table.integer('is_admin').defaultTo(0)
+      table.boolean('2fa').defaultTo(false)
+      table.string('secret',255).nullable()
       table.text('bio','longtext')
+      table.string('login_source',55)
       table.timestamps()
     })
   }

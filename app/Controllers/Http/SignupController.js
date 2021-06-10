@@ -1,4 +1,5 @@
 'use strict'
+
 const Env = use('Env')
 class SignupController {
   async signup({request,response,view}){

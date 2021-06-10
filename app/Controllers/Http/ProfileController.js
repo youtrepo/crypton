@@ -23,7 +23,7 @@ class ProfileController {
       if (exists){
         file=await Drive.get(`uploads/${user.username}/pic.jpg`,'base64')
       }
-      console.log(totalTrades.length)
+
       return view.render('dashboard/profile',{
        user:user,
         moment:moment,
