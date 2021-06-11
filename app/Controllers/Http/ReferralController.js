@@ -11,7 +11,7 @@ class ReferralController {
       //lets get users username
       let referralDetails=await users.findBy('email', user.email)
       return view.render('dashboard/referral',{
-        link:Env.get('URL')+'/'+referralDetails.username,
+        link:Env.get('APP_URL')+'/'+referralDetails.username,
       })
     } catch (e) {
       if (e.message === 'E_INVALID_SESSION: Invalid session') {
