@@ -7,6 +7,7 @@ class BalancesSchema extends Schema {
   up () {
     this.create('balances', (table) => {
       table.increments()
+      table.string('username')
       table.string('email',255)
       table.string('coin',55)
       table.decimal('value',null).defaultTo(0)

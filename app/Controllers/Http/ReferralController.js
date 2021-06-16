@@ -1,6 +1,7 @@
 'use strict'
 
 const users=use('App/Models/User')
+const referral=use('App/Models/Referral')
 const Env = use('Env')
 
 class ReferralController {
@@ -10,8 +11,11 @@ class ReferralController {
       let user = await auth.getUser()
       //lets get users username
       let referralDetails=await users.findBy('email', user.email)
+      //get referrals
+      let refs=await referral.query().where({username:user.username}).fetch()
       return view.render('dashboard/referral',{
-        link:Env.get('APP_URL')+'/'+referralDetails.username,
+        link:Env.get('APP_URL')+'/signup?ref='+referralDetails.username,
+        refs:refs.toJSON()
       })
     } catch (e) {
       if (e.message === 'E_INVALID_SESSION: Invalid session') {

@@ -5,22 +5,60 @@
 <div id="content" class="main-content">
   <div class="layout-px-spacing">
     <div class="layout-top-spacing">
-      <div class="col-lg-12 col-12 layout-spacing">
-        <blockquote class="blockquote text-center overflow-hidden mt-5">
-          <h5>Refer friends and earn</h5>
-          <p>Get 15% of what your referral deposits to the system and <b>0.00001</b> Per coin</p>
-          <p>Start inviting friends now by using the link below
-          <img src="/images/20943954.jpg" class="rounded mx-auto d-block mt-5" width="400px" height="400px">
-          <div class="input-group mt-5">
-            <input type="text" class="form-control" id="address" value="{{link}}" readonly>
-            <div class="input-group-append">
-              <button class="btn btn-primary" type="button" data-clipboard-action="copy" data-clipboard-target="#address"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-            </div>
+      <div class="widget-content widget-content-area rounded-pills-icon">
+
+        <ul class="nav nav-pills mb-4 mt-3  justify-content-center" id="rounded-pills-icon-tab" role="tablist">
+          <li class="nav-item ml-2 mr-2">
+            <a class="nav-link mb-2 text-center active" id="rounded-pills-icon-home-tab" data-toggle="pill" href="#rounded-pills-icon-home" role="tab" aria-controls="rounded-pills-icon-home" aria-selected="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Link</a>
+          </li>
+          <li class="nav-item ml-2 mr-2">
+            <a class="nav-link mb-2 text-center" id="rounded-pills-icon-profile-tab" data-toggle="pill" href="#rounded-pills-icon-profile" role="tab" aria-controls="rounded-pills-icon-profile" aria-selected="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Referrals</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="rounded-pills-icon-tabContent">
+          <div class="tab-pane fade active show" id="rounded-pills-icon-home" role="tabpanel" aria-labelledby="rounded-pills-icon-home-tab">
+            <blockquote class="blockquote text-center overflow-hidden mt-5">
+              <h5>Refer friends and earn</h5>
+              <p>Get 15% of what your referral deposits to the system and <b>0.00001</b> Per coin</p>
+              <p>Start inviting friends now by using the link below
+                <img src="/images/20943954.jpg" class="rounded mx-auto d-block mt-5" width="400px" height="400px">
+              <div class="input-group mt-5">
+                <input type="text" class="form-control" id="address" value="{{link}}" readonly>
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="button" data-clipboard-action="copy" data-clipboard-target="#address"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </div>
+            </blockquote>
           </div>
-        </blockquote>
+          <div class="tab-pane fade" id="rounded-pills-icon-profile" role="tabpanel" aria-labelledby="rounded-pills-icon-profile-tab">
+            <div class="widget-content" style="overflow-x: auto!important;">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th><div class="th-content">Username</div></th>
+                    <th><div class="th-content">Email</div></th>
+                    <th><div class="th-content">Joined</div></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  @each(ref in refs)
+                  <tr>
+                    <td><div class="td-content customer-name">{{ref.ref}}</div></td>
+                    <td><div class="td-content product-brand text-primary">{{ref.email}}</div></td>
+                    <td><div class="td-content product-invoice">{{ref.created_at}}</div></td>
+                    </tr>
+                  @endeach
 
-
+                  </tbody>
+                </table>
+              </div>
+          </div>
+        </div>
       </div>
+      </div>
+
+
     </div>
   </div>
 
