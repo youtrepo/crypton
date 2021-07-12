@@ -17,6 +17,8 @@
 const Route = use('Route')
 
 Route.get('/', 'IndexController.index')
+Route.get('/privacy_policy','PrivacypolicyController.privacy')
+Route.get('terms_of_service','TermsofserviceController.tos')
 Route.get('/login','LoginController.login')
 Route.get('/signup','SignupController.signup')
 Route.post('/register','RegisterController.register')

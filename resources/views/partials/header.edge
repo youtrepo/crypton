@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="/light/styles/components/cards/card.css">
     <link rel="stylesheet" href="/light/styles/elements/tooltip.css">
     <link rel="stylesheet" href="/light/styles/override.css">
+<link href="/light/styles/pages/privacy/privacy.css" rel="stylesheet" type="text/css" />
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KQT4BL2BCJ"></script>
@@ -116,12 +117,15 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="btn btn-link btn-link-primary dropdown-toggle mt-lg-0 mt-2 ml-2" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span>{{Antl.formatMessage('index.help')}}</span>
+                        <span>{{Antl.formatMessage('index.more')}}</span>
+                      <span><i class="fa fa-caret-down"></i> </span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#"><span><i class="fal fa-question-circle"></i> </span>{{Antl.formatMessage('index.faq')}}</a>
                         <a class="dropdown-item" href="#"><span><i class="fal fa-coins"></i> </span>{{Antl.formatMessage('index.fees')}}</a>
                         <a class="dropdown-item" href="#"><span><i class="fal fa-info-circle"></i> </span>{{Antl.formatMessage('index.about')}}</a>
+                      <a class="dropdown-item" href="/privacy_policy"><span><i class="fal fa-info-circle"></i> </span>Privacy policy</a>
+                      <a class="dropdown-item" href="/terms_of_service"><span><i class="fal fa-info-circle"></i> </span>Terms of service</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
