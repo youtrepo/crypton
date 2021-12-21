@@ -8,6 +8,7 @@
     "start": "node server.js",
     "test": "node ace test"
   },
+  "engines": { "node": "14.x" },
   "keywords": [
     "adonisjs",
     "adonis-app"
