@@ -29,6 +29,12 @@ class CoinSeeder {
         },
         {
           coin:'Ltc'
+        },
+        {
+          coin:'Usdt'
+        },
+        {
+          coin:'Bnb'
         }
       ]
       await coin.createMany(coins)
